@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4A4D7A687EB5820035658AA72F3A18564FA5B00F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282" : 0,
+    "4A4D7A687EB5820035658AA72F3A18564FA5B00F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8DFA1F92-5207-4B70-BBBE-E444834F5847",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282" : "Code\/Pony\/Pony\/External\/MBProgressHUD\/",
+    "4A4D7A687EB5820035658AA72F3A18564FA5B00F" : "Code\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pony",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pony\/Pony.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/PeterStudio\/Pony.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A4D7A687EB5820035658AA72F3A18564FA5B00F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/168.168.1.183\/svn\/iOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282"
+    }
+  ]
+}

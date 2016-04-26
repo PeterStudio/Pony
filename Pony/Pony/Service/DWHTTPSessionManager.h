@@ -8,6 +8,46 @@
 
 #import <AFNetworking/AFNetworking.h>
 
+#define DWHTTP [ZPHTTPSessionManager sharedManager]
+
 @interface DWHTTPSessionManager : AFHTTPSessionManager
+
++ (instancetype)sharedManager;
+
+- (void)wGet:(NSString *)URLString
+  parameters:(id)parameters
+     success:(void (^)(id responseObject))success
+     failure:(void (^)(NSError *error))failure;
+
+- (void)wHead:(NSString *)URLString
+   parameters:(id)parameters
+      success:(void (^)(id responseObject))success
+      failure:(void (^)(NSError *error))failure;
+
+- (void)wPost:(NSString *)URLString
+   parameters:(id)parameters
+      success:(void (^)(id responseObject))success
+      failure:(void (^)(NSError *error))failure;
+
+- (void)wPut:(NSString *)URLString
+  parameters:(id)parameters
+     success:(void (^)(id responseObject))success
+     failure:(void (^)(NSError *error))failure;
+
+- (void)wPatch:(NSString *)URLString
+    parameters:(id)parameters
+       success:(void (^)(id responseObject))success
+       failure:(void (^)(NSError *error))failure;
+
+- (void)wDelete:(NSString *)URLString
+     parameters:(id)parameters
+        success:(void (^)(id responseObject))success
+        failure:(void (^)(NSError *error))failure;
+
+- (void)wPost:(NSString *)URLString
+   parameters:(id)parameters
+     fileInfo:(NSDictionary *)fileInfo
+      success:(void (^)(NSDictionary *object))success
+      failure:(void (^)(NSError *error))failure;
 
 @end

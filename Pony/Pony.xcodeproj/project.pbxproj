@@ -236,6 +236,7 @@
 		09353A701C50CCD800DC5A1A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */; };
 		09353A721C50CCE600DC5A1A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */; };
 		09353A741C50CCEF00DC5A1A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A731C50CCEF00DC5A1A /* libz.tbd */; };
+		0BC081641CCF090200F474F8 /* DWHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC081631CCF090200F474F8 /* DWHTTPSessionManager.m */; };
 		357EA377BB986919020E9994 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -565,6 +566,12 @@
 		09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		09353A731C50CCEF00DC5A1A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIStringMacros.h; sourceTree = "<group>"; };
+		0BC0815E1CCF076C00F474F8 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		0BC081621CCF090200F474F8 /* DWHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHTTPSessionManager.h; sourceTree = "<group>"; };
+		0BC081631CCF090200F474F8 /* DWHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHTTPSessionManager.m; sourceTree = "<group>"; };
+		0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantLogger.h; sourceTree = "<group>"; };
+		0BC081671CCF0C5100F474F8 /* Macors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macors.h; sourceTree = "<group>"; };
 		9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A596F5E4225526C479994396 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CE3BEDCAE90A94E587BE6925 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -785,6 +792,10 @@
 				091FD6141C55B7B500BB461C /* JCHATFileManager.m */,
 				091FD6151C55B7B500BB461C /* JCHATStringUtils.h */,
 				091FD6161C55B7B500BB461C /* JCHATStringUtils.m */,
+				0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */,
+				0BC0815E1CCF076C00F474F8 /* Constant.h */,
+				0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */,
+				0BC081671CCF0C5100F474F8 /* Macors.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1094,6 +1105,7 @@
 			children = (
 				09353A471C50AAAE00DC5A1A /* AppDelegate.h */,
 				09353A481C50AAAE00DC5A1A /* AppDelegate.m */,
+				0BC081611CCF089F00F474F8 /* Service */,
 				0906E2061C58C757003FF9FF /* Resources */,
 				091FD69A1C55B82000BB461C /* Utils */,
 				092C07B81C52037200FF4981 /* Category */,
@@ -1118,6 +1130,15 @@
 				09353A451C50AAAE00DC5A1A /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0BC081611CCF089F00F474F8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0BC081621CCF090200F474F8 /* DWHTTPSessionManager.h */,
+				0BC081631CCF090200F474F8 /* DWHTTPSessionManager.m */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		BEDF6921D7554971819ADFFC /* Pods */ = {
@@ -1454,6 +1475,7 @@
 				092C07A81C52034000FF4981 /* JCHATTextTableViewCell.m in Sources */,
 				091FD6841C55B7DE00BB461C /* MJPhotoToolbar.m in Sources */,
 				091FD68D1C55B7DE00BB461C /* SDWebImageManager+MJ.m in Sources */,
+				0BC081641CCF090200F474F8 /* DWHTTPSessionManager.m in Sources */,
 				091FD6881C55B7DE00BB461C /* SDImageCache.m in Sources */,
 				091FD68B1C55B7DE00BB461C /* SDWebImageDownloader.m in Sources */,
 				091FD69D1C55B82000BB461C /* ViewUtil.m in Sources */,

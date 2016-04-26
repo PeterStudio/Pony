@@ -9,5 +9,8 @@
 #ifndef Macors_h
 #define Macors_h
 
+#import "Constant.h"
+#import "ConstantLogger.h"
+#import "APIStringMacros.h"
 
 #endif /* Macors_h */

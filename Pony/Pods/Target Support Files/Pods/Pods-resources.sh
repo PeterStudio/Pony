@@ -63,6 +63,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "GPUImage/framework/Resources/lookup_miss_etikate.png"
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_1.png"
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-error.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-error@2x.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-info.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-info@2x.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-success.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-success@2x.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "GPUImage/framework/Resources/lookup.png"
@@ -70,6 +77,13 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "GPUImage/framework/Resources/lookup_miss_etikate.png"
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_1.png"
   install_resource "GPUImage/framework/Resources/lookup_soft_elegance_2.png"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-error.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-error@2x.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-info.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-info@2x.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-success.png"
+  install_resource "TWMessageBarManager/Classes/Icons/icon-success@2x.png"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

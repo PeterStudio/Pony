@@ -69,22 +69,14 @@
 }
 
 - (void)initLogger {
-    [DDLog addLogger:[DDASLLogger sharedInstance]];
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDLog addLogger:[DDASLLogger sharedInstance]]; // 将 log 发送给苹果服务器，之后在 Console.app 中可以查看
+    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // 将 log 发送给 Xcode 的控制台
     
-//    [[DDTTYLogger sharedInstance] setForegroundColor:DDMakeColor(255, 0, 0)
-//                                     backgroundColor:nil
-//                                             forFlag:LOG_FLAG_ERROR];
-//    [[DDTTYLogger sharedInstance] setForegroundColor:DDMakeColor(255, 215, 0)
-//                                     backgroundColor:nil
-//                                             forFlag:LOG_FLAG_WARN];
-//    [[DDTTYLogger sharedInstance] setForegroundColor:DDMakeColor(0, 255, 0)
-//                                     backgroundColor:nil
-//                                             forFlag:LOG_FLAG_DEBUG];
-//    [[DDTTYLogger sharedInstance] setForegroundColor:DDMakeColor(0, 0, 255)
-//                                     backgroundColor:nil
-//                                             forFlag:LOG_FLAG_INFO];
-//    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    DDLogVerbose(@"Verbose");
+    DDLogDebug(@"Debug");
+    DDLogInfo(@"Info");
+    DDLogWarn(@"Warn");
+    DDLogError(@"Error");
 }
 
 // notification from JPush
