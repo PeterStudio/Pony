@@ -19,5 +19,10 @@
 #define API_BASE_URL_STRING     @"https://mobile.maiyabank.com/myLoan-mobile/action/api/"
 #endif
 
+#define POSTMethod                      @"POST"
+#define GETMethod                       @"GET"
+
+#define kAPILogin                       @"login"                        // 登录
+#define kAPIRegister                    @"register"                     // 注册
 
 #endif /* APIStringMacros_h */

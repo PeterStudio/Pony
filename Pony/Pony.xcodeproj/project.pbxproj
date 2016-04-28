@@ -236,7 +236,10 @@
 		09353A701C50CCD800DC5A1A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */; };
 		09353A721C50CCE600DC5A1A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */; };
 		09353A741C50CCEF00DC5A1A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A731C50CCEF00DC5A1A /* libz.tbd */; };
-		0BC081641CCF090200F474F8 /* DWHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC081631CCF090200F474F8 /* DWHTTPSessionManager.m */; };
+		0BB77B741CD1DBED00C7146C /* BaseVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B731CD1DBED00C7146C /* BaseVM.m */; };
+		0BB77B771CD1DC0700C7146C /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B761CD1DC0700C7146C /* LoginVM.m */; };
+		0BB77B7A1CD1E57D00C7146C /* BaseM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B791CD1E57D00C7146C /* BaseM.m */; };
+		0BB77B7D1CD1ED7200C7146C /* NSString+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */; };
 		357EA377BB986919020E9994 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -566,10 +569,16 @@
 		09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		09353A731C50CCEF00DC5A1A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0BB77B721CD1DBED00C7146C /* BaseVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseVM.h; sourceTree = "<group>"; };
+		0BB77B731CD1DBED00C7146C /* BaseVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVM.m; sourceTree = "<group>"; };
+		0BB77B751CD1DC0700C7146C /* LoginVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVM.h; sourceTree = "<group>"; };
+		0BB77B761CD1DC0700C7146C /* LoginVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVM.m; sourceTree = "<group>"; };
+		0BB77B781CD1E57D00C7146C /* BaseM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseM.h; sourceTree = "<group>"; };
+		0BB77B791CD1E57D00C7146C /* BaseM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseM.m; sourceTree = "<group>"; };
+		0BB77B7B1CD1ED7200C7146C /* NSString+LangExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LangExt.h"; sourceTree = "<group>"; };
+		0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LangExt.m"; sourceTree = "<group>"; };
 		0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIStringMacros.h; sourceTree = "<group>"; };
 		0BC0815E1CCF076C00F474F8 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
-		0BC081621CCF090200F474F8 /* DWHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHTTPSessionManager.h; sourceTree = "<group>"; };
-		0BC081631CCF090200F474F8 /* DWHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHTTPSessionManager.m; sourceTree = "<group>"; };
 		0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantLogger.h; sourceTree = "<group>"; };
 		0BC081671CCF0C5100F474F8 /* Macors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macors.h; sourceTree = "<group>"; };
 		9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,12 +648,8 @@
 		0906E1F41C589371003FF9FF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				0906E1F51C589397003FF9FF /* LoginViewController.h */,
-				0906E1F61C589397003FF9FF /* LoginViewController.m */,
-				0906E1F81C5895C0003FF9FF /* RegistViewController.h */,
-				0906E1F91C5895C0003FF9FF /* RegistViewController.m */,
-				0906E1FB1C5895CB003FF9FF /* ForgetViewController.h */,
-				0906E1FC1C5895CB003FF9FF /* ForgetViewController.m */,
+				0BB77B711CD1B8A900C7146C /* ViewController */,
+				0BB77B701CD1B89E00C7146C /* ViewModel */,
 			);
 			name = Logic;
 			sourceTree = "<group>";
@@ -936,6 +941,10 @@
 				0906E1F41C589371003FF9FF /* Logic */,
 				0906E1EA1C5870FD003FF9FF /* BaseControllers */,
 				092C07341C52034000FF4981 /* Chat */,
+				0BB77B721CD1DBED00C7146C /* BaseVM.h */,
+				0BB77B731CD1DBED00C7146C /* BaseVM.m */,
+				0BB77B781CD1E57D00C7146C /* BaseM.h */,
+				0BB77B791CD1E57D00C7146C /* BaseM.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1078,6 +1087,8 @@
 				092C07BE1C52037200FF4981 /* NSString+MessageInputView.m */,
 				092C07BF1C52037200FF4981 /* UIImage +ResizeMagick.m */,
 				092C07C01C52037200FF4981 /* UIImage+ResizeMagick.h */,
+				0BB77B7B1CD1ED7200C7146C /* NSString+LangExt.h */,
+				0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1132,11 +1143,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0BB77B701CD1B89E00C7146C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0BB77B751CD1DC0700C7146C /* LoginVM.h */,
+				0BB77B761CD1DC0700C7146C /* LoginVM.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		0BB77B711CD1B8A900C7146C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0906E1F51C589397003FF9FF /* LoginViewController.h */,
+				0906E1F61C589397003FF9FF /* LoginViewController.m */,
+				0906E1F81C5895C0003FF9FF /* RegistViewController.h */,
+				0906E1F91C5895C0003FF9FF /* RegistViewController.m */,
+				0906E1FB1C5895CB003FF9FF /* ForgetViewController.h */,
+				0906E1FC1C5895CB003FF9FF /* ForgetViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		0BC081611CCF089F00F474F8 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				0BC081621CCF090200F474F8 /* DWHTTPSessionManager.h */,
-				0BC081631CCF090200F474F8 /* DWHTTPSessionManager.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1420,8 +1451,10 @@
 				092C07AD1C52034000FF4981 /* JCHATGroupPersonView.m in Sources */,
 				092C07A11C52034000FF4981 /* JCHATImgTableViewCell.m in Sources */,
 				092C07971C52034000FF4981 /* JCHATChatModel.m in Sources */,
+				0BB77B741CD1DBED00C7146C /* BaseVM.m in Sources */,
 				091FD6761C55B7DE00BB461C /* MASViewAttribute.m in Sources */,
 				092C07C31C52037200FF4981 /* NSString+MessageInputView.m in Sources */,
+				0BB77B7A1CD1E57D00C7146C /* BaseM.m in Sources */,
 				091FD6921C55B7DE00BB461C /* UIImage+MultiFormat.m in Sources */,
 				092C07B01C52034000FF4981 /* JCHATMoreView.m in Sources */,
 				091FD6911C55B7DE00BB461C /* UIImage+GIF.m in Sources */,
@@ -1443,10 +1476,12 @@
 				092C07AF1C52034000FF4981 /* JCHATMessageTextView.m in Sources */,
 				092C07B51C52034000FF4981 /* XHVoiceCommonHelper.m in Sources */,
 				091FD6871C55B7DE00BB461C /* NSData+GIF.m in Sources */,
+				0BB77B7D1CD1ED7200C7146C /* NSString+LangExt.m in Sources */,
 				091FD6861C55B7DE00BB461C /* MKAnnotationView+WebCache.m in Sources */,
 				092C079F1C52034000FF4981 /* JCHATGroupSettingCell.m in Sources */,
 				0906E1FD1C5895CB003FF9FF /* ForgetViewController.m in Sources */,
 				092C07AB1C52034000FF4981 /* JCHATAudioPlayerHelper.m in Sources */,
+				0BB77B771CD1DC0700C7146C /* LoginVM.m in Sources */,
 				092C07A91C52034000FF4981 /* JCHATVoiceTableCell.m in Sources */,
 				0906E2021C58B83A003FF9FF /* HomeViewController.m in Sources */,
 				092C07901C52034000FF4981 /* JCHATGroupSettingCtl.m in Sources */,
@@ -1475,7 +1510,6 @@
 				092C07A81C52034000FF4981 /* JCHATTextTableViewCell.m in Sources */,
 				091FD6841C55B7DE00BB461C /* MJPhotoToolbar.m in Sources */,
 				091FD68D1C55B7DE00BB461C /* SDWebImageManager+MJ.m in Sources */,
-				0BC081641CCF090200F474F8 /* DWHTTPSessionManager.m in Sources */,
 				091FD6881C55B7DE00BB461C /* SDImageCache.m in Sources */,
 				091FD68B1C55B7DE00BB461C /* SDWebImageDownloader.m in Sources */,
 				091FD69D1C55B82000BB461C /* ViewUtil.m in Sources */,
