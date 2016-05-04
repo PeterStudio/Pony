@@ -104,7 +104,6 @@
                         <outlet property="loginButton" destination="GKa-ZF-wrJ" id="ieR-Ly-z86"/>
                         <outlet property="passwordTextField" destination="L0A-3r-GIH" id="2wU-Nl-Gug"/>
                         <outlet property="userNameTextField" destination="Pds-pQ-bHh" id="Led-Iz-8m6"/>
-                        <segue destination="gd9-Fu-fqN" kind="show" identifier="loginToHomeVC_ID" id="oSK-VU-QUy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kM9-CR-pgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -113,10 +112,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKa-ZF-wrJ">
-                            <rect key="frame" x="40" y="30" width="520" height="30"/>
+                            <rect key="frame" x="40" y="30" width="520" height="40"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="LSz-ra-JxX"/>
+                                <constraint firstAttribute="height" constant="40" id="LSz-ra-JxX"/>
                             </constraints>
                             <state key="normal" title="确定" backgroundImage="userLogic_btn_bg01_1">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -124,7 +123,7 @@
                             <state key="disabled" backgroundImage="userLogic_btn_bg01"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHu-pb-6pN">
-                            <rect key="frame" x="15" y="80" width="60" height="30"/>
+                            <rect key="frame" x="15" y="90" width="60" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="Yfy-wf-qah"/>
                             </constraints>
@@ -139,7 +138,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYf-XD-Avk">
-                            <rect key="frame" x="525" y="80" width="60" height="30"/>
+                            <rect key="frame" x="525" y="90" width="60" height="30"/>
                             <state key="normal" title="忘记密码"/>
                             <connections>
                                 <segue destination="gvZ-oE-Cqe" kind="show" id="vT3-c6-vpL"/>
@@ -222,7 +221,10 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="CTT-Vg-ODX"/>
                                                     </constraints>
-                                                    <state key="normal" title="发送验证码"/>
+                                                    <state key="normal" title="发送验证码" backgroundImage="userLogic_btn_bg01_1">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="disabled" backgroundImage="userLogic_btn_bg01"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -283,18 +285,23 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uq3-wf-uho">
-                            <rect key="frame" x="25" y="70" width="550" height="30"/>
+                            <rect key="frame" x="25" y="60" width="550" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="MHn-IE-vti"/>
+                                <constraint firstAttribute="height" constant="40" id="MHn-IE-vti"/>
                             </constraints>
-                            <state key="normal" title="确定"/>
+                            <state key="normal" title="确定" backgroundImage="userLogic_btn_bg01_1">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="disabled" backgroundImage="userLogic_btn_bg01">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Uq3-wf-uho" firstAttribute="leading" secondItem="bGH-ZX-B4e" secondAttribute="leading" constant="25" id="Zk6-xy-BeT"/>
                         <constraint firstAttribute="trailing" secondItem="Uq3-wf-uho" secondAttribute="trailing" constant="25" id="pZx-k4-v27"/>
-                        <constraint firstItem="Uq3-wf-uho" firstAttribute="top" secondItem="bGH-ZX-B4e" secondAttribute="top" constant="70" id="yiV-Ms-nIc"/>
+                        <constraint firstItem="Uq3-wf-uho" firstAttribute="top" secondItem="bGH-ZX-B4e" secondAttribute="top" constant="60" id="yiV-Ms-nIc"/>
                     </constraints>
                 </view>
             </objects>
@@ -303,7 +310,7 @@
         <!--注册-->
         <scene sceneID="bB1-ps-mbl">
             <objects>
-                <tableViewController title="注册" id="cXb-OG-3JD" customClass="RegistViewController" sceneMemberID="viewController">
+                <tableViewController title="注册" id="cXb-OG-3JD" customClass="RegistVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="7Jt-cB-jxx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -362,7 +369,12 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="nzu-a9-pKW"/>
                                                     </constraints>
-                                                    <state key="normal" title="获取验证码"/>
+                                                    <state key="normal" title="获取验证码" backgroundImage="userLogic_btn_bg01_1">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="disabled" backgroundImage="userLogic_btn_bg01">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -414,10 +426,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="codeTextField" destination="N3C-0r-EWq" id="Npq-Eo-YXh"/>
                         <outlet property="footerView" destination="6RM-nl-oEJ" id="FSZ-du-Hdt"/>
-                        <outlet property="passwordTextField" destination="v2G-Xp-DTk" id="IXe-al-5mc"/>
-                        <outlet property="userNameTextField" destination="DlR-N1-HtW" id="Zzo-1F-K92"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVT-Q9-eEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -428,7 +437,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtR-WQ-mK1">
                             <rect key="frame" x="8" y="8" width="104" height="28"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="同意《用户协议》"/>
+                            <state key="normal" title="同意《用户协议》">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJv-Yj-VgZ">
                             <rect key="frame" x="475" y="8" width="117" height="28"/>
@@ -439,11 +450,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-kx-Ibg">
-                            <rect key="frame" x="40" y="80" width="520" height="30"/>
+                            <rect key="frame" x="40" y="70" width="520" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Zx1-b2-Szi"/>
+                                <constraint firstAttribute="height" constant="40" id="Zx1-b2-Szi"/>
                             </constraints>
-                            <state key="normal" title="确定"/>
+                            <state key="normal" title="确定" backgroundImage="userLogic_btn_bg01_1">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="disabled" backgroundImage="userLogic_btn_bg01"/>
                             <connections>
                                 <action selector="registButtonClicked:" destination="cXb-OG-3JD" eventType="touchUpInside" id="Gg0-iA-Gnh"/>
                             </connections>
@@ -454,7 +468,7 @@
                         <constraint firstItem="xtR-WQ-mK1" firstAttribute="top" secondItem="6RM-nl-oEJ" secondAttribute="top" constant="8" id="0ae-zX-BUT"/>
                         <constraint firstAttribute="trailing" secondItem="jJv-Yj-VgZ" secondAttribute="trailing" constant="8" id="TFz-be-9aF"/>
                         <constraint firstItem="xtR-WQ-mK1" firstAttribute="leading" secondItem="6RM-nl-oEJ" secondAttribute="leading" constant="8" id="Vei-KC-DWT"/>
-                        <constraint firstItem="A1z-kx-Ibg" firstAttribute="top" secondItem="6RM-nl-oEJ" secondAttribute="top" constant="80" id="bgR-K6-e0W"/>
+                        <constraint firstItem="A1z-kx-Ibg" firstAttribute="top" secondItem="6RM-nl-oEJ" secondAttribute="top" constant="70" id="bgR-K6-e0W"/>
                         <constraint firstAttribute="trailing" secondItem="A1z-kx-Ibg" secondAttribute="trailing" constant="40" id="ha7-RP-KWs"/>
                         <constraint firstItem="jJv-Yj-VgZ" firstAttribute="top" secondItem="6RM-nl-oEJ" secondAttribute="top" constant="8" id="pO2-tL-P7m"/>
                         <constraint firstItem="A1z-kx-Ibg" firstAttribute="leading" secondItem="6RM-nl-oEJ" secondAttribute="leading" constant="40" id="tCN-oV-d61"/>
@@ -868,7 +882,4 @@
         <image name="user_icon" width="22" height="22"/>
         <image name="user_pic" width="33" height="33"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="oSK-VU-QUy"/>
-    </inferredMetricsTieBreakers>
 </document>

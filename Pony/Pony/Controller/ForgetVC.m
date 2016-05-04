@@ -1,20 +1,19 @@
 //
-//  ForgetViewController.m
+//  ForgetVC.m
 //  Pony
 //
-//  Created by Baby on 16/1/27.
+//  Created by 杜文 on 16/5/3.
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "ForgetViewController.h"
+#import "ForgetVC.h"
 
-@interface ForgetViewController ()
-
-
+@interface ForgetVC ()
+@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @end
 
-@implementation ForgetViewController
+@implementation ForgetVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

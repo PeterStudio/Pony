@@ -7,7 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import <ReactiveViewModel/ReactiveViewModel.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
+
 #import <JMessage/JMessage.h>
+#import "Macors.h"
 
 @interface AppDelegate ()
 
@@ -15,16 +20,54 @@
 
 @implementation AppDelegate
 
++ (AppDelegate *) appDelegete
+{
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+- (void)switchStoryboard:(StoryboardTag)_tag{
+    NSString * sbStr = @"UserLogic";
+    switch (_tag) {
+        case USERLOGIC_SB:
+            sbStr = @"UserLogic";
+            break;
+        case PONY_SB:
+            sbStr = @"Pony";
+            break;
+        case HR_SB:
+            sbStr = @"HR";
+            break;
+        default:
+            break;
+    }
+    UIStoryboard * sb = [UIStoryboard storyboardWithName:sbStr bundle:[NSBundle mainBundle]];
+    [_window setRootViewController:sb.instantiateInitialViewController];
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [_window setBackgroundColor:[UIColor whiteColor]];
+    [self switchStoryboard:HR_SB];
+    [_window makeKeyAndVisible];
+    
+    @weakify(self)
+    [[[[NSNotificationCenter defaultCenter]
+       rac_addObserverForName:NOTICE_SWITCH_VC
+       object:nil] takeUntil:self.rac_willDeallocSignal]
+     subscribeNext:^(NSNotification *notification) {
+         @strongify(self);
+         NSInteger tag = (NSInteger)notification.object;
+         [self switchStoryboard:tag];
+     }];
+    
     
     [self initLogger];
     
     // init third-party SDK
     [JMessage setupJMessage:launchOptions
                      appKey:JMSSAGE_APPKEY
-                    channel:@"" apsForProduction:NO
+                    channel:@"Apple Store" apsForProduction:NO
                    category:nil];
     
     [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |

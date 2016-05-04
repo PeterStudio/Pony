@@ -10,13 +10,13 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
-#import "AFHTTPSessionManager.h"
-#import "AFHTTPSessionManager+RACSupport.h"
 #import "NSString+LangExt.h"
 #import "APIStringMacros.h"
 
 @interface BaseVM : RVMViewModel
 @property (nonatomic) RACSubject *errors;
 
-- (AFHTTPSessionManager *)sharedManager;
+@property (nonatomic, strong) NSString *title;
+- (void)initialize;
+
 @end

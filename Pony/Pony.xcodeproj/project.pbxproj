@@ -10,9 +10,6 @@
 		0906E1ED1C58712D003FF9FF /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1EC1C58712D003FF9FF /* BaseTableViewController.m */; };
 		0906E1F01C587142003FF9FF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1EF1C587142003FF9FF /* BaseViewController.m */; };
 		0906E1F31C587168003FF9FF /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1F21C587168003FF9FF /* BaseNavigationController.m */; };
-		0906E1F71C589397003FF9FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1F61C589397003FF9FF /* LoginViewController.m */; };
-		0906E1FA1C5895C0003FF9FF /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1F91C5895C0003FF9FF /* RegistViewController.m */; };
-		0906E1FD1C5895CB003FF9FF /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1FC1C5895CB003FF9FF /* ForgetViewController.m */; };
 		0906E2021C58B83A003FF9FF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E2011C58B83A003FF9FF /* HomeViewController.m */; };
 		0906E2051C58C14C003FF9FF /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E2041C58C14C003FF9FF /* MineViewController.m */; };
 		0906E2761C58C757003FF9FF /* bar_anxia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E2071C58C757003FF9FF /* bar_anxia@2x.png */; };
@@ -236,10 +233,27 @@
 		09353A701C50CCD800DC5A1A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */; };
 		09353A721C50CCE600DC5A1A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */; };
 		09353A741C50CCEF00DC5A1A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A731C50CCEF00DC5A1A /* libz.tbd */; };
+		0B6CA4CB1CD304BC00E43E54 /* RequestVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CA4CA1CD304BC00E43E54 /* RequestVM.m */; };
+		0B9CE3701CD836680009A160 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE36F1CD836680009A160 /* MainViewController.m */; };
+		0B9CE3721CD83AEE0009A160 /* UserLogic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B9CE3711CD83AEE0009A160 /* UserLogic.storyboard */; };
+		0B9CE3741CD83B010009A160 /* Pony.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B9CE3731CD83B010009A160 /* Pony.storyboard */; };
+		0B9CE3761CD83B270009A160 /* HR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B9CE3751CD83B270009A160 /* HR.storyboard */; };
+		0B9CE37C1CD8784B0009A160 /* HRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE37B1CD8784B0009A160 /* HRVC.m */; };
+		0B9CE3811CD878B40009A160 /* HRVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE3801CD878B40009A160 /* HRVM.m */; };
+		0B9CE3861CD879070009A160 /* HRChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE3851CD879070009A160 /* HRChatVC.m */; };
+		0B9CE3891CD8791D0009A160 /* HRChatVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE3881CD8791D0009A160 /* HRChatVM.m */; };
+		0B9CE3911CD879620009A160 /* HRMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE3901CD879620009A160 /* HRMineVC.m */; };
+		0B9CE3941CD879750009A160 /* HRMineVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE3931CD879750009A160 /* HRMineVM.m */; };
+		0B9CE3981CD8A5960009A160 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE3971CD8A5960009A160 /* LoginVC.m */; };
+		0B9CE39B1CD8A5B10009A160 /* RegistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE39A1CD8A5B10009A160 /* RegistVC.m */; };
+		0B9CE39E1CD8A5C10009A160 /* ForgetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE39D1CD8A5C10009A160 /* ForgetVC.m */; };
 		0BB77B741CD1DBED00C7146C /* BaseVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B731CD1DBED00C7146C /* BaseVM.m */; };
 		0BB77B771CD1DC0700C7146C /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B761CD1DC0700C7146C /* LoginVM.m */; };
 		0BB77B7A1CD1E57D00C7146C /* BaseM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B791CD1E57D00C7146C /* BaseM.m */; };
 		0BB77B7D1CD1ED7200C7146C /* NSString+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */; };
+		0BBF8F3F1CD98C5B0049D143 /* RegistVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F3E1CD98C5B0049D143 /* RegistVM.m */; };
+		0BBF8F421CD98C6C0049D143 /* ForgetVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F411CD98C6C0049D143 /* ForgetVM.m */; };
+		0BBF8F451CD9DC800049D143 /* NoPastingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F441CD9DC800049D143 /* NoPastingTextField.m */; };
 		357EA377BB986919020E9994 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -250,12 +264,6 @@
 		0906E1EF1C587142003FF9FF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		0906E1F11C587168003FF9FF /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		0906E1F21C587168003FF9FF /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		0906E1F51C589397003FF9FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		0906E1F61C589397003FF9FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		0906E1F81C5895C0003FF9FF /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
-		0906E1F91C5895C0003FF9FF /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
-		0906E1FB1C5895CB003FF9FF /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
-		0906E1FC1C5895CB003FF9FF /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		0906E2001C58B83A003FF9FF /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		0906E2011C58B83A003FF9FF /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		0906E2031C58C14C003FF9FF /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
@@ -569,6 +577,32 @@
 		09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		09353A731C50CCEF00DC5A1A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0B6CA4C91CD304BC00E43E54 /* RequestVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestVM.h; sourceTree = "<group>"; };
+		0B6CA4CA1CD304BC00E43E54 /* RequestVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestVM.m; sourceTree = "<group>"; };
+		0B9CE36E1CD836680009A160 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		0B9CE36F1CD836680009A160 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		0B9CE3711CD83AEE0009A160 /* UserLogic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserLogic.storyboard; sourceTree = "<group>"; };
+		0B9CE3731CD83B010009A160 /* Pony.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pony.storyboard; sourceTree = "<group>"; };
+		0B9CE3751CD83B270009A160 /* HR.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HR.storyboard; sourceTree = "<group>"; };
+		0B9CE37A1CD8784B0009A160 /* HRVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRVC.h; sourceTree = "<group>"; };
+		0B9CE37B1CD8784B0009A160 /* HRVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRVC.m; sourceTree = "<group>"; };
+		0B9CE37F1CD878B40009A160 /* HRVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRVM.h; sourceTree = "<group>"; };
+		0B9CE3801CD878B40009A160 /* HRVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRVM.m; sourceTree = "<group>"; };
+		0B9CE3841CD879070009A160 /* HRChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRChatVC.h; sourceTree = "<group>"; };
+		0B9CE3851CD879070009A160 /* HRChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRChatVC.m; sourceTree = "<group>"; };
+		0B9CE3871CD8791D0009A160 /* HRChatVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRChatVM.h; sourceTree = "<group>"; };
+		0B9CE3881CD8791D0009A160 /* HRChatVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRChatVM.m; sourceTree = "<group>"; };
+		0B9CE38F1CD879620009A160 /* HRMineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRMineVC.h; sourceTree = "<group>"; };
+		0B9CE3901CD879620009A160 /* HRMineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRMineVC.m; sourceTree = "<group>"; };
+		0B9CE3921CD879750009A160 /* HRMineVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRMineVM.h; sourceTree = "<group>"; };
+		0B9CE3931CD879750009A160 /* HRMineVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRMineVM.m; sourceTree = "<group>"; };
+		0B9CE3951CD8A0A50009A160 /* NotificationMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationMacros.h; sourceTree = "<group>"; };
+		0B9CE3961CD8A5960009A160 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		0B9CE3971CD8A5960009A160 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		0B9CE3991CD8A5B10009A160 /* RegistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistVC.h; sourceTree = "<group>"; };
+		0B9CE39A1CD8A5B10009A160 /* RegistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistVC.m; sourceTree = "<group>"; };
+		0B9CE39C1CD8A5C10009A160 /* ForgetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetVC.h; sourceTree = "<group>"; };
+		0B9CE39D1CD8A5C10009A160 /* ForgetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetVC.m; sourceTree = "<group>"; };
 		0BB77B721CD1DBED00C7146C /* BaseVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseVM.h; sourceTree = "<group>"; };
 		0BB77B731CD1DBED00C7146C /* BaseVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVM.m; sourceTree = "<group>"; };
 		0BB77B751CD1DC0700C7146C /* LoginVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVM.h; sourceTree = "<group>"; };
@@ -577,6 +611,12 @@
 		0BB77B791CD1E57D00C7146C /* BaseM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseM.m; sourceTree = "<group>"; };
 		0BB77B7B1CD1ED7200C7146C /* NSString+LangExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LangExt.h"; sourceTree = "<group>"; };
 		0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LangExt.m"; sourceTree = "<group>"; };
+		0BBF8F3D1CD98C5B0049D143 /* RegistVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistVM.h; sourceTree = "<group>"; };
+		0BBF8F3E1CD98C5B0049D143 /* RegistVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistVM.m; sourceTree = "<group>"; };
+		0BBF8F401CD98C6C0049D143 /* ForgetVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetVM.h; sourceTree = "<group>"; };
+		0BBF8F411CD98C6C0049D143 /* ForgetVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetVM.m; sourceTree = "<group>"; };
+		0BBF8F431CD9DC800049D143 /* NoPastingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPastingTextField.h; sourceTree = "<group>"; };
+		0BBF8F441CD9DC800049D143 /* NoPastingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoPastingTextField.m; sourceTree = "<group>"; };
 		0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIStringMacros.h; sourceTree = "<group>"; };
 		0BC0815E1CCF076C00F474F8 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantLogger.h; sourceTree = "<group>"; };
@@ -657,10 +697,10 @@
 		0906E1FF1C58A389003FF9FF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				0906E2001C58B83A003FF9FF /* HomeViewController.h */,
-				0906E2011C58B83A003FF9FF /* HomeViewController.m */,
-				0906E2031C58C14C003FF9FF /* MineViewController.h */,
-				0906E2041C58C14C003FF9FF /* MineViewController.m */,
+				0B9CE3791CD878230009A160 /* HRVC */,
+				0B9CE3781CD878190009A160 /* HRChatVC */,
+				0B9CE3771CD877F40009A160 /* HRMineVC */,
+				0B9CE36D1CD833B90009A160 /* PonyTerminal */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -800,7 +840,10 @@
 				0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */,
 				0BC0815E1CCF076C00F474F8 /* Constant.h */,
 				0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */,
+				0B9CE3951CD8A0A50009A160 /* NotificationMacros.h */,
 				0BC081671CCF0C5100F474F8 /* Macors.h */,
+				0BBF8F431CD9DC800049D143 /* NoPastingTextField.h */,
+				0BBF8F441CD9DC800049D143 /* NoPastingTextField.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -943,8 +986,12 @@
 				092C07341C52034000FF4981 /* Chat */,
 				0BB77B721CD1DBED00C7146C /* BaseVM.h */,
 				0BB77B731CD1DBED00C7146C /* BaseVM.m */,
+				0B6CA4C91CD304BC00E43E54 /* RequestVM.h */,
+				0B6CA4CA1CD304BC00E43E54 /* RequestVM.m */,
 				0BB77B781CD1E57D00C7146C /* BaseM.h */,
 				0BB77B791CD1E57D00C7146C /* BaseM.m */,
+				0B9CE36E1CD836680009A160 /* MainViewController.h */,
+				0B9CE36F1CD836680009A160 /* MainViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1139,8 +1186,103 @@
 			children = (
 				092C07C51C5203C200FF4981 /* JChatConstants.h */,
 				09353A451C50AAAE00DC5A1A /* main.m */,
+				0B9CE3711CD83AEE0009A160 /* UserLogic.storyboard */,
+				0B9CE3731CD83B010009A160 /* Pony.storyboard */,
+				0B9CE3751CD83B270009A160 /* HR.storyboard */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0B9CE36D1CD833B90009A160 /* PonyTerminal */ = {
+			isa = PBXGroup;
+			children = (
+				0906E2001C58B83A003FF9FF /* HomeViewController.h */,
+				0906E2011C58B83A003FF9FF /* HomeViewController.m */,
+				0906E2031C58C14C003FF9FF /* MineViewController.h */,
+				0906E2041C58C14C003FF9FF /* MineViewController.m */,
+			);
+			name = PonyTerminal;
+			sourceTree = "<group>";
+		};
+		0B9CE3771CD877F40009A160 /* HRMineVC */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE38B1CD8792A0009A160 /* ViewController */,
+				0B9CE38A1CD879230009A160 /* ViewModel */,
+			);
+			name = HRMineVC;
+			sourceTree = "<group>";
+		};
+		0B9CE3781CD878190009A160 /* HRChatVC */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE3831CD878DE0009A160 /* ViewController */,
+				0B9CE3821CD878CE0009A160 /* ViewModel */,
+			);
+			name = HRChatVC;
+			sourceTree = "<group>";
+		};
+		0B9CE3791CD878230009A160 /* HRVC */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE37D1CD8785C0009A160 /* ViewController */,
+				0B9CE37E1CD878680009A160 /* ViewModel */,
+			);
+			name = HRVC;
+			sourceTree = "<group>";
+		};
+		0B9CE37D1CD8785C0009A160 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE37A1CD8784B0009A160 /* HRVC.h */,
+				0B9CE37B1CD8784B0009A160 /* HRVC.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		0B9CE37E1CD878680009A160 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE37F1CD878B40009A160 /* HRVM.h */,
+				0B9CE3801CD878B40009A160 /* HRVM.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B9CE3821CD878CE0009A160 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE3871CD8791D0009A160 /* HRChatVM.h */,
+				0B9CE3881CD8791D0009A160 /* HRChatVM.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B9CE3831CD878DE0009A160 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE3841CD879070009A160 /* HRChatVC.h */,
+				0B9CE3851CD879070009A160 /* HRChatVC.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		0B9CE38A1CD879230009A160 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE3921CD879750009A160 /* HRMineVM.h */,
+				0B9CE3931CD879750009A160 /* HRMineVM.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B9CE38B1CD8792A0009A160 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B9CE38F1CD879620009A160 /* HRMineVC.h */,
+				0B9CE3901CD879620009A160 /* HRMineVC.m */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		0BB77B701CD1B89E00C7146C /* ViewModel */ = {
@@ -1148,6 +1290,10 @@
 			children = (
 				0BB77B751CD1DC0700C7146C /* LoginVM.h */,
 				0BB77B761CD1DC0700C7146C /* LoginVM.m */,
+				0BBF8F3D1CD98C5B0049D143 /* RegistVM.h */,
+				0BBF8F3E1CD98C5B0049D143 /* RegistVM.m */,
+				0BBF8F401CD98C6C0049D143 /* ForgetVM.h */,
+				0BBF8F411CD98C6C0049D143 /* ForgetVM.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -1155,12 +1301,12 @@
 		0BB77B711CD1B8A900C7146C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0906E1F51C589397003FF9FF /* LoginViewController.h */,
-				0906E1F61C589397003FF9FF /* LoginViewController.m */,
-				0906E1F81C5895C0003FF9FF /* RegistViewController.h */,
-				0906E1F91C5895C0003FF9FF /* RegistViewController.m */,
-				0906E1FB1C5895CB003FF9FF /* ForgetViewController.h */,
-				0906E1FC1C5895CB003FF9FF /* ForgetViewController.m */,
+				0B9CE3961CD8A5960009A160 /* LoginVC.h */,
+				0B9CE3971CD8A5960009A160 /* LoginVC.m */,
+				0B9CE3991CD8A5B10009A160 /* RegistVC.h */,
+				0B9CE39A1CD8A5B10009A160 /* RegistVC.m */,
+				0B9CE39C1CD8A5C10009A160 /* ForgetVC.h */,
+				0B9CE39D1CD8A5C10009A160 /* ForgetVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1273,7 +1419,9 @@
 				0906E2B21C58C757003FF9FF /* unselect@3x.png in Resources */,
 				091FD6801C55B7DE00BB461C /* MJPhotoBrowser.bundle in Resources */,
 				0906E2A41C58C757003FF9FF /* photo_24@3x.png in Resources */,
+				0B9CE3741CD83B010009A160 /* Pony.storyboard in Resources */,
 				0906E28E1C58C757003FF9FF /* dialogue_nav_b_@3x.png in Resources */,
+				0B9CE3721CD83AEE0009A160 /* UserLogic.storyboard in Resources */,
 				0906E2851C58C757003FF9FF /* card_39@2x.png in Resources */,
 				0906E2CD1C58C757003FF9FF /* RecordingSignal000@2x.png in Resources */,
 				0906E2D71C58C757003FF9FF /* SenderVoiceNodePlaying000@2x.png in Resources */,
@@ -1328,6 +1476,7 @@
 				0906E2BB1C58C757003FF9FF /* 切图_47.png in Resources */,
 				0906E2D61C58C757003FF9FF /* saoyisao@2x.png in Resources */,
 				092C07A41C52034000FF4981 /* JCHATSelectFriendCell.xib in Resources */,
+				0B9CE3761CD83B270009A160 /* HR.storyboard in Resources */,
 				0906E2E11C58C757003FF9FF /* voice_time-short@2x.png in Resources */,
 				0906E2BA1C58C757003FF9FF /* 切图_43.png in Resources */,
 				0906E2CF1C58C757003FF9FF /* RecordingSignal002@2x.png in Resources */,
@@ -1435,6 +1584,7 @@
 				091FD68F1C55B7DE00BB461C /* SDWebImagePrefetcher.m in Sources */,
 				091FD6811C55B7DE00BB461C /* MJPhotoBrowser.m in Sources */,
 				091FD6781C55B7DE00BB461C /* NSArray+MASAdditions.m in Sources */,
+				0B9CE3701CD836680009A160 /* MainViewController.m in Sources */,
 				0906E1F31C587168003FF9FF /* BaseNavigationController.m in Sources */,
 				092C078E1C52034000FF4981 /* JCHATFriendDetailViewController.m in Sources */,
 				09353A4C1C50AAAE00DC5A1A /* ViewController.m in Sources */,
@@ -1443,6 +1593,7 @@
 				091FD6941C55B7DE00BB461C /* UIImageView+MJWebCache.m in Sources */,
 				092C07991C52034000FF4981 /* JCHATChatTableViewCell.m in Sources */,
 				091FD6951C55B7DE00BB461C /* UIImageView+WebCache.m in Sources */,
+				0B9CE3941CD879750009A160 /* HRMineVM.m in Sources */,
 				0906E2051C58C14C003FF9FF /* MineViewController.m in Sources */,
 				0906E1F01C587142003FF9FF /* BaseViewController.m in Sources */,
 				091FD68C1C55B7DE00BB461C /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1455,23 +1606,25 @@
 				091FD6761C55B7DE00BB461C /* MASViewAttribute.m in Sources */,
 				092C07C31C52037200FF4981 /* NSString+MessageInputView.m in Sources */,
 				0BB77B7A1CD1E57D00C7146C /* BaseM.m in Sources */,
+				0B6CA4CB1CD304BC00E43E54 /* RequestVM.m in Sources */,
 				091FD6921C55B7DE00BB461C /* UIImage+MultiFormat.m in Sources */,
 				092C07B01C52034000FF4981 /* JCHATMoreView.m in Sources */,
 				091FD6911C55B7DE00BB461C /* UIImage+GIF.m in Sources */,
+				0B9CE3911CD879620009A160 /* HRMineVC.m in Sources */,
 				091FD67E1C55B7DE00BB461C /* MBProgressHUD.m in Sources */,
+				0B9CE3861CD879070009A160 /* HRChatVC.m in Sources */,
 				092C07A21C52034000FF4981 /* JCHATMessageTableViewCell.m in Sources */,
-				0906E1FA1C5895C0003FF9FF /* RegistViewController.m in Sources */,
 				092C07B71C52034000FF4981 /* XHVoiceRecordHUD.m in Sources */,
 				091FD6751C55B7DE00BB461C /* MASLayoutConstraint.m in Sources */,
 				091FD6721C55B7DE00BB461C /* MASCompositeConstraint.m in Sources */,
 				091FD6771C55B7DE00BB461C /* MASViewConstraint.m in Sources */,
 				092C07AA1C52034000FF4981 /* JCHATVoiceTableViewCell.m in Sources */,
 				092C079D1C52034000FF4981 /* JCHATFrIendDetailMessgeCell.m in Sources */,
-				0906E1F71C589397003FF9FF /* LoginViewController.m in Sources */,
 				09353A491C50AAAE00DC5A1A /* AppDelegate.m in Sources */,
 				091FD6731C55B7DE00BB461C /* MASConstraint.m in Sources */,
 				092C07A71C52034000FF4981 /* JCHATTextTableCell.m in Sources */,
 				092C07B21C52034000FF4981 /* JCHATRecordAnimationView.m in Sources */,
+				0B9CE39B1CD8A5B10009A160 /* RegistVC.m in Sources */,
 				0906E1ED1C58712D003FF9FF /* BaseTableViewController.m in Sources */,
 				092C07AF1C52034000FF4981 /* JCHATMessageTextView.m in Sources */,
 				092C07B51C52034000FF4981 /* XHVoiceCommonHelper.m in Sources */,
@@ -1479,18 +1632,22 @@
 				0BB77B7D1CD1ED7200C7146C /* NSString+LangExt.m in Sources */,
 				091FD6861C55B7DE00BB461C /* MKAnnotationView+WebCache.m in Sources */,
 				092C079F1C52034000FF4981 /* JCHATGroupSettingCell.m in Sources */,
-				0906E1FD1C5895CB003FF9FF /* ForgetViewController.m in Sources */,
+				0B9CE3981CD8A5960009A160 /* LoginVC.m in Sources */,
 				092C07AB1C52034000FF4981 /* JCHATAudioPlayerHelper.m in Sources */,
+				0B9CE39E1CD8A5C10009A160 /* ForgetVC.m in Sources */,
 				0BB77B771CD1DC0700C7146C /* LoginVM.m in Sources */,
 				092C07A91C52034000FF4981 /* JCHATVoiceTableCell.m in Sources */,
+				0BBF8F3F1CD98C5B0049D143 /* RegistVM.m in Sources */,
 				0906E2021C58B83A003FF9FF /* HomeViewController.m in Sources */,
 				092C07901C52034000FF4981 /* JCHATGroupSettingCtl.m in Sources */,
 				091FD67F1C55B7DE00BB461C /* MJPhoto.m in Sources */,
 				092C07911C52034000FF4981 /* JCHATMessageViewController.m in Sources */,
 				091FD6171C55B7B500BB461C /* JCHATFileManager.m in Sources */,
 				092C07A51C52034000FF4981 /* JCHATShowTimeCell.m in Sources */,
+				0B9CE37C1CD8784B0009A160 /* HRVC.m in Sources */,
 				092C07951C52034000FF4981 /* JCHATSendMessageViewController.m in Sources */,
 				091FD67B1C55B7DE00BB461C /* ViewController+MASAdditions.m in Sources */,
+				0BBF8F451CD9DC800049D143 /* NoPastingTextField.m in Sources */,
 				091FD6891C55B7DE00BB461C /* SDWebImageCompat.m in Sources */,
 				091FD66F1C55B7DE00BB461C /* JCHATAlertViewWait.m in Sources */,
 				091FD6851C55B7DE00BB461C /* MJPhotoView.m in Sources */,
@@ -1510,16 +1667,19 @@
 				092C07A81C52034000FF4981 /* JCHATTextTableViewCell.m in Sources */,
 				091FD6841C55B7DE00BB461C /* MJPhotoToolbar.m in Sources */,
 				091FD68D1C55B7DE00BB461C /* SDWebImageManager+MJ.m in Sources */,
+				0BBF8F421CD98C6C0049D143 /* ForgetVM.m in Sources */,
 				091FD6881C55B7DE00BB461C /* SDImageCache.m in Sources */,
 				091FD68B1C55B7DE00BB461C /* SDWebImageDownloader.m in Sources */,
 				091FD69D1C55B82000BB461C /* ViewUtil.m in Sources */,
 				091FD6791C55B7DE00BB461C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				0B9CE3811CD878B40009A160 /* HRVM.m in Sources */,
 				092C07AC1C52034000FF4981 /* JCHATChatTable.m in Sources */,
 				092C07B61C52034000FF4981 /* XHVoiceRecordHelper.m in Sources */,
 				091FD6741C55B7DE00BB461C /* MASConstraintMaker.m in Sources */,
 				092C07931C52034000FF4981 /* JCHATSelectFriendsCtl.m in Sources */,
 				092C079B1C52034000FF4981 /* JCHATDetailTableViewCell.m in Sources */,
 				092C07C11C52037200FF4981 /* NSDate+Utilities.m in Sources */,
+				0B9CE3891CD8791D0009A160 /* HRChatVM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

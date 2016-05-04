@@ -11,6 +11,12 @@
 #import "NSString+MessageInputView.h"
 #import "MBProgressHUD+Add.h"
 
+#import <ReactiveViewModel/ReactiveViewModel.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
+
+#import "Macors.h"
+
 @interface BaseViewController : UIViewController
 
 @end

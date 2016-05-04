@@ -15,24 +15,33 @@
 
 @implementation LoginVM
 
-- (id)init{
-    self = [super init];
-    if (self) {
-        [self.loginCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
-            NSLog(@"x == %@",x);
-        }];
-        
-        [self.loginCommand.executionSignals.switchToLatest subscribeCompleted:^{
-            NSLog(@"Completed ====");
-        }];
-        
-        [self.loginCommand.executionSignals.switchToLatest subscribeError:^(NSError *error) {
-            NSLog(@"error ====");
-        }];
-        
-    }
-    return self;
+- (void)initialize{
+    self.title = @"登录";
 }
+
+//- (id)init{
+//    self = [super init];
+//    if (self) {
+//        RACSignal*startedMessageSource = [self.loginCommand.executionSignals map:^id(RACSignal *subscribeSignal) {
+//            return NSLocalizedString(@"Sending request...", nil);
+//        }];
+//        
+//        RACSignal*completedMessageSource = [self.loginCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
+//            return[[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
+//                return event.eventType == RACEventTypeCompleted;
+//            }]map:^id(id value) {
+//                return NSLocalizedString(@"Thanks", nil);
+//            }];
+//        }];
+//        
+//        RACSignal*failedMessageSource = [[self.loginCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
+//            return NSLocalizedString(@"Error :(", nil);
+//        }];
+        
+//        RAC(self,statusMessage) = [RACSignal merge:@[startedMessageSource,completedMessageSource, failedMessageSource]];
+//    }
+//    return self;
+//}
 
 - (RACCommand *)loginCommand{
     if (!_loginCommand) {
@@ -49,7 +58,7 @@
 
 - (RACSignal *)postService{
     NSDictionary * params = @{@"q":@"基础"};
-    return [[[[self sharedManager] rac_GET:@"https://api.douban.com/v2/book/search" parameters:params] logError] replayLazily];
+    return [[[self.sessionManager rac_GET:@"https://api.douban.com/v2/book/search" parameters:params] logAll] replayLazily];
 }
 
 - (RACSignal *)phoneValidSignal{

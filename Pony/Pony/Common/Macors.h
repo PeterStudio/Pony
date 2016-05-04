@@ -12,5 +12,6 @@
 #import "Constant.h"
 #import "ConstantLogger.h"
 #import "APIStringMacros.h"
+#import "NotificationMacros.h"
 
 #endif /* Macors_h */

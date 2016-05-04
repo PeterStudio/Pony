@@ -1,13 +1,13 @@
 //
-//  LoginViewController.h
+//  LoginVC.h
 //  Pony
 //
-//  Created by Baby on 16/1/27.
+//  Created by 杜文 on 16/5/3.
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
 #import "BaseTableViewController.h"
 
-@interface LoginViewController : BaseTableViewController
+@interface LoginVC : BaseTableViewController
 
 @end

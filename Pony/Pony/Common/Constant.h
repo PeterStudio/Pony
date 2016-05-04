@@ -12,8 +12,8 @@
 #define DWRootViewController    [[[[UIApplication sharedApplication] delegate] window] rootViewController]
 #define DWRootView              [ZPRootViewController view]
 
-#define kScreenWidth    ([UIScreen mainScreen].bounds.size.width)
-#define kScreenHeight   ([UIScreen mainScreen].bounds.size.height)
+//#define kScreenWidth    ([UIScreen mainScreen].bounds.size.width)
+//#define kScreenHeight   ([UIScreen mainScreen].bounds.size.height)
 
 #define kClearColor     [UIColor clearColor]
 
