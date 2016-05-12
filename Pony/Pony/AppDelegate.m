@@ -7,12 +7,20 @@
 //
 
 #import "AppDelegate.h"
+
+#import "Macors.h"
+
+/** Vender*/
+#import <JMessage/JMessage.h>
+#import <SMS_SDK/SMSSDK.h>
+
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
-#import <JMessage/JMessage.h>
-#import "Macors.h"
+//SMSSDK官网公共key
+#define appkey @"100fd9b14a15a"
+#define app_secrect @"cf274655e142b143c45c449da3d5c17a"
 
 @interface AppDelegate ()
 
@@ -20,21 +28,38 @@
 
 @implementation AppDelegate
 
+- (void)config{
+    //Mob，appKey和appSecret从后台申请得
+    [SMSSDK registerApp:appkey
+             withSecret:app_secrect];
+    
+    /**DDLog*/
+    [DDLog addLogger:[DDASLLogger sharedInstance]]; // 将 log 发送给苹果服务器，之后在 Console.app 中可以查看
+    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // 将 log 发送给 Xcode 的控制台
+    
+    DDLogVerbose(@"Verbose");
+    DDLogDebug(@"Debug");
+    DDLogInfo(@"Info");
+    DDLogWarn(@"Warn");
+    DDLogError(@"Error");
+    
+}
+
 + (AppDelegate *) appDelegete
 {
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
-- (void)switchStoryboard:(StoryboardTag)_tag{
+- (void)switchStoryboard:(NSNumber *)_tag{
     NSString * sbStr = @"UserLogic";
-    switch (_tag) {
-        case USERLOGIC_SB:
+    switch ([_tag integerValue]) {
+        case 0:
             sbStr = @"UserLogic";
             break;
-        case PONY_SB:
+        case 1:
             sbStr = @"Pony";
             break;
-        case HR_SB:
+        case 2:
             sbStr = @"HR";
             break;
         default:
@@ -48,7 +73,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [_window setBackgroundColor:[UIColor whiteColor]];
-    [self switchStoryboard:HR_SB];
+    [self switchStoryboard:USERLOGIC_SB];
     [_window makeKeyAndVisible];
     
     @weakify(self)
@@ -57,12 +82,11 @@
        object:nil] takeUntil:self.rac_willDeallocSignal]
      subscribeNext:^(NSNotification *notification) {
          @strongify(self);
-         NSInteger tag = (NSInteger)notification.object;
-         [self switchStoryboard:tag];
+         [self switchStoryboard:notification.object];
      }];
     
     
-    [self initLogger];
+    [self config];
     
     // init third-party SDK
     [JMessage setupJMessage:launchOptions
@@ -109,17 +133,6 @@
                           name:kJPFNetworkDidReceiveMessageNotification
                         object:nil];
     
-}
-
-- (void)initLogger {
-    [DDLog addLogger:[DDASLLogger sharedInstance]]; // 将 log 发送给苹果服务器，之后在 Console.app 中可以查看
-    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // 将 log 发送给 Xcode 的控制台
-    
-    DDLogVerbose(@"Verbose");
-    DDLogDebug(@"Debug");
-    DDLogInfo(@"Info");
-    DDLogWarn(@"Warn");
-    DDLogError(@"Error");
 }
 
 // notification from JPush

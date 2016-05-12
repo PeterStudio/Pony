@@ -12,17 +12,18 @@
 //接口名称相关
 #ifdef DEBUG
 //Debug状态下的测试API
-#define API_BASE_URL_STRING      @"http://192.168.1.147:18109/myLoan-mobile/action/api/"
+#define API_BASE_URL_STRING      @"http://api.xiaomahome.com/api/v1/"
 
 #else
 // 正式环境
-#define API_BASE_URL_STRING     @"https://mobile.maiyabank.com/myLoan-mobile/action/api/"
+#define API_BASE_URL_STRING     @"http://api.xiaomahome.com/api/v1/"
 #endif
 
 #define POSTMethod                      @"POST"
 #define GETMethod                       @"GET"
 
-#define kAPILogin                       @"login"                        // 登录
+#define kAPILogin                       @"auth"                        // 登录
 #define kAPIRegister                    @"register"                     // 注册
+#define kAPILogout                      @"logout"
 
 #endif /* APIStringMacros_h */

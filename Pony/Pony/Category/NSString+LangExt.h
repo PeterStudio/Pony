@@ -14,4 +14,5 @@
 
 - (BOOL)validLoginPassword;
 
+- (NSString *)md5Hex;
 @end

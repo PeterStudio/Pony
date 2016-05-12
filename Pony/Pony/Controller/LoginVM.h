@@ -14,5 +14,12 @@
 @property (nonatomic, copy) NSString * username;
 @property (nonatomic, copy) NSString * password;
 
+@property (nonatomic, copy) RACSignal * phoneValidSignal;
+@property (nonatomic, copy) RACSignal * passwordValidSignal;
 @property (strong, nonatomic) RACCommand *loginCommand;
+
+- (void)requestLogin:(void (^)(id object))success
+               error:(void (^)(NSError *error))error
+             failure:(void (^)(NSError *error))failure
+          completion:(void (^)(void))completion;
 @end

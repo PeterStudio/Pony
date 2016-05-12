@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 
 @property (strong , nonatomic) RegistVM * registVM;
 @end
@@ -78,6 +81,11 @@
     RAC(self.registVM, code) = [self.codeTextField rac_textSignal];
     RAC(self.registVM, password) = [self.passwordTextField rac_textSignal];
     
+    @weakify(self)
+    [[_backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,41 +7,56 @@
 //
 
 #import "LoginVM.h"
+#import <AdSupport/ASIdentifierManager.h>
+#import "UserM.h"
 
 @interface LoginVM()
-@property (nonatomic, copy) RACSignal * phoneValidSignal;
-@property (nonatomic, copy) RACSignal * passwordValidSignal;
+
 @end
 
 @implementation LoginVM
 
 - (void)initialize{
     self.title = @"登录";
+    [self.loginCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+//        UserM * userM = [MTLJSONAdapter modelOfClass:UserM.class fromJSONDictionary:x error:nil];
+        NSLog(@"userM = %@",x);
+    } error:^(NSError *error) {
+        
+    }];
 }
 
-//- (id)init{
-//    self = [super init];
-//    if (self) {
-//        RACSignal*startedMessageSource = [self.loginCommand.executionSignals map:^id(RACSignal *subscribeSignal) {
-//            return NSLocalizedString(@"Sending request...", nil);
-//        }];
-//        
-//        RACSignal*completedMessageSource = [self.loginCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
-//            return[[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
-//                return event.eventType == RACEventTypeCompleted;
-//            }]map:^id(id value) {
-//                return NSLocalizedString(@"Thanks", nil);
-//            }];
-//        }];
-//        
-//        RACSignal*failedMessageSource = [[self.loginCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
-//            return NSLocalizedString(@"Error :(", nil);
-//        }];
-        
-//        RAC(self,statusMessage) = [RACSignal merge:@[startedMessageSource,completedMessageSource, failedMessageSource]];
-//    }
-//    return self;
-//}
+- (void)requestLogin:(void (^)(id))success error:(void (^)(NSError *))error failure:(void (^)(NSError *))failure completion:(void (^)(void))completion{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    NSDictionary * parameters = @{@"userName":_username,@"userPassword":[_password md5Hex],@"deviceName":[infoDic objectForKey:@"DTPlatformName"],@"imei":idfa,@"version":appVersion,@"os":@"1"};
+    [APIHTTP wPost:kAPILogin
+       parameters:parameters
+          success:^(NSDictionary *object) {
+              UserM * userM = [MTLJSONAdapter modelOfClass:[UserM class] fromJSONDictionary:object error:nil];
+              
+              NSLog(@"object = %@",userM);
+              
+              
+//              if ([object[@"msgCode"] isEqualToString:kRequestSuccess]) {
+//                  success(nil);
+//                  completion();
+//              }
+//              else {
+//                  NSInteger errnoInteger = [object[@"msgCode"] integerValue];
+//                  NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : object[@"msg"] };
+//                  NSError *uError = [NSError errorWithDomain:@"ZPCustom"
+//                                                        code:errnoInteger
+//                                                    userInfo:userInfo];
+//                  error(uError);
+//                  completion();
+//              }
+          } failure:^(NSError *error) {
+              failure(error);
+              completion();
+          }];
+}
 
 - (RACCommand *)loginCommand{
     if (!_loginCommand) {
@@ -50,15 +65,18 @@
             return @([x boolValue]&&[y boolValue]);
         }] signalBlock:^RACSignal *(id input) {
             @strongify(self)
-            return [self postService];
+            return [RACSignal empty];//[self postService];
         }];
     }
     return _loginCommand;
 }
 
 - (RACSignal *)postService{
-    NSDictionary * params = @{@"q":@"基础"};
-    return [[[self.sessionManager rac_GET:@"https://api.douban.com/v2/book/search" parameters:params] logAll] replayLazily];
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    NSDictionary * params = @{@"userName":_username,@"userPassword":[_password md5Hex],@"deviceName":[infoDic objectForKey:@"DTPlatformName"],@"imei":idfa,@"version":appVersion,@"os":@"1"};
+    return [self wPost:kAPILogin parameters:params];
 }
 
 - (RACSignal *)phoneValidSignal{

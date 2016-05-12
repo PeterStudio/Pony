@@ -10,4 +10,8 @@
 
 @implementation RegistVM
 
+- (void)initialize{
+    self.title = @"注册";
+}
+
 @end

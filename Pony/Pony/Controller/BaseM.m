@@ -10,4 +10,9 @@
 
 @implementation BaseM
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return nil;
+}
+
 @end

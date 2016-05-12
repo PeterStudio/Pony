@@ -233,6 +233,7 @@
 		09353A701C50CCD800DC5A1A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */; };
 		09353A721C50CCE600DC5A1A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */; };
 		09353A741C50CCEF00DC5A1A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09353A731C50CCEF00DC5A1A /* libz.tbd */; };
+		0B60E2141CDB185B002E6DBE /* APIManager+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B60E2131CDB185B002E6DBE /* APIManager+User.m */; };
 		0B6CA4CB1CD304BC00E43E54 /* RequestVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CA4CA1CD304BC00E43E54 /* RequestVM.m */; };
 		0B9CE3701CD836680009A160 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE36F1CD836680009A160 /* MainViewController.m */; };
 		0B9CE3721CD83AEE0009A160 /* UserLogic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B9CE3711CD83AEE0009A160 /* UserLogic.storyboard */; };
@@ -254,6 +255,15 @@
 		0BBF8F3F1CD98C5B0049D143 /* RegistVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F3E1CD98C5B0049D143 /* RegistVM.m */; };
 		0BBF8F421CD98C6C0049D143 /* ForgetVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F411CD98C6C0049D143 /* ForgetVM.m */; };
 		0BBF8F451CD9DC800049D143 /* NoPastingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F441CD9DC800049D143 /* NoPastingTextField.m */; };
+		0BBF8F481CD9E0A30049D143 /* UITextField+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF8F471CD9E0A30049D143 /* UITextField+LangExt.m */; };
+		0BF2A83D1CDAF409004A48E5 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2A83C1CDAF409004A48E5 /* APIManager.m */; };
+		0BF7B2601CE182B300273721 /* UserM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF7B25F1CE182B300273721 /* UserM.m */; };
+		0BFB48C71CE3265E00799730 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48C51CE3265E00799730 /* MOBFoundation.framework */; };
+		0BFB48C81CE3265E00799730 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48C61CE3265E00799730 /* SMS_SDK.framework */; };
+		0BFB48CA1CE3269B00799730 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48C91CE3269B00799730 /* libicucore.tbd */; };
+		0BFB48CC1CE326A600799730 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48CB1CE326A600799730 /* MessageUI.framework */; };
+		0BFB48CE1CE326AE00799730 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48CD1CE326AE00799730 /* JavaScriptCore.framework */; };
+		0BFB48D01CE326BC00799730 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48CF1CE326BC00799730 /* libstdc++.tbd */; };
 		357EA377BB986919020E9994 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -577,6 +587,8 @@
 		09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		09353A731C50CCEF00DC5A1A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		0B60E2121CDB185B002E6DBE /* APIManager+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIManager+User.h"; sourceTree = "<group>"; };
+		0B60E2131CDB185B002E6DBE /* APIManager+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIManager+User.m"; sourceTree = "<group>"; };
 		0B6CA4C91CD304BC00E43E54 /* RequestVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestVM.h; sourceTree = "<group>"; };
 		0B6CA4CA1CD304BC00E43E54 /* RequestVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestVM.m; sourceTree = "<group>"; };
 		0B9CE36E1CD836680009A160 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -617,10 +629,22 @@
 		0BBF8F411CD98C6C0049D143 /* ForgetVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetVM.m; sourceTree = "<group>"; };
 		0BBF8F431CD9DC800049D143 /* NoPastingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPastingTextField.h; sourceTree = "<group>"; };
 		0BBF8F441CD9DC800049D143 /* NoPastingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoPastingTextField.m; sourceTree = "<group>"; };
-		0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIStringMacros.h; sourceTree = "<group>"; };
+		0BBF8F461CD9E0A30049D143 /* UITextField+LangExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LangExt.h"; sourceTree = "<group>"; };
+		0BBF8F471CD9E0A30049D143 /* UITextField+LangExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LangExt.m"; sourceTree = "<group>"; };
+		0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIStringMacros.h; path = ../Common/APIStringMacros.h; sourceTree = "<group>"; };
 		0BC0815E1CCF076C00F474F8 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantLogger.h; sourceTree = "<group>"; };
 		0BC081671CCF0C5100F474F8 /* Macors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macors.h; sourceTree = "<group>"; };
+		0BF2A83B1CDAF409004A48E5 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		0BF2A83C1CDAF409004A48E5 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		0BF7B25E1CE182B300273721 /* UserM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserM.h; sourceTree = "<group>"; };
+		0BF7B25F1CE182B300273721 /* UserM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserM.m; sourceTree = "<group>"; };
+		0BFB48C51CE3265E00799730 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		0BFB48C61CE3265E00799730 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		0BFB48C91CE3269B00799730 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		0BFB48CB1CE326A600799730 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0BFB48CD1CE326AE00799730 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		0BFB48CF1CE326BC00799730 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A596F5E4225526C479994396 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CE3BEDCAE90A94E587BE6925 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -631,7 +655,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFB48D01CE326BC00799730 /* libstdc++.tbd in Frameworks */,
+				0BFB48CE1CE326AE00799730 /* JavaScriptCore.framework in Frameworks */,
+				0BFB48CC1CE326A600799730 /* MessageUI.framework in Frameworks */,
+				0BFB48CA1CE3269B00799730 /* libicucore.tbd in Frameworks */,
 				09353A741C50CCEF00DC5A1A /* libz.tbd in Frameworks */,
+				0BFB48C81CE3265E00799730 /* SMS_SDK.framework in Frameworks */,
 				09353A721C50CCE600DC5A1A /* libsqlite3.0.tbd in Frameworks */,
 				09353A701C50CCD800DC5A1A /* CoreAudio.framework in Frameworks */,
 				09353A6E1C50CCCA00DC5A1A /* AudioToolbox.framework in Frameworks */,
@@ -643,6 +672,7 @@
 				09353A621C50CC7C00DC5A1A /* CoreTelephony.framework in Frameworks */,
 				09353A601C50CC7400DC5A1A /* CoreFoundation.framework in Frameworks */,
 				09353A5E1C50CC6B00DC5A1A /* CFNetwork.framework in Frameworks */,
+				0BFB48C71CE3265E00799730 /* MOBFoundation.framework in Frameworks */,
 				09353A5C1C50CC3D00DC5A1A /* JMessage.framework in Frameworks */,
 				357EA377BB986919020E9994 /* libPods.a in Frameworks */,
 			);
@@ -654,6 +684,10 @@
 		04AA17C9518FA8D15BBAB49F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BFB48CF1CE326BC00799730 /* libstdc++.tbd */,
+				0BFB48CD1CE326AE00799730 /* JavaScriptCore.framework */,
+				0BFB48CB1CE326A600799730 /* MessageUI.framework */,
+				0BFB48C91CE3269B00799730 /* libicucore.tbd */,
 				09353A731C50CCEF00DC5A1A /* libz.tbd */,
 				09353A711C50CCE600DC5A1A /* libsqlite3.0.tbd */,
 				09353A6F1C50CCD800DC5A1A /* CoreAudio.framework */,
@@ -688,6 +722,7 @@
 		0906E1F41C589371003FF9FF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				0BF7B25D1CE1827000273721 /* Model */,
 				0BB77B711CD1B8A900C7146C /* ViewController */,
 				0BB77B701CD1B89E00C7146C /* ViewModel */,
 			);
@@ -837,7 +872,6 @@
 				091FD6141C55B7B500BB461C /* JCHATFileManager.m */,
 				091FD6151C55B7B500BB461C /* JCHATStringUtils.h */,
 				091FD6161C55B7B500BB461C /* JCHATStringUtils.m */,
-				0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */,
 				0BC0815E1CCF076C00F474F8 /* Constant.h */,
 				0BC081661CCF0C0B00F474F8 /* ConstantLogger.h */,
 				0B9CE3951CD8A0A50009A160 /* NotificationMacros.h */,
@@ -851,6 +885,7 @@
 		091FD6191C55B7DE00BB461C /* External */ = {
 			isa = PBXGroup;
 			children = (
+				0BFB48C41CE3265E00799730 /* SMS_SDK */,
 				091FD61A1C55B7DE00BB461C /* JCHATAlertViewWait.h */,
 				091FD61B1C55B7DE00BB461C /* JCHATAlertViewWait.m */,
 				091FD61C1C55B7DE00BB461C /* JCHATCustomFormatter.h */,
@@ -1136,6 +1171,8 @@
 				092C07C01C52037200FF4981 /* UIImage+ResizeMagick.h */,
 				0BB77B7B1CD1ED7200C7146C /* NSString+LangExt.h */,
 				0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */,
+				0BBF8F461CD9E0A30049D143 /* UITextField+LangExt.h */,
+				0BBF8F471CD9E0A30049D143 /* UITextField+LangExt.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1314,8 +1351,31 @@
 		0BC081611CCF089F00F474F8 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				0BC0815D1CCF070D00F474F8 /* APIStringMacros.h */,
+				0BF2A83B1CDAF409004A48E5 /* APIManager.h */,
+				0BF2A83C1CDAF409004A48E5 /* APIManager.m */,
+				0B60E2121CDB185B002E6DBE /* APIManager+User.h */,
+				0B60E2131CDB185B002E6DBE /* APIManager+User.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		0BF7B25D1CE1827000273721 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BF7B25E1CE182B300273721 /* UserM.h */,
+				0BF7B25F1CE182B300273721 /* UserM.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0BFB48C41CE3265E00799730 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				0BFB48C51CE3265E00799730 /* MOBFoundation.framework */,
+				0BFB48C61CE3265E00799730 /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 		BEDF6921D7554971819ADFFC /* Pods */ = {
@@ -1602,6 +1662,7 @@
 				092C07AD1C52034000FF4981 /* JCHATGroupPersonView.m in Sources */,
 				092C07A11C52034000FF4981 /* JCHATImgTableViewCell.m in Sources */,
 				092C07971C52034000FF4981 /* JCHATChatModel.m in Sources */,
+				0B60E2141CDB185B002E6DBE /* APIManager+User.m in Sources */,
 				0BB77B741CD1DBED00C7146C /* BaseVM.m in Sources */,
 				091FD6761C55B7DE00BB461C /* MASViewAttribute.m in Sources */,
 				092C07C31C52037200FF4981 /* NSString+MessageInputView.m in Sources */,
@@ -1612,6 +1673,7 @@
 				091FD6911C55B7DE00BB461C /* UIImage+GIF.m in Sources */,
 				0B9CE3911CD879620009A160 /* HRMineVC.m in Sources */,
 				091FD67E1C55B7DE00BB461C /* MBProgressHUD.m in Sources */,
+				0BF2A83D1CDAF409004A48E5 /* APIManager.m in Sources */,
 				0B9CE3861CD879070009A160 /* HRChatVC.m in Sources */,
 				092C07A21C52034000FF4981 /* JCHATMessageTableViewCell.m in Sources */,
 				092C07B71C52034000FF4981 /* XHVoiceRecordHUD.m in Sources */,
@@ -1650,6 +1712,7 @@
 				0BBF8F451CD9DC800049D143 /* NoPastingTextField.m in Sources */,
 				091FD6891C55B7DE00BB461C /* SDWebImageCompat.m in Sources */,
 				091FD66F1C55B7DE00BB461C /* JCHATAlertViewWait.m in Sources */,
+				0BBF8F481CD9E0A30049D143 /* UITextField+LangExt.m in Sources */,
 				091FD6851C55B7DE00BB461C /* MJPhotoView.m in Sources */,
 				092C07C41C52037200FF4981 /* UIImage +ResizeMagick.m in Sources */,
 				091FD6901C55B7DE00BB461C /* UIButton+WebCache.m in Sources */,
@@ -1671,6 +1734,7 @@
 				091FD6881C55B7DE00BB461C /* SDImageCache.m in Sources */,
 				091FD68B1C55B7DE00BB461C /* SDWebImageDownloader.m in Sources */,
 				091FD69D1C55B82000BB461C /* ViewUtil.m in Sources */,
+				0BF7B2601CE182B300273721 /* UserM.m in Sources */,
 				091FD6791C55B7DE00BB461C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				0B9CE3811CD878B40009A160 /* HRVM.m in Sources */,
 				092C07AC1C52034000FF4981 /* JCHATChatTable.m in Sources */,
@@ -1799,6 +1863,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/Pony/External/SMS_SDK",
 				);
 				INFOPLIST_FILE = Pony/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1818,6 +1883,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/Pony/External/SMS_SDK",
 				);
 				INFOPLIST_FILE = Pony/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -24,6 +24,12 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)switchToHR:(id)sender {
+    // 我是伯乐
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
+                                                        object:HR_SB];
+}
+
 
 - (IBAction)callButonClicked:(id)sender {
     JCHATChatViewController *chatViewController = [[JCHATChatViewController alloc] initWithNibName:@"JCHATChatViewController"

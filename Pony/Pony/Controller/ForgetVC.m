@@ -10,6 +10,8 @@
 
 @interface ForgetVC ()
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
+
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @end
 

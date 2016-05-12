@@ -26,6 +26,10 @@
     RAC(self, title) = RACObserve(_hrVM, title);
 }
 
+- (IBAction)switchToPony:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
+                                                        object:PONY_SB];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

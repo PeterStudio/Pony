@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     /*
      [self.view endEditing:YES];
      if ([_userNameTextField.text validBlank]) {
@@ -72,6 +73,55 @@
     RAC(self.loginVM, username) = [self.userNameTextField rac_textSignal];
     RAC(self.loginVM, password) = [self.passwordTextField rac_textSignal];
     self.loginButton.rac_command = self.loginVM.loginCommand;
+    
+    @weakify(self)
+    [[self.userNameTextField.rac_textSignal filter:^BOOL(NSString * value) {
+        return value.length > 11;
+    }] subscribeNext:^(id x) {
+        @strongify(self)
+        [self.userNameTextField shake];
+    }];
+    
+    [[self.passwordTextField.rac_textSignal filter:^BOOL(NSString * value) {
+        return value.length > 16;
+    }] subscribeNext:^(id x) {
+        @strongify(self)
+        [self.passwordTextField shake];
+    }];
+    
+    RAC(self.userNameTextField, textColor) = [self.loginVM.phoneValidSignal map:^id(NSNumber * value) {
+        return [value boolValue] ? [UIColor blackColor] : [UIColor redColor];
+    }];
+    
+    RAC(self.passwordTextField, textColor) = [self.loginVM.passwordValidSignal map:^id(NSNumber * value) {
+        return [value boolValue] ? [UIColor blackColor] : [UIColor redColor];
+    }];
+    
+    [[self.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        @strongify(self)
+        [self.loginVM requestLogin:^(id object) {
+            
+        } error:^(NSError *error) {
+            
+        } failure:^(NSError *error) {
+            
+        } completion:^{
+            
+        }];
+    } error:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
+    [self.loginVM.loginCommand.executionSignals subscribeNext:^(id x) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
+                                                            object:HR_SB];
+    } error:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
+
 }
 
 

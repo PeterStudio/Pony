@@ -7,7 +7,7 @@
 //
 
 #import <Mantle/Mantle.h>
+#import "MTLJSONAdapter.h"
 
-@interface BaseM : MTLModel
-
+@interface BaseM : MTLModel<MTLJSONSerializing>
 @end

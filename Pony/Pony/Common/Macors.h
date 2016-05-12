@@ -14,4 +14,8 @@
 #import "APIStringMacros.h"
 #import "NotificationMacros.h"
 
+#import "UITextField+LangExt.h"
+
+#import <CocoaLumberjack/DDLegacyMacros.h>
+
 #endif /* Macors_h */

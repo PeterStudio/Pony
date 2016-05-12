@@ -10,4 +10,8 @@
 
 @implementation ForgetVM
 
+- (void)initialize{
+    self.title = @"忘记密码";
+}
+
 @end
