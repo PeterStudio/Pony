@@ -73,7 +73,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [_window setBackgroundColor:[UIColor whiteColor]];
-    [self switchStoryboard:USERLOGIC_SB];
+    [self switchStoryboard:PONY_SB];
     [_window makeKeyAndVisible];
     
     @weakify(self)

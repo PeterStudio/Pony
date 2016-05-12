@@ -11,7 +11,6 @@
 		0906E1F01C587142003FF9FF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1EF1C587142003FF9FF /* BaseViewController.m */; };
 		0906E1F31C587168003FF9FF /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E1F21C587168003FF9FF /* BaseNavigationController.m */; };
 		0906E2021C58B83A003FF9FF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E2011C58B83A003FF9FF /* HomeViewController.m */; };
-		0906E2051C58C14C003FF9FF /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0906E2041C58C14C003FF9FF /* MineViewController.m */; };
 		0906E2761C58C757003FF9FF /* bar_anxia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E2071C58C757003FF9FF /* bar_anxia@2x.png */; };
 		0906E2771C58C757003FF9FF /* bar_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E2081C58C757003FF9FF /* bar_nor@2x.png */; };
 		0906E2781C58C757003FF9FF /* add01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E20A1C58C757003FF9FF /* add01@2x.png */; };
@@ -122,6 +121,7 @@
 		0906E2E11C58C757003FF9FF /* voice_time-short@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E2731C58C757003FF9FF /* voice_time-short@2x.png */; };
 		0906E2E21C58C757003FF9FF /* yuyin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E2741C58C757003FF9FF /* yuyin@2x.png */; };
 		0906E2E31C58C757003FF9FF /* zhaopian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0906E2751C58C757003FF9FF /* zhaopian@2x.png */; };
+		0908CEEF1CE4763800C53926 /* PMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0908CEEE1CE4763800C53926 /* PMineVC.m */; };
 		091FD6171C55B7B500BB461C /* JCHATFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FD6141C55B7B500BB461C /* JCHATFileManager.m */; };
 		091FD6181C55B7B500BB461C /* JCHATStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FD6161C55B7B500BB461C /* JCHATStringUtils.m */; };
 		091FD66F1C55B7DE00BB461C /* JCHATAlertViewWait.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FD61B1C55B7DE00BB461C /* JCHATAlertViewWait.m */; };
@@ -276,8 +276,6 @@
 		0906E1F21C587168003FF9FF /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		0906E2001C58B83A003FF9FF /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		0906E2011C58B83A003FF9FF /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		0906E2031C58C14C003FF9FF /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
-		0906E2041C58C14C003FF9FF /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		0906E2071C58C757003FF9FF /* bar_anxia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_anxia@2x.png"; sourceTree = "<group>"; };
 		0906E2081C58C757003FF9FF /* bar_nor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_nor@2x.png"; sourceTree = "<group>"; };
 		0906E20A1C58C757003FF9FF /* add01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add01@2x.png"; sourceTree = "<group>"; };
@@ -388,6 +386,8 @@
 		0906E2731C58C757003FF9FF /* voice_time-short@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "voice_time-short@2x.png"; sourceTree = "<group>"; };
 		0906E2741C58C757003FF9FF /* yuyin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yuyin@2x.png"; sourceTree = "<group>"; };
 		0906E2751C58C757003FF9FF /* zhaopian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhaopian@2x.png"; sourceTree = "<group>"; };
+		0908CEED1CE4763800C53926 /* PMineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMineVC.h; sourceTree = "<group>"; };
+		0908CEEE1CE4763800C53926 /* PMineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMineVC.m; sourceTree = "<group>"; };
 		091FD6131C55B7B500BB461C /* JCHATFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATFileManager.h; sourceTree = "<group>"; };
 		091FD6141C55B7B500BB461C /* JCHATFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHATFileManager.m; sourceTree = "<group>"; };
 		091FD6151C55B7B500BB461C /* JCHATStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHATStringUtils.h; sourceTree = "<group>"; };
@@ -1235,8 +1235,8 @@
 			children = (
 				0906E2001C58B83A003FF9FF /* HomeViewController.h */,
 				0906E2011C58B83A003FF9FF /* HomeViewController.m */,
-				0906E2031C58C14C003FF9FF /* MineViewController.h */,
-				0906E2041C58C14C003FF9FF /* MineViewController.m */,
+				0908CEED1CE4763800C53926 /* PMineVC.h */,
+				0908CEEE1CE4763800C53926 /* PMineVC.m */,
 			);
 			name = PonyTerminal;
 			sourceTree = "<group>";
@@ -1421,7 +1421,7 @@
 				TargetAttributes = {
 					09353A401C50AAAE00DC5A1A = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = FHRN25K2EQ;
+						DevelopmentTeam = 6A6T3R8269;
 					};
 				};
 			};
@@ -1654,7 +1654,6 @@
 				092C07991C52034000FF4981 /* JCHATChatTableViewCell.m in Sources */,
 				091FD6951C55B7DE00BB461C /* UIImageView+WebCache.m in Sources */,
 				0B9CE3941CD879750009A160 /* HRMineVM.m in Sources */,
-				0906E2051C58C14C003FF9FF /* MineViewController.m in Sources */,
 				0906E1F01C587142003FF9FF /* BaseViewController.m in Sources */,
 				091FD68C1C55B7DE00BB461C /* SDWebImageDownloaderOperation.m in Sources */,
 				091FD67A1C55B7DE00BB461C /* View+MASAdditions.m in Sources */,
@@ -1674,6 +1673,7 @@
 				0B9CE3911CD879620009A160 /* HRMineVC.m in Sources */,
 				091FD67E1C55B7DE00BB461C /* MBProgressHUD.m in Sources */,
 				0BF2A83D1CDAF409004A48E5 /* APIManager.m in Sources */,
+				0908CEEF1CE4763800C53926 /* PMineVC.m in Sources */,
 				0B9CE3861CD879070009A160 /* HRChatVC.m in Sources */,
 				092C07A21C52034000FF4981 /* JCHATMessageTableViewCell.m in Sources */,
 				092C07B71C52034000FF4981 /* XHVoiceRecordHUD.m in Sources */,

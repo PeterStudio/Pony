@@ -1,13 +1,13 @@
 //
-//  MineViewController.h
+//  PMineVC.h
 //  Pony
 //
-//  Created by Baby on 16/1/27.
+//  Created by Baby on 16/5/12.
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
 #import "BaseTableViewController.h"
 
-@interface MineViewController : BaseTableViewController
+@interface PMineVC : BaseTableViewController
 
 @end
