@@ -33,6 +33,14 @@
                                                         object:USERLOGIC_SB];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 1) {
+        return 18;
+    }else{
+        return 1;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
