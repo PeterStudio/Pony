@@ -8,6 +8,7 @@
 
 #import "RegistVC.h"
 #import "RegistVM.h"
+#import <SMS_SDK/SMSSDK.h>
 
 @interface RegistVC ()
 
@@ -64,14 +65,86 @@
 
 /**发送验证码*/
 - (IBAction)sendCode:(id)sender {
-    
+    if (![_userNameTextField.text validLoginPhoneNumber]) {
+        kMRCError(@"用户名输入有误");
+        [_userNameTextField shake];
+        return;
+    }
+    @weakify(self)
+    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:_userNameTextField.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
+        @strongify(self)
+        if (!error) {
+            [self countTime];
+            kMRCSuccess(@"获取验证码成功");
+        } else {
+            kMRCError(@"获取验证码失败，请重新获取");
+        }
+    }];
 }
 
 /**注册*/
 - (IBAction)regist:(id)sender {
+    if (![_userNameTextField.text validLoginPhoneNumber]) {
+        kMRCError(@"用户名输入有误");
+        [_userNameTextField shake];
+        return;
+    }
     
+    if ([_codeTextField.text validBlank]) {
+        kMRCError(@"请输入验证码");
+        [_codeTextField shake];
+        return;
+    }
+    
+    if (![_passwordTextField.text validLoginPassword]) {
+        kMRCError(@"密码输入有误");
+        [_passwordTextField shake];
+        return;
+    }
+    
+    NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"userPassword":_passwordTextField.text,@"code":_codeTextField.text};
+    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    @weakify(self)
+    [APIHTTP wPost:kAPIRegister parameters:parameters success:^(id responseObject) {
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
+    } error:^(NSError *err) {
+        kMRCError(err.localizedDescription);
+    } failure:^(NSError *err) {
+        kMRCError(err.localizedDescription);
+    } completion:^{
+        [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+    }];
 }
 
+/**
+ *  倒计时
+ */
+- (void)countTime{
+    _codeBtn.enabled = NO;
+    __block int timeout = VERIFICATION_SUM_TIME - 1;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    @weakify(self)
+    dispatch_source_set_event_handler(_timer, ^{
+        @strongify(self)
+        if(timeout<=0){
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.codeBtn.enabled = YES;
+                [self.codeBtn setTitle:VERIFICATION_NORMAL_TITLE forState:UIControlStateNormal];
+            });
+        }else{
+            int seconds = timeout % VERIFICATION_SUM_TIME;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.codeBtn setTitle:VERIFICATION_SELECT_TITLE(seconds) forState:UIControlStateDisabled];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
 
 #pragma mark - Private
 
@@ -80,7 +153,6 @@
     RAC(self.registVM, code) = [self.codeTextField rac_textSignal];
     RAC(self.registVM, password) = [self.passwordTextField rac_textSignal];
     
-    self.codeBtn.rac_command = self.registVM.codeCommand;
     self.sureBtn.rac_command = self.registVM.sureCommand;
     
     @weakify(self)

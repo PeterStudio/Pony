@@ -346,7 +346,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请设置您的登录密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s5A-qx-Vxc">
                                         <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userLogic_reg_code_bg" translatesAutoresizingMaskIntoConstraints="NO" id="iVj-Gs-Dtm">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -747,6 +747,9 @@
                                                 <include reference="k0U-ZT-mA0"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="sendCode:" destination="wIm-sy-EKK" eventType="touchUpInside" id="9d7-HT-Ocf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -881,6 +884,9 @@
                                         <include reference="hTH-11-76W"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="check:" destination="wIm-sy-EKK" eventType="touchUpInside" id="mr8-42-Gxp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -922,7 +928,11 @@
                         </variation>
                     </view>
                     <connections>
-                        <segue destination="gt8-vn-1bE" kind="show" id="Yyu-gr-hef"/>
+                        <outlet property="codeBtn" destination="TfJ-DK-vIw" id="8Q4-iv-oNH"/>
+                        <outlet property="codeTextField" destination="jtN-99-oC6" id="a0X-fj-ffJ"/>
+                        <outlet property="sureBtn" destination="l6g-79-9f0" id="hXx-wm-I2x"/>
+                        <outlet property="userNameTextField" destination="NfV-Ei-tRX" id="bVL-kM-lcO"/>
+                        <segue destination="gt8-vn-1bE" kind="show" identifier="ResetVC" id="Yyu-gr-hef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2XM-AC-CQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -932,7 +942,7 @@
         <!--找回密码-->
         <scene sceneID="KAV-iK-XAG">
             <objects>
-                <viewController title="找回密码" id="gt8-vn-1bE" sceneMemberID="viewController">
+                <viewController title="找回密码" id="gt8-vn-1bE" customClass="ResetVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fei-rn-W1c"/>
                         <viewControllerLayoutGuide type="bottom" id="s8S-pK-FQA"/>
@@ -963,7 +973,7 @@
                                             <constraint firstAttribute="height" constant="35" id="WFH-cd-gUY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="WFH-cd-gUY"/>
@@ -978,7 +988,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入确认密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CvP-ii-TB4">
                                         <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1091,6 +1101,9 @@
                                         <include reference="WCb-BC-64J"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="sure:" destination="gt8-vn-1bE" eventType="touchUpInside" id="mHx-OJ-0xq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1131,6 +1144,11 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="cPasswordTextField" destination="CvP-ii-TB4" id="gCc-Ry-OSQ"/>
+                        <outlet property="nPasswordTextField" destination="UCX-fx-lCf" id="mVn-Qm-hFZ"/>
+                        <outlet property="sureButton" destination="Uir-K2-vFK" id="sCx-Zh-2Hk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qi-VN-IZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

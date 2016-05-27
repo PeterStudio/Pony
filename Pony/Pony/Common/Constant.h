@@ -18,6 +18,10 @@
 #define kMRCError(message)   [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeError statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
 #define kMRCInfo(message)    [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeInfo statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
 
+#define VERIFICATION_NORMAL_TITLE           @"获取验证码"
+#define VERIFICATION_SUM_TIME               60
+#define VERIFICATION_SELECT_TITLE(x) [NSString stringWithFormat:@"%.2d秒后重发",x]
+
 
 #define kClearColor     [UIColor clearColor]
 

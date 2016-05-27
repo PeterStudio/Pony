@@ -574,7 +574,7 @@
     </scenes>
     <resources>
         <image name="btn01" width="81" height="81"/>
-        <image name="icon_annel" width="13" height="13"/>
+        <image name="icon_annel" width="10" height="10"/>
         <image name="icon_cz" width="22" height="22"/>
         <image name="icon_set" width="13" height="13"/>
         <image name="icon_tx" width="22" height="22"/>

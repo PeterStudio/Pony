@@ -49,12 +49,24 @@
        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
            DLog(@"\n===========success===========\n%@:\n%@", URLString, responseObject);
            NSDictionary * object = (NSDictionary *)responseObject;
-           if ([object[@"status"] isEqualToString:@"102"]) {
+           id status = object[@"status"];
+           NSInteger code = 0;
+           if ([status isKindOfClass:[NSString class]]) {
+               // NSString
+               code = [(NSString *)status integerValue];
+           }
+           
+           if ([status isKindOfClass:[NSNumber class]]) {
+               // NSNumber
+               code = [(NSNumber *)status integerValue];
+           }
+           
+           if (code == 102) {
                success(object[@"data"]);
                completion();
            }
            else {
-               NSInteger errnoInteger = [object[@"status"] integerValue];
+               NSInteger errnoInteger = code;
                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : object[@"message"] };
                NSError *uError = [NSError errorWithDomain:@"com.peterstudio.pony"
                                                      code:errnoInteger

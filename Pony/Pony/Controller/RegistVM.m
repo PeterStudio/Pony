@@ -14,15 +14,6 @@
     self.title = @"注册";
 }
 
-- (RACCommand *)codeCommand{
-    if (!_codeCommand) {
-        _codeCommand = [[RACCommand alloc] initWithEnabled:_usernameValidSignal signalBlock:^RACSignal *(id input) {
-            return [RACSignal empty];
-        }];
-    }
-    return _codeCommand;
-}
-
 - (RACCommand *)sureCommand{
     if (!_sureCommand) {
         _sureCommand = [[RACCommand alloc] initWithEnabled:[RACSignal combineLatest:@[self.usernameValidSignal,self.codeValidSignal,self.passwordValidSignal] reduce:^id(NSNumber * x, NSNumber * y, NSNumber * z){
@@ -46,7 +37,7 @@
 
 - (RACSignal *)codeValidSignal{
     if (!_codeValidSignal) {
-        _codeValidSignal = [RACObserve(self, password) map:^id(NSString * value) {
+        _codeValidSignal = [RACObserve(self, code) map:^id(NSString * value) {
             return @(![value validBlank]);
         }];
     }
