@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+#import "UserManager.h"
 #import "Macors.h"
 
 /** Vender*/
@@ -17,6 +18,7 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+
 
 //SMSSDK官网公共key
 #define appkey @"100fd9b14a15a"
@@ -73,7 +75,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [_window setBackgroundColor:[UIColor whiteColor]];
-    [self switchStoryboard:USERLOGIC_SB];
+    if (![USERMANAGER isLogin]) {
+        [self switchStoryboard:USERLOGIC_SB];
+    }
     [_window makeKeyAndVisible];
     
     @weakify(self)
@@ -193,6 +197,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [USERMANAGER logout];
 }
 
 @end

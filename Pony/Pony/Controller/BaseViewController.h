@@ -21,6 +21,7 @@
 
 #import "Macors.h"
 
+#import "UserManager.h"
 
 @interface BaseViewController : UIViewController
 

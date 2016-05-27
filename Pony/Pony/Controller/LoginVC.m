@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import <JMessage/JMessage.h>
 #import "LoginVM.h"
+#import "LoginM.h"
 #import <AdSupport/ASIdentifierManager.h>
 #import "TWMessageBarManager.h"
 
@@ -65,10 +66,11 @@
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"userPassword":_passwordTextField.text,@"deviceName":[infoDic objectForKey:@"DTPlatformName"],@"imei":idfa,@"version":appVersion,@"os":@"1"};
-    
     [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
     [APIHTTP wPost:kAPILogin parameters:parameters success:^(id responseObject) {
-        
+        LoginM * m = [[LoginM alloc] initWithDictionary:responseObject error:nil];
+        [USERMANAGER saveUserInfo:m];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:HR_SB];
     } error:^(NSError *err) {
         kMRCError(err.localizedDescription);
     } failure:^(NSError *err) {
