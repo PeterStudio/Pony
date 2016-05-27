@@ -32,9 +32,7 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - GPUImage (0.1.7)
-  - Mantle (2.0.7):
-    - Mantle/extobjc (= 2.0.7)
-  - Mantle/extobjc (2.0.7)
+  - JSONModel (1.2.0)
   - MJRefresh (3.1.0)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -53,7 +51,7 @@ DEPENDENCIES:
   - AFNetworking-RACExtensions
   - CocoaLumberjack
   - GPUImage
-  - Mantle
+  - JSONModel (~> 1.2.0)
   - MJRefresh
   - ReactiveCocoa
   - ReactiveViewModel
@@ -65,7 +63,7 @@ SPEC CHECKSUMS:
   AFNetworking-RACExtensions: a043c6b492fa892395ceb9d20bc4c94e96e08a57
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999

@@ -9,10 +9,10 @@
 #import "ForgetVC.h"
 
 @interface ForgetVC ()
-@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
-@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
-
-@property (strong, nonatomic) IBOutlet UIView *footerView;
+//@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
+//
+//@property (strong, nonatomic) IBOutlet UIView *footerView;
 @end
 
 @implementation ForgetVC
@@ -22,13 +22,6 @@
     // Do any additional setup after loading the view.
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 100.0f;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return _footerView;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -14,6 +14,7 @@
 #import "ConstantLogger.h"
 
 #import "NSString+LangExt.h"
+#import "NSString+MessageInputView.h"
 #import "APIStringMacros.h"
 
 @interface BaseVM : RVMViewModel

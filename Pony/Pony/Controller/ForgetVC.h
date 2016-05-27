@@ -4,10 +4,10 @@
 //
 //  Created by 杜文 on 16/5/3.
 //  Copyright © 2016年 peterstudio. All rights reserved.
-//
+//  找回密码页面
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface ForgetVC : BaseTableViewController
+@interface ForgetVC : BaseViewController
 
 @end

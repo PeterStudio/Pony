@@ -10,10 +10,14 @@
 #define Constant_h
 
 #define DWRootViewController    [[[[UIApplication sharedApplication] delegate] window] rootViewController]
-#define DWRootView              [ZPRootViewController view]
+#define DWRootView              [DWRootViewController view]
 
-//#define kScreenWidth    ([UIScreen mainScreen].bounds.size.width)
-//#define kScreenHeight   ([UIScreen mainScreen].bounds.size.height)
+#define kMRCAlertTitle @"提示"
+
+#define kMRCSuccess(message) [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeSuccess statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
+#define kMRCError(message)   [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeError statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
+#define kMRCInfo(message)    [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeInfo statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
+
 
 #define kClearColor     [UIColor clearColor]
 

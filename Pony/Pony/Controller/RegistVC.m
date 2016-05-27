@@ -7,7 +7,6 @@
 //
 
 #import "RegistVC.h"
-
 #import "RegistVM.h"
 
 @interface RegistVC ()
@@ -15,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
@@ -64,13 +62,14 @@
      */
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 120.0f;
+/**发送验证码*/
+- (IBAction)sendCode:(id)sender {
+    
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return _footerView;
+/**注册*/
+- (IBAction)regist:(id)sender {
+    
 }
 
 
@@ -81,8 +80,11 @@
     RAC(self.registVM, code) = [self.codeTextField rac_textSignal];
     RAC(self.registVM, password) = [self.passwordTextField rac_textSignal];
     
+    self.codeBtn.rac_command = self.registVM.codeCommand;
+    self.sureBtn.rac_command = self.registVM.sureCommand;
+    
     @weakify(self)
-    [[_backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+    [[self.backBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
         [self.navigationController popViewControllerAnimated:YES];
     }];
