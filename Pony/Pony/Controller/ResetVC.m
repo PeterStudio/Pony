@@ -33,7 +33,7 @@
     
     if (![_nPasswordTextField.text isEqualToString:_cPasswordTextField.text]) {
         kMRCError(@"确认密码输入有误");
-        [_nPasswordTextField shake];
+        [_cPasswordTextField shake];
         return;
     }
     

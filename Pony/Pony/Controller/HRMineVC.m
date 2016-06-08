@@ -29,6 +29,7 @@
 }
 
 - (IBAction)logoutBtnClicked:(id)sender {
+    [USERMANAGER logout];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
                                                         object:USERLOGIC_SB];
 }
@@ -40,7 +41,6 @@
         return 1;
     }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

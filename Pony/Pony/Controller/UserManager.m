@@ -9,6 +9,8 @@
 #import "UserManager.h"
 
 #define USER_INFO   @"USER_INFO"
+#define ROLE_TAG    @"ROLE_TAG"
+
 
 @implementation UserManager
 
@@ -39,6 +41,40 @@
     NSDictionary * tokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:USER_INFO];
     LoginM * loginM = [[LoginM alloc] initWithDictionary:tokenDic error:nil];
     return loginM.userinfo;
+}
+
+/**极光伯乐帐号*/
+- (NSString *)jPushBoleUsername{
+    UserInfoM * m = [self userInfoM];
+    return m.bole_im_id;
+}
+
+/**极光帐号*/
+- (NSString *)jPushUserName{
+    UserInfoM * m = [self userInfoM];
+    return m.xiaoma_im_id;
+}
+
+/**极光密码*/
+- (NSString *)jPushPassword{
+    UserInfoM * m = [self userInfoM];
+    return m.im_password;
+}
+
+/**切换角色*/
+- (void)changeToRole:(Role)_role{
+    if (BOLE == _role) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:ROLE_TAG];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ROLE_TAG];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/**是小马吗*/
+- (BOOL)isXiaoMaAccount{
+    NSNumber *b = [[NSUserDefaults standardUserDefaults] objectForKey:ROLE_TAG];
+    return [b boolValue];
 }
 
 /**是否登录*/

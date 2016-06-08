@@ -25,26 +25,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
 
-//     [MBProgressHUD showMessage:@"登录中。。。" toView:self.view];
-//     [JMSGUser loginWithUsername:_userNameTextField.text password:_passwordTextField.text completionHandler:^(id resultObject, NSError *error) {
-//     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//     if (error == nil) {
-//     // 登录成功！
-//     [self performSegueWithIdentifier:@"loginToHomeVC_ID" sender:nil];
-//     }else{
-//     NSString *alert = @"用户登录失败";
-//     if (error.code == JCHAT_ERROR_USER_NOT_EXIST) {
-//     alert = @"用户名不存在";
-//     } else if (error.code == JCHAT_ERROR_USER_WRONG_PASSWORD) {
-//     alert = @"密码错误！";
-//     } else if (error.code == JCHAT_ERROR_USER_PARAS_INVALID) {
-//     alert = @"用户名或者密码不合法！";
-//     }
-//     [MBProgressHUD showError:alert toView:self.view];
-//     }
-//     }];
-    
+- (void)loginJPush{
+    NSString * jUsername = [USERMANAGER jPushUserName];
+    NSString * jPassword = [USERMANAGER jPushPassword];
+    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    @weakify(self)
+    [JMSGUser loginWithUsername:jUsername password:jPassword completionHandler:^(id resultObject, NSError *error) {
+        @strongify(self)
+        if (error == nil) {
+            // 登录极光成功！
+            [self setAlias:jUsername];
+        }else{
+            [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+            NSString *alert = @"用户登录失败";
+            if (error.code == JCHAT_ERROR_USER_NOT_EXIST) {
+                alert = @"用户名不存在";
+            } else if (error.code == JCHAT_ERROR_USER_WRONG_PASSWORD) {
+                alert = @"密码错误！";
+            } else if (error.code == JCHAT_ERROR_USER_PARAS_INVALID) {
+                alert = @"用户名或者密码不合法！";
+            }
+            kMRCError(alert);
+            [USERMANAGER logout];
+        }
+    }];
 }
 
 /**登录*/
@@ -67,10 +73,13 @@
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"userPassword":_passwordTextField.text,@"deviceName":[infoDic objectForKey:@"DTPlatformName"],@"imei":idfa,@"version":appVersion,@"os":@"1"};
     [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    @weakify(self)
     [APIHTTP wPost:kAPILogin parameters:parameters success:^(id responseObject) {
+        @strongify(self)
         LoginM * m = [[LoginM alloc] initWithDictionary:responseObject error:nil];
         [USERMANAGER saveUserInfo:m];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:HR_SB];
+        // 登录极光
+        [self loginJPush];
     } error:^(NSError *err) {
         kMRCError(err.localizedDescription);
     } failure:^(NSError *err) {
@@ -80,6 +89,20 @@
     }];
 }
 
+/**设置alias*/
+- (void)setAlias:(NSString *)_alias{
+    @weakify(self)
+    [JPUSHService setTags:nil alias:_alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        @strongify(self)
+        if (iResCode == 0) {
+            [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+            [USERMANAGER changeToRole:XIAOMA];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:PONY_SB];
+        }else{
+            [self setAlias:_alias];
+        }
+    }];
+}
 
 #pragma mark - private
 

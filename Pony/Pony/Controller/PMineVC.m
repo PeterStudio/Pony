@@ -20,6 +20,7 @@
 
 
 - (IBAction)logout:(id)sender {
+    [USERMANAGER logout];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
                                                         object:USERLOGIC_SB];
 }

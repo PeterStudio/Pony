@@ -8,21 +8,32 @@
 
 #import "AppDelegate.h"
 
+#import "XXDGuideView.h"
+
 #import "UserManager.h"
 #import "Macors.h"
 
 /** Vender*/
 #import <JMessage/JMessage.h>
 #import <SMS_SDK/SMSSDK.h>
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaSSOHandler.h"
+#import "UMSocialQQHandler.h"
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
+// 极光key
+#define JMSSAGE_APPKEY @"fda9d138fe7e4325f225106c"
 
 //SMSSDK官网公共key
 #define appkey @"100fd9b14a15a"
 #define app_secrect @"cf274655e142b143c45c449da3d5c17a"
+
+// 友盟key
+#define UmengAppkey @"57511c7567e58e72f7001044"
 
 @interface AppDelegate ()
 
@@ -34,6 +45,17 @@
     //Mob，appKey和appSecret从后台申请得
     [SMSSDK registerApp:appkey
              withSecret:app_secrect];
+    
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UmengAppkey];
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:@"wx98a9093e63b0ddbb" appSecret:@"0bba47f956daa6949f7db7cc9564c6ef" url:@"http://www.umeng.com/social"];
+    //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
+    [UMSocialQQHandler setQQWithAppId:@"1105319509" appKey:@"gtZpCuOGi3ekWquL" url:@"http://www.umeng.com/social"];
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"3921700954"
+                                              secret:@"04b48b094faeb16683c32669824ebdad"
+                                         RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
     /**DDLog*/
     [DDLog addLogger:[DDASLLogger sharedInstance]]; // 将 log 发送给苹果服务器，之后在 Console.app 中可以查看
@@ -77,8 +99,22 @@
     [_window setBackgroundColor:[UIColor whiteColor]];
     if (![USERMANAGER isLogin]) {
         [self switchStoryboard:USERLOGIC_SB];
+    }else{
+        if ([USERMANAGER isXiaoMaAccount]) {
+            [self switchStoryboard:PONY_SB];
+        }else{
+            [self switchStoryboard:HR_SB];
+        }
     }
     [_window makeKeyAndVisible];
+    
+    /**添加引导页*/
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:VERSION_NUM_FOR_GUIDE_KEY] integerValue] < VERSION_NUM_FOR_GUIDE)
+    {
+        XXDGuideView * guideView = [[XXDGuideView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [self.window addSubview:guideView];
+    }
+    
     
     @weakify(self)
     [[[[NSNotificationCenter defaultCenter]
@@ -95,7 +131,7 @@
     // init third-party SDK
     [JMessage setupJMessage:launchOptions
                      appKey:JMSSAGE_APPKEY
-                    channel:@"Apple Store" apsForProduction:NO
+                    channel:@"Apple Store" apsForProduction:NO  //
                    category:nil];
     
     [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
@@ -106,6 +142,15 @@
     [self registerJPushStatusNotification];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
 }
 
 
@@ -156,6 +201,7 @@
 
 // notification from JPush
 - (void)networkDidRegister:(NSNotification *)notification {
+    DDLogDebug(@"networkDidRegister-%@", [notification userInfo]);
     DDLogDebug(@"Event - networkDidRegister");
 }
 
@@ -185,10 +231,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -197,7 +246,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [USERMANAGER logout];
 }
 
 @end

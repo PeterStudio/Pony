@@ -11,6 +11,11 @@
 
 #define USERMANAGER     [UserManager shareInstance]
 
+typedef enum {
+    BOLE = 0,
+    XIAOMA
+}Role;
+
 @interface UserManager : NSObject
 
 + (UserManager *)shareInstance;
@@ -23,6 +28,21 @@
 
 /**获取用户信息*/
 - (UserInfoM *)userInfoM;
+
+/**极光伯乐帐号*/
+- (NSString *)jPushBoleUsername;
+
+/**极光小马帐号*/
+- (NSString *)jPushUserName;
+
+/**极光密码*/
+- (NSString *)jPushPassword;
+
+/**切换角色*/
+- (void)changeToRole:(Role)_role;
+
+/**是小马吗*/
+- (BOOL)isXiaoMaAccount;
 
 /**是否登录*/
 - (BOOL)isLogin;

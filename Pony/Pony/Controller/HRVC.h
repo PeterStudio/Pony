@@ -6,8 +6,10 @@
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+//#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface HRVC : BaseTableViewController
+
+@interface HRVC : BaseViewController
 
 @end

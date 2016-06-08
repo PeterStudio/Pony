@@ -48,6 +48,7 @@
     parameters:parameters
        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
            DLog(@"\n===========success===========\n%@:\n%@", URLString, responseObject);
+           completion();
            NSDictionary * object = (NSDictionary *)responseObject;
            id status = object[@"status"];
            NSInteger code = 0;
@@ -63,7 +64,6 @@
            
            if (code == 102) {
                success(object[@"data"]);
-               completion();
            }
            else {
                NSInteger errnoInteger = code;
@@ -72,12 +72,12 @@
                                                      code:errnoInteger
                                                  userInfo:userInfo];
                error(uError);
-               completion();
+               
            }
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
            DLog(@"\n===========error===========\n%@:\n%@", URLString, error);
-           failure(error);
            completion();
+           failure(error);
        }];
 }
 

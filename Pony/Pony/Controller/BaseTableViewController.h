@@ -15,9 +15,13 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
+#import "TWMessageBarManager.h"
+
 #import "Macors.h"
 
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
+
+#import "UserManager.h"
 
 @interface BaseTableViewController : UITableViewController
 
