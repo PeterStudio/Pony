@@ -16,6 +16,7 @@
 #define TOCK(action) DDLogDebug(@"%@ - TimeInSeconds - %f", action, -[startTime timeIntervalSinceNow])
 
 
+
 /*========================================屏幕适配============================================*/
 
 #define kIOSVersions [[[UIDevice currentDevice] systemVersion] floatValue] //获得iOS版本
@@ -27,9 +28,9 @@
 #define kScreenHeight  (kIOSVersions>=7.0 ? [[UIScreen mainScreen] bounds].size.height + 64 : [[UIScreen mainScreen] bounds].size.height)
 #define kIOS7OffHeight (kIOSVersions>=7.0 ? 64 : 0)
 
-#define kApplicationSize      [[UIScreen mainScreen] applicationFrame].size       //(e.g. 320,460)
-#define kApplicationWidth     [[UIScreen mainScreen] applicationFrame].size.width //(e.g. 320)
-#define kApplicationHeight    [[UIScreen mainScreen] applicationFrame].size.height//不包含状态bar的高度(e.g. 460)
+#define kApplicationSize      [UIScreen mainScreen].bounds.size       //(e.g. 320,460)
+#define kApplicationWidth     [UIScreen mainScreen].bounds.size.width //(e.g. 320)
+#define kApplicationHeight    [UIScreen mainScreen].bounds.size.height//不包含状态bar的高度(e.g. 460)
 
 #define kStatusBarHeight         20
 #define kNavigationBarHeight     44
@@ -40,8 +41,9 @@
 #define maxPopLength             170
 
 #define UIColorFromRGB(rgbValue) [UIColor  colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0  green:((float)((rgbValue & 0xFF00) >> 8))/255.0  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorFromRGBA(rgbValue) [UIColor  colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0  green:((float)((rgbValue & 0xFF00) >> 8))/255.0  blue:((float)(rgbValue & 0xFF))/255.0 alpha:0.7]
 
-#define kNavigationBarColor    UIColorFromRGB(0x053769)
+#define kNavigationBarColor    UIColorFromRGB(0x3f80de)
 #define headDefaltWidth             46
 #define headDefaltHeight            46
 #define upLoadImgWidth            720
@@ -68,9 +70,13 @@
 
 #define kDeleteAllMessage  @"deleteAllMessage"
 
+#define kConversationChange @"ConversationChange"
+
 #define JPIMLog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__,[NSString stringWithFormat:__VA_ARGS__])
 
 #define LOG_PREFIX @"JChat"
+
+#define kWEAKSELF __weak __typeof(self)weakSelf = self;
 
 /**
   DDLogError 错误：真的出错了，逻辑不正常
@@ -103,7 +109,9 @@
 #define KNull @"(null)"
 #define KApnsNotification @"apnsNotification"
 
-#define JPIMMAINTHEAD(block) dispatch_async(dispatch_get_main_queue(), block)
+#define kDBMigrateStartNotification @"DBMigrateStartNotification"
+#define kDBMigrateFinishNotification @"DBMigrateFinishNotification"
+#define JCHATMAINTHREAD(block) dispatch_async(dispatch_get_main_queue(), block)
 #endif
 
 
@@ -137,4 +145,36 @@ typedef NS_ENUM(NSInteger, JCHATErrorCode) {
 
 };
 
+//ToolBar
+static NSInteger const st_toolBarTextSize = 17.0f;
 
+//Notification
+#define kAlertToSendImage @"AlertToSendImage"
+#define kDeleteMessage @"DeleteMessage"
+
+//Color
+#define kNavigationBarColor UIColorFromRGB(0x3f80de)
+#define kTabbarColor UIColorFromRGB(0x3e3e3e)
+#define kTextfieldPlaceholderColor UIColorFromRGB(0x555555)
+#define kTableviewCellClickColor UIColorFromRGB(0xdddddd)
+#define kTableviewSeperateLineColor UIColorFromRGB(0xcfcfcf)
+#define kSeparationLineColor UIColorFromRGB(0xd0d0d0)
+//NavigationBar
+#define kGoBackBtnImageOffset UIEdgeInsetsMake(0, 0, 0, 15)
+#define kNavigationLeftButtonRect CGRectMake(0, 0, 30, 30)
+//static const
+static NSString * const st_chatViewController = @"JCHATChatViewController";
+static NSString * const st_contactsViewController = @"JCHATContactsViewController";
+static NSString * const st_userInfoViewController = @"JCHATUserInfoViewController";
+
+static NSString * const st_chatViewControllerTittle = @"会话";
+static const NSInteger st_chatTabTag = 10;
+
+static NSString * const st_contactsTabTitle = @"通讯录";
+static NSInteger const st_contactsTabTag = 11;
+
+static NSString * const st_settingTabTitle = @"我";
+static NSInteger const st_settingTag = 12;
+
+static NSString * const st_receiveUnknowMessageDes = @"收到新消息类型无法解析的数据，请升级查看";
+static NSString * const st_receiveErrorMessageDes = @"接收消息错误";

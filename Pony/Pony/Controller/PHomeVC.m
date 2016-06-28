@@ -7,7 +7,7 @@
 //
 
 #import "PHomeVC.h"
-#import "JCHATChatViewController.h"
+#import "JCHATContactsViewController.h"
 #import <JMessage/JMessage.h>
 
 @interface PHomeVC ()
@@ -31,9 +31,9 @@
 }
 
 - (IBAction)callButonClicked:(id)sender {
-    JCHATChatViewController *chatViewController = [[JCHATChatViewController alloc] initWithNibName:@"JCHATChatViewController"
-                                                                                            bundle:nil];
-    [self.navigationController pushViewController:chatViewController animated:YES];
+    JCHATContactsViewController *contactsViewController = [[JCHATContactsViewController alloc]
+                                                           initWithNibName:@"JCHATContactsViewController" bundle:nil];
+    [self.navigationController pushViewController:contactsViewController animated:YES];
 }
 
 - (void)loginJPush{

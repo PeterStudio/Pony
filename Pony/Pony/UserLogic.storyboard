@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -88,7 +87,6 @@
                                         <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                     </constraint>
                                     <constraint firstItem="cIo-0B-dhO" firstAttribute="top" secondItem="7tS-qr-yJe" secondAttribute="top" id="K7g-s4-83U"/>
-                                    <constraint firstAttribute="width" secondItem="7tS-qr-yJe" secondAttribute="height" multiplier="29:10" id="NEv-ir-t3p"/>
                                     <constraint firstAttribute="trailing" secondItem="1mT-wl-Y1H" secondAttribute="trailing" id="Nsh-a1-01n"/>
                                     <constraint firstItem="ail-9s-oEX" firstAttribute="leading" secondItem="7xZ-dH-l33" secondAttribute="leading" id="QGt-IW-hKB"/>
                                     <constraint firstItem="US0-VT-fiD" firstAttribute="centerY" secondItem="7xZ-dH-l33" secondAttribute="centerY" id="SdP-HZ-QBf"/>
@@ -116,7 +114,6 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="0mi-YR-gF1"/>
-                                        <exclude reference="NEv-ir-t3p"/>
                                         <exclude reference="6If-1g-O6o"/>
                                         <exclude reference="SdP-HZ-QBf"/>
                                         <exclude reference="uqF-g3-4pn"/>
@@ -148,7 +145,6 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="0mi-YR-gF1"/>
-                                        <include reference="NEv-ir-t3p"/>
                                         <include reference="6If-1g-O6o"/>
                                         <include reference="SdP-HZ-QBf"/>
                                         <include reference="uqF-g3-4pn"/>
@@ -174,7 +170,6 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3Vq-0N-t4S"/>
-                                    <constraint firstAttribute="width" secondItem="2mD-qN-kyX" secondAttribute="height" multiplier="7:1" id="bPs-zs-Z4r"/>
                                 </constraints>
                                 <state key="normal" title="确  定" backgroundImage="userLogic_btn_bg01_1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -183,13 +178,11 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="3Vq-0N-t4S"/>
-                                        <exclude reference="bPs-zs-Z4r"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="3Vq-0N-t4S"/>
-                                        <include reference="bPs-zs-Z4r"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -423,7 +416,6 @@
                                     <constraint firstItem="BMO-EI-COL" firstAttribute="centerY" secondItem="F2O-Xa-8tb" secondAttribute="centerY" id="agc-Dn-9Uc"/>
                                     <constraint firstItem="s5A-qx-Vxc" firstAttribute="centerY" secondItem="cCG-PZ-xax" secondAttribute="centerY" id="bUi-y9-AWr"/>
                                     <constraint firstAttribute="trailing" secondItem="3Db-K6-uLz" secondAttribute="trailing" id="d2M-L8-mDH"/>
-                                    <constraint firstAttribute="width" secondItem="FNW-V6-Q1S" secondAttribute="height" multiplier="29:15" id="dui-Pd-LLz"/>
                                     <constraint firstItem="ebD-tR-CAf" firstAttribute="centerY" secondItem="FNW-V6-Q1S" secondAttribute="centerY" multiplier="1/3" id="fjJ-wk-KZc"/>
                                     <constraint firstItem="BMO-EI-COL" firstAttribute="leading" secondItem="fhS-Se-GN9" secondAttribute="trailing" constant="10" id="hDt-uD-5U4"/>
                                     <constraint firstAttribute="trailing" secondItem="Zvv-pO-Ixm" secondAttribute="trailing" id="i4d-eO-so0"/>
@@ -455,7 +447,6 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="Fc6-af-cdf"/>
-                                        <exclude reference="dui-Pd-LLz"/>
                                         <exclude reference="30H-le-qb9"/>
                                         <exclude reference="5kf-eZ-3Ys"/>
                                         <exclude reference="qnM-Iq-iaf"/>
@@ -507,7 +498,6 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="Fc6-af-cdf"/>
-                                        <include reference="dui-Pd-LLz"/>
                                         <include reference="30H-le-qb9"/>
                                         <include reference="5kf-eZ-3Ys"/>
                                         <include reference="qnM-Iq-iaf"/>
@@ -574,7 +564,6 @@
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIu-Pv-GGZ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="SIu-Pv-GGZ" secondAttribute="height" multiplier="7:1" id="u6a-a9-VXg"/>
                                     <constraint firstAttribute="height" constant="35" id="y4Z-Fv-5UJ">
                                         <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                                     </constraint>
@@ -585,13 +574,11 @@
                                 <state key="disabled" backgroundImage="userLogic_btn_bg01"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="u6a-a9-VXg"/>
                                         <exclude reference="y4Z-Fv-5UJ"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="u6a-a9-VXg"/>
                                         <include reference="y4Z-Fv-5UJ"/>
                                     </mask>
                                 </variation>
@@ -863,7 +850,6 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CO5-4x-uop"/>
-                                    <constraint firstAttribute="width" secondItem="l6g-79-9f0" secondAttribute="height" multiplier="7:1" id="hTH-11-76W"/>
                                 </constraints>
                                 <state key="normal" title="验  证" backgroundImage="userLogic_btn_bg01_1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -872,13 +858,11 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="CO5-4x-uop"/>
-                                        <exclude reference="hTH-11-76W"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="CO5-4x-uop"/>
-                                        <include reference="hTH-11-76W"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -1077,7 +1061,6 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="HMD-U8-n06"/>
-                                    <constraint firstAttribute="width" secondItem="Uir-K2-vFK" secondAttribute="height" multiplier="7:1" id="WCb-BC-64J"/>
                                 </constraints>
                                 <state key="normal" title="确  定" backgroundImage="userLogic_btn_bg01_1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1086,13 +1069,11 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="HMD-U8-n06"/>
-                                        <exclude reference="WCb-BC-64J"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="HMD-U8-n06"/>
-                                        <include reference="WCb-BC-64J"/>
                                     </mask>
                                 </variation>
                                 <connections>

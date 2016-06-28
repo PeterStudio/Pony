@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JChatConstants.h"
 #import "NSString+MessageInputView.h"
-#import "MBProgressHUD+Add.h"
+//#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>

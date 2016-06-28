@@ -35,7 +35,7 @@
 // 友盟key
 #define UmengAppkey @"57511c7567e58e72f7001044"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<JMessageDelegate>
 
 @end
 
@@ -128,7 +128,12 @@
     
     [self config];
     
+    /// Required - 添加 JMessage SDK 监听。这个动作放在启动前
+//    [JMessage addDelegate:self withConversation:nil];
+    
     // init third-party SDK
+    [JMessage addDelegate:self withConversation:nil];
+    
     [JMessage setupJMessage:launchOptions
                      appKey:JMSSAGE_APPKEY
                     channel:@"Apple Store" apsForProduction:NO  //
@@ -142,6 +147,28 @@
     [self registerJPushStatusNotification];
     
     return YES;
+}
+
+#pragma - mark JMessageDelegate
+- (void)onLoginUserKicked {
+    UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"登录状态出错"
+                                                       message:@"你已在别的设备上登录!"
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                             otherButtonTitles:@"确定", nil];
+    alertView.tag = 1200;
+    [alertView show];
+}
+
+- (void)onDBMigrateStart {
+    NSLog(@"onDBmigrateStart in appdelegate");
+    _isDBMigrating = YES;
+}
+
+- (void)onDBMigrateFinishedWithError:(NSError *)error {
+    NSLog(@"onDBmigrateFinish in appdelegate");
+    _isDBMigrating = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDBMigrateFinishNotification object:nil];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
