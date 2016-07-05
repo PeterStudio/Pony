@@ -116,13 +116,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="C4Z-1k-OSN">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="7Xe-Ii-qsj" kind="relationship" relationship="rootViewController" id="lVb-Uy-RTY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8V-vH-Zn5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-509" y="-255"/>
+            <point key="canvasLocation" x="-451.5" y="-69"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aiV-fy-Jtp">

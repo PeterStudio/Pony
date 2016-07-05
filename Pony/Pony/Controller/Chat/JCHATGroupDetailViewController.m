@@ -231,13 +231,13 @@ UITabBarDelegate> {
         __weak __typeof(self)weakSelf = self;
         [MBProgressHUD showMessage:@"获取成员信息" toView:self.view];
         [((JMSGGroup *)(self.conversation.target)) addMembersWithUsernameArray:@[[alertView textFieldAtIndex:0].text] completionHandler:^(id resultObject, NSError *error) {
-          [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+          [MBProgressHUD hideHUDForView:self.view];
           if (error == nil) {
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             [strongSelf refreshMemberGrid];
           } else {
             DDLogDebug(@"addMembersFromUsernameArray fail with error %@",error);
-            [MBProgressHUD showMessage:@"添加成员失败" view:weakSelf.view];
+              [MBProgressHUD showError:@"添加成员失败" toView:weakSelf.view];
           }
         }];
       }
@@ -251,15 +251,15 @@ UITabBarDelegate> {
         JMSGGroup *deletedGroup = ((JMSGGroup *)(self.conversation.target));
         
         [deletedGroup exit:^(id resultObject, NSError *error) {
-          [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+          [MBProgressHUD hideHUDForView:self.view];
           if (error == nil) {
             DDLogDebug(@"推出群组成功");
-            [MBProgressHUD showMessage:@"推出群组成功" view:weakSelf.view];
+              [MBProgressHUD showSuccess:@"推出群组成功" toView:weakSelf.view];
             [JMSGConversation deleteGroupConversationWithGroupId:deletedGroup.gid];
             [self.navigationController popToViewController:self.sendMessageCtl.superViewController animated:YES];
           } else {
             DDLogDebug(@"推出群组失败");
-            [MBProgressHUD showMessage:@"推出群组失败" view:weakSelf.view];
+              [MBProgressHUD showError:@"推出群组失败" toView:weakSelf.view];
           }
         }];
       }
@@ -276,10 +276,10 @@ UITabBarDelegate> {
                             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                             
                             if (error == nil) {
-                              [MBProgressHUD showMessage:@"更新群组名称成功" view:self.view];
+                                [MBProgressHUD showSuccess:@"更新群组名称成功" toView:self.view];
                               [self refreshMemberGrid];
                             } else {
-                              [MBProgressHUD showMessage:@"更新群组名称失败" view:self.view];
+                                [MBProgressHUD showError:@"更新群组名称失败" toView:self.view];
                             }
                           }];
       break;
@@ -300,7 +300,7 @@ UITabBarDelegate> {
       if (error == nil) {
         [JMSGConversation createGroupConversationWithGroupId:tmpgroup.gid completionHandler:^(id resultObject, NSError *error) {
           if (error == nil) {
-            [MBProgressHUD showMessage:@"创建群成功" view:self.view];
+              [MBProgressHUD showSuccess:@"创建群成功" toView:self.view];
             JMSGConversation *groupConversation = (JMSGConversation *)resultObject;
             strongSelf.sendMessageCtl.conversation = groupConversation;
             strongSelf.sendMessageCtl.isConversationChange = YES;
@@ -316,7 +316,7 @@ UITabBarDelegate> {
           }
         }];
       } else {
-        [MBProgressHUD showMessage:[JCHATStringUtils errorAlert:error] view:self.view];
+          [MBProgressHUD showError:[JCHATStringUtils errorAlert:error] toView:self.view];
       }
     }];
   }
@@ -377,12 +377,12 @@ UITabBarDelegate> {
     
     if (error == nil) {
       [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-      [MBProgressHUD showMessage:@"删除成员成功！" view:self.view];
+        [MBProgressHUD showSuccess:@"删除成员成功！" toView:self.view];
       [self refreshMemberGrid];
     } else {
       DDLogDebug(@"JCHATGroupSettingCtl   fail to removeMembersFromUsernameArrary");
       [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-      [MBProgressHUD showMessage:@"删除成员错误！" view:self.view];
+        [MBProgressHUD showSuccess:@"删除成员错误！" toView:self.view];
     }
   }];
 }

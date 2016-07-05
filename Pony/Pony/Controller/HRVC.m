@@ -29,14 +29,25 @@
 }
 
 - (IBAction)switchToPony:(id)sender {
-    [self loginJPush];
+    [MBProgressHUD showMessage:nil];
+    @weakify(self)
+    [JMSGUser logout:^(id resultObject, NSError *error) {
+        [MBProgressHUD hideHUD];
+        @strongify(self)
+        if (error == nil) {
+            // 退出极光成功！
+            [self loginJPush];
+        }else{
+            [MBProgressHUD showError:@"切换失败，请稍后再试" toView:self.view];
+        }
+    }];
 }
 
 /**登录小马极光帐号*/
 - (void)loginJPush{
     NSString * jUsername = [USERMANAGER jPushUserName];
     NSString * jPassword = [USERMANAGER jPushPassword];
-    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    [MBProgressHUD showMessage:nil];
     @weakify(self)
     [JMSGUser loginWithUsername:jUsername password:jPassword completionHandler:^(id resultObject, NSError *error) {
         @strongify(self)
@@ -44,7 +55,7 @@
             // 登录极光成功！
             [self setAlias:jUsername];
         }else{
-            [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+            [MBProgressHUD hideHUD];
             NSString *alert = @"用户登录失败";
             if (error.code == JCHAT_ERROR_USER_NOT_EXIST) {
                 alert = @"用户名不存在";
@@ -53,7 +64,7 @@
             } else if (error.code == JCHAT_ERROR_USER_PARAS_INVALID) {
                 alert = @"用户名或者密码不合法！";
             }
-            kMRCError(alert);
+            [MBProgressHUD showError:alert toView:self.view];
         }
     }];
 }

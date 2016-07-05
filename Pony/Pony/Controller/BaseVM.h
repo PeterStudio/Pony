@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 #import "ConstantLogger.h"
 
 #import "NSString+LangExt.h"

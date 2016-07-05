@@ -11,7 +11,7 @@
 #import "LoginVM.h"
 #import "LoginM.h"
 #import <AdSupport/ASIdentifierManager.h>
-#import "TWMessageBarManager.h"
+#import "JCHATTimeOutManager.h"
 
 @interface LoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
@@ -30,7 +30,7 @@
 - (void)loginJPush{
     NSString * jUsername = [USERMANAGER jPushUserName];
     NSString * jPassword = [USERMANAGER jPushPassword];
-    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    [MBProgressHUD showMessage:nil];
     @weakify(self)
     [JMSGUser loginWithUsername:jUsername password:jPassword completionHandler:^(id resultObject, NSError *error) {
         @strongify(self)
@@ -38,7 +38,7 @@
             // 登录极光成功！
             [self setAlias:jUsername];
         }else{
-            [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+            [MBProgressHUD hideHUD];
             NSString *alert = @"用户登录失败";
             if (error.code == JCHAT_ERROR_USER_NOT_EXIST) {
                 alert = @"用户名不存在";
@@ -47,7 +47,7 @@
             } else if (error.code == JCHAT_ERROR_USER_PARAS_INVALID) {
                 alert = @"用户名或者密码不合法！";
             }
-            kMRCError(alert);
+            [MBProgressHUD showError:alert toView:self.view];
             [USERMANAGER logout];
         }
     }];
@@ -57,13 +57,13 @@
 - (IBAction)login:(id)sender {
     [self.view endEditing:YES];
     if (![_userNameTextField.text validLoginPhoneNumber]) {
-        kMRCError(@"用户名输入有误");
+        [MBProgressHUD showError:@"用户名输入有误" toView:self.view];
         [_userNameTextField shake];
         return;
     }
     
     if (![_passwordTextField.text validLoginPassword]) {
-        kMRCError(@"密码输入有误");
+        [MBProgressHUD showError:@"密码输入有误" toView:self.view];
         [_passwordTextField shake];
         return;
     }
@@ -72,20 +72,20 @@
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"userPassword":_passwordTextField.text,@"deviceName":[infoDic objectForKey:@"DTPlatformName"],@"imei":idfa,@"version":appVersion,@"os":@"1"};
-    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPILogin parameters:parameters success:^(id responseObject) {
+    [APIUSERHTTP wPost:kAPILogin parameters:parameters success:^(id responseObject) {
         @strongify(self)
         LoginM * m = [[LoginM alloc] initWithDictionary:responseObject error:nil];
         [USERMANAGER saveUserInfo:m];
         // 登录极光
         [self loginJPush];
     } error:^(NSError *err) {
-        kMRCError(err.localizedDescription);
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        kMRCError(err.localizedDescription);
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } completion:^{
-        [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+        [MBProgressHUD hideHUD];
     }];
 }
 

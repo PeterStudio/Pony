@@ -17,13 +17,8 @@
 
 
 #define DWRootViewController    [[[[UIApplication sharedApplication] delegate] window] rootViewController]
-#define DWRootView              [[[UIApplication sharedApplication] keyWindow].subviews lastObject]//[DWRootViewController view]
+#define DWRootView              [[[UIApplication sharedApplication] keyWindow].subviews lastObject]
 
-#define kMRCAlertTitle @"提示"
-
-#define kMRCSuccess(message) [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeSuccess statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
-#define kMRCError(message)   [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeError statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
-#define kMRCInfo(message)    [TWMessageBarManager.sharedInstance showMessageWithTitle:kMRCAlertTitle description:message type:TWMessageBarMessageTypeInfo statusBarStyle:UIStatusBarStyleLightContent callback:NULL]
 
 #define USERLOGIC_SB [NSNumber numberWithInteger:0]
 #define PONY_SB      [NSNumber numberWithInteger:1]

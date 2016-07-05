@@ -6,8 +6,8 @@
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "RequestVM.h"
+#import "BaseVM.h"
 
-@interface HRChatVM : RequestVM
+@interface HRChatVM : BaseVM
 
 @end

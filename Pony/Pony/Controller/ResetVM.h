@@ -6,9 +6,9 @@
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "RequestVM.h"
+#import "BaseVM.h"
 
-@interface ResetVM : RequestVM
+@interface ResetVM : BaseVM
 @property (nonatomic, copy) NSString * nPsw;
 @property (nonatomic, copy) NSString * cPsw;
 

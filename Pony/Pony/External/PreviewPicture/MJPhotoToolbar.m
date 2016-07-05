@@ -8,7 +8,7 @@
 
 #import "MJPhotoToolbar.h"
 #import "MJPhoto.h"
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 #import "AppDelegate.h"
 
 @interface MJPhotoToolbar()

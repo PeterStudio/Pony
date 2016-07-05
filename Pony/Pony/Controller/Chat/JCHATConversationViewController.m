@@ -14,7 +14,7 @@
 #import "JCHATDetailsInfoViewController.h"
 #import "JCHATGroupSettingCtl.h"
 #import "AppDelegate.h"
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 #import "UIImage+ResizeMagick.h"
 //#import "JCHATPersonViewController.h"
 #import "JCHATFriendDetailViewController.h"
@@ -228,7 +228,7 @@
       alert = [error description];
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [MBProgressHUD showMessage:alert view:self.view];
+      [MBProgressHUD showSuccess:alert toView:self.view];
     return;
   }
   JCHATChatModel *model = _allMessageDic[message.msgId];
@@ -605,7 +605,7 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
   
   if ([mediaType isEqualToString:@"public.movie"]) {
     [self dismissViewControllerAnimated:YES completion:nil];
-    [MBProgressHUD showMessage:@"不支持视频发送" view:self.view];
+      [MBProgressHUD showError:@"不支持视频发送" toView:self.view];
     return;
   }
   UIImage *image;
@@ -1031,7 +1031,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)selectHeadView:(JCHATChatModel *)model {
   if (!model.message.fromUser) {
-    [MBProgressHUD showMessage:@"该用户为API用户" view:self.view];
+      [MBProgressHUD showError:@"该用户为API用户" toView:self.view];
     return;
   }
   

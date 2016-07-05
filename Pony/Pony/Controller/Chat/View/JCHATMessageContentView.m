@@ -155,7 +155,7 @@ static NSInteger const textMessageContentRightOffset = 15;
       [imgContent thumbImageData:^(NSData *data, NSString *objectId, NSError *error) {
         if (data == nil || error) {
           UIWindow *myWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-          [MBProgressHUD showMessage:@"获取图片错误" view:myWindow];
+            [MBProgressHUD showError:@"获取图片错误" toView:myWindow];
           return ;
         }
         pboard.image = [UIImage imageWithData:data];

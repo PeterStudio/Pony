@@ -225,7 +225,7 @@
         if (error == nil) {
           [JMSGConversation createGroupConversationWithGroupId:tmpgroup.gid completionHandler:^(id resultObject, NSError *error) {
             if (error == nil) {
-              [MBProgressHUD showMessage:@"创建群成功" view:self.view];
+                [MBProgressHUD showSuccess:@"创建群成功" toView:self.view];
               JMSGConversation *groupConversation = (JMSGConversation *)resultObject;
               strongSelf.sendMessageCtl.conversation = groupConversation;
               strongSelf.sendMessageCtl.isConversationChange = YES;
@@ -241,7 +241,7 @@
             }
           }];
         } else {
-          [MBProgressHUD showMessage:[JCHATStringUtils errorAlert:error] view:self.view];
+            [MBProgressHUD showError:[JCHATStringUtils errorAlert:error] toView:self.view];
         }
       }];
     }

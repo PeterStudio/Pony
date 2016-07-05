@@ -83,7 +83,7 @@
     
     if (error) {
       [_headView setImage:[UIImage imageNamed:@"headDefalt"]];
-      [MBProgressHUD showMessage:@"获取数据失败！" view:self.view];
+        [MBProgressHUD showError:@"获取数据失败！" toView:self.view];
       return;
     }
     JMSGUser *user = resultObject[0];

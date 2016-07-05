@@ -26,29 +26,29 @@
 /**确定*/
 - (IBAction)sure:(id)sender {
     if (![_nPasswordTextField.text validLoginPassword]) {
-        kMRCError(@"新密码输入有误");
+        [MBProgressHUD showError:@"新密码输入有误" toView:self.view];
         [_nPasswordTextField shake];
         return;
     }
     
     if (![_nPasswordTextField.text isEqualToString:_cPasswordTextField.text]) {
-        kMRCError(@"确认密码输入有误");
+        [MBProgressHUD showError:@"确认密码输入有误" toView:self.view];
         [_cPasswordTextField shake];
         return;
     }
     
     NSDictionary * parameters = @{@"userName":_userName,@"code":_code,@"userPassword":_nPasswordTextField.text};
-    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    [MBProgressHUD showMessage:nil];
     @weakify(self)
     [APIHTTP wPost:kAPIReset parameters:parameters success:^(id responseObject) {
         @strongify(self)
         [self.navigationController popToRootViewControllerAnimated:YES];
     } error:^(NSError *err) {
-        kMRCError(err.localizedDescription);
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        kMRCError(err.localizedDescription);
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } completion:^{
-        [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+        [MBProgressHUD hideHUD];
     }];
 }
 

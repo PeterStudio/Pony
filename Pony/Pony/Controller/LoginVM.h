@@ -7,10 +7,10 @@
 //
 
 #import "BaseVM.h"
-#import "RequestVM.h"
+#import "BaseVM.h"
 
 
-@interface LoginVM : RequestVM
+@interface LoginVM : BaseVM
 @property (nonatomic, copy) NSString * username;
 @property (nonatomic, copy) NSString * password;
 

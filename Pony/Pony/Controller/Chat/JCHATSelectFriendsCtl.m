@@ -84,11 +84,11 @@ static const NSInteger tablecellHeight = 64;
 
 - (void)rightBtnClick {
   if ([_groupTextField.text isEqualToString:@""]) {
-    [MBProgressHUD showMessage:@"请输入群名称！" view:self.view];
+      [MBProgressHUD showError:@"请输入群名称！" toView:self.view];
     return;
   }
   [_groupTextField resignFirstResponder];
-  [MBProgressHUD showMessage:@"正在创建群组！" toView:self.view];
+    [MBProgressHUD showError:@"正在创建群组！" toView:self.view];
   
   [JMSGGroup createGroupWithName:_groupTextField.text desc:@"" memberArray:nil completionHandler:^(id resultObject, NSError *error) {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -96,9 +96,9 @@ static const NSInteger tablecellHeight = 64;
       [self.navigationController dismissViewControllerAnimated:YES completion:nil];
       [[NSNotificationCenter defaultCenter] postNotificationName:kCreatGroupState object:resultObject];
     } else if (error.code == 808003) {
-      [MBProgressHUD showMessage:@"创建群组数量达到上限！" view:self.view];
+        [MBProgressHUD showError:@"创建群组数量达到上限！" toView:self.view];
     } else {
-      [MBProgressHUD showMessage:@"创建群组失败！" view:self.view];
+        [MBProgressHUD showError:@"创建群组失败！" toView:self.view];
     }
   }];
 }

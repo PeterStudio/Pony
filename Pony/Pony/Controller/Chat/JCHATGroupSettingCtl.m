@@ -238,15 +238,15 @@ NSInteger userNameSortGroup(id user1, id user2, void *context) {
   JMSGUser *user = [_groupData objectAtIndex:personView.headViewBtn.tag - 1000];
   [((JMSGGroup *)(self.conversation.target)) removeMembersWithUsernameArray:@[user.username] completionHandler:^(id resultObject, NSError *error) {
     if (error == nil) {
-      [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-      [MBProgressHUD showMessage:@"删除成员成功！" view:self.view];
+      [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showSuccess:@"删除成员成功！" toView:self.view];
       [self reloadHeadViewData];
       [self getGroupMemberList];
       [self.groupTab reloadData];
     } else {
       DDLogDebug(@"JCHATGroupSettingCtl   fail to removeMembersFromUsernameArrary");
-      [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-      [MBProgressHUD showMessage:@"删除成员错误！" view:self.view];
+      [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showError:@"删除成员错误！" toView:self.view];
     }
   }];
 }
@@ -368,13 +368,13 @@ NSInteger userNameSortGroup(id user1, id user2, void *context) {
     __weak __typeof(self)weakSelf = self;
     [MBProgressHUD showMessage:@"获取成员信息" toView:self.view];
     [((JMSGGroup *)(self.conversation.target)) addMembersWithUsernameArray:@[[alertView textFieldAtIndex:0].text] completionHandler:^(id resultObject, NSError *error) {
-      [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+      [MBProgressHUD hideHUDForView:self.view];
       if (error == nil) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         [strongSelf getGroupMemberList];
       } else {
         DDLogDebug(@"addMembersFromUsernameArray fail with error %@",error);
-        [MBProgressHUD showMessage:@"添加成员失败" view:weakSelf.view];
+          [MBProgressHUD showError:@"添加成员失败" toView:weakSelf.view];
       }
     }];
     
@@ -385,15 +385,15 @@ NSInteger userNameSortGroup(id user1, id user2, void *context) {
       JMSGGroup *deletedGroup = ((JMSGGroup *)(self.conversation.target));
       [deletedGroup exit:^(id resultObject, NSError *error) {
         
-        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view];
         if (error == nil) {
           DDLogDebug(@"推出群组成功");
-          [MBProgressHUD showMessage:@"推出群组成功" view:weakSelf.view];
+            [MBProgressHUD showSuccess:@"推出群组成功" toView:self.view];
           [JMSGConversation deleteGroupConversationWithGroupId:deletedGroup.gid];
           [self.navigationController popToViewController:self.sendMessageCtl.superViewController animated:YES];
         } else {
           DDLogDebug(@"推出群组失败");
-          [MBProgressHUD showMessage:@"推出群组失败" view:weakSelf.view];
+            [MBProgressHUD showError:@"推出群组失败" toView:weakSelf.view];
         }
         
       }];
@@ -410,17 +410,17 @@ NSInteger userNameSortGroup(id user1, id user2, void *context) {
       JMSGGroup *needUpdateGroup = (JMSGGroup *)(self.conversation.target);
       [JMSGGroup updateGroupInfoWithGroupId:needUpdateGroup.gid name:[alertView textFieldAtIndex:0].text desc:needUpdateGroup.desc completionHandler:^(id resultObject, NSError *error) {
         typeof(weakSelf) __strong strongSelf = weakSelf;
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view];
         
         if (error == nil) {
           JCHATMAINTHREAD(^{
             JCHATGroupSettingCell * cell = (JCHATGroupSettingCell *)[_groupTab cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             cell.groupName.text = [alertView textFieldAtIndex:0].text;
             strongSelf.sendMessageCtl.title = [alertView textFieldAtIndex:0].text;
-            [MBProgressHUD showMessage:@"更新群组名称成功" view:self.view];
+              [MBProgressHUD showSuccess:@"更新群组名称成功" toView:self.view];
           });
         } else {
-          [MBProgressHUD showMessage:@"更新群组名称失败" view:self.view];
+          [MBProgressHUD showError:@"更新群组名称失败" toView:self.view];
         }
       }];
     }

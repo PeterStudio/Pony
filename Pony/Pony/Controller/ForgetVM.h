@@ -6,9 +6,9 @@
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "RequestVM.h"
+#import "BaseVM.h"
 
-@interface ForgetVM : RequestVM
+@interface ForgetVM : BaseVM
 
 @property (nonatomic, copy) NSString * username;
 @property (nonatomic, copy) NSString * code;

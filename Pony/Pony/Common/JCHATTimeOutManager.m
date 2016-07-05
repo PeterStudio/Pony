@@ -7,7 +7,7 @@
 //
 
 #import "JCHATTimeOutManager.h"
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 @interface JCHATTimeOutManager ()
 {
   NSTimer *Gtimer;

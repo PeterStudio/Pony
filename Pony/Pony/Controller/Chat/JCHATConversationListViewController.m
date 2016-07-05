@@ -3,7 +3,7 @@
 #import "JCHATConversationListCell.h"
 #import "JCHATConversationViewController.h"
 #import "JCHATSelectFriendsCtl.h"
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 #import "JCHATAlertViewWait.h"
 //#import "JCHATAlreadyLoginViewController.h"
 #import "AppDelegate.h"
@@ -340,7 +340,7 @@ NSInteger sortType(id object1,id object2,void *cha) {
   } else if (buttonIndex == 1)
   {
     if ([[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
-      [MBProgressHUD showMessage:@"请输入用户名" view:self.view];
+        [MBProgressHUD showError:@"请输入用户名" toView:self.view];
       return;
     }
     
@@ -360,7 +360,7 @@ NSInteger sortType(id object1,id object2,void *cha) {
         [strongSelf.navigationController pushViewController:sendMessageCtl animated:YES];
       } else {
         DDLogDebug(@"createSingleConversationWithUsername fail");
-        [MBProgressHUD showMessage:@"添加的用户不存在" view:self.view];
+          [MBProgressHUD showError:@"添加的用户不存在" toView:self.view];
       }
     }];
   }

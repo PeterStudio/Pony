@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "JCHATSendMsgManager.h"
 #import "MBProgressHUD.h"
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 
 //#define ReceivedBubbleColor UIColorFromRGB(0xd3fab4)
 //#define sendedBubbleColor [UIColor whiteColor]
@@ -348,7 +348,7 @@ static NSInteger const readViewRadius = 4;
 
 - (void)AlertInCurrentViewWithString:(NSString *)string {
   AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-  [MBProgressHUD showMessage:string view:appDelegate.window];
+    [MBProgressHUD showError:string toView:appDelegate.window];
 }
 
 - (void)changeVoiceImage {

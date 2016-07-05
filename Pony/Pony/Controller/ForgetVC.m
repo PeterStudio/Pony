@@ -32,7 +32,7 @@
 /**发送验证码*/
 - (IBAction)sendCode:(id)sender {
     if (![_userNameTextField.text validLoginPhoneNumber]) {
-        kMRCError(@"用户名输入有误");
+        [MBProgressHUD showError:@"用户名输入有误" toView:self.view];
         [_userNameTextField shake];
         return;
     }
@@ -41,9 +41,9 @@
         @strongify(self)
         if (!error) {
             [self countTime];
-            kMRCSuccess(@"获取验证码成功");
+            [MBProgressHUD showSuccess:@"获取验证码成功" toView:self.view];
         } else {
-            kMRCError(@"获取验证码失败，请重新获取");
+            [MBProgressHUD showError:@"获取验证码失败，请重新获取" toView:self.view];
         }
     }];
 }
@@ -51,29 +51,29 @@
 /**验证*/
 - (IBAction)check:(id)sender {
     if (![_userNameTextField.text validLoginPhoneNumber]) {
-        kMRCError(@"用户名输入有误");
+        [MBProgressHUD showError:@"用户名输入有误" toView:self.view];
         [_userNameTextField shake];
         return;
     }
     
     if ([_codeTextField.text validBlank]) {
-        kMRCError(@"请输入验证码");
+        [MBProgressHUD showError:@"请输入验证码" toView:self.view];
         [_codeTextField shake];
         return;
     }
     
     NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"code":_codeTextField.text};
-    [MBProgressHUD showHUDAddedTo:DWRootView animated:YES];
+    [MBProgressHUD showMessage:nil];
     @weakify(self)
     [APIHTTP wPost:kAPIForget parameters:parameters success:^(id responseObject) {
         @strongify(self)
         [self performSegueWithIdentifier:@"ResetVC" sender:nil];
     } error:^(NSError *err) {
-        kMRCError(err.localizedDescription);
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        kMRCError(err.localizedDescription);
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } completion:^{
-        [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+        [MBProgressHUD hideHUD];
     }];
 }
 

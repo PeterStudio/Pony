@@ -13,7 +13,7 @@
 #import "JCHATPhotoPickerConstants.h"
 #import "AppDelegate.h"
 #import "JCHATSelectImgCollectionView.h"
-#import "MBProgressHUD+Add.h"
+#import "MBProgressHUD+LangExt.h"
 #define kPhotoGridViewFrame CGRectMake(0, 0, screenWidth,screenHeight - 45)
 #define kBrowserBtnFrame CGRectMake(13, 10, 35, 16)
 #define kSendBtnFrame CGRectMake(screenWidth - 45, 10, 35, 16)
@@ -193,7 +193,7 @@
   if ([[[UIDevice currentDevice]systemVersion] floatValue]>= 8) {
     if (selectedPhotoDic[model.photoAsset] == nil) {
       if (selectedPhotoDic.count > 8) {
-        [MBProgressHUD showMessage:@"最多选择9张图片" view:self.view];
+          [MBProgressHUD showError:@"最多选择9张图片" toView:self.view];
         return;
       }
       [selectedPhotoDic setObject:model forKey:model.photoAsset];
@@ -204,7 +204,7 @@
     if (selectedPhotoDic[model.asset] == nil) {
       if (selectedPhotoDic.count > 8) {
         AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-        [MBProgressHUD showMessage:@"最多选择9张图片" view:appDelegate.window];
+          [MBProgressHUD showError:@"最多选择9张图片" toView:appDelegate.window];
         return;
       }
       [selectedPhotoDic setObject:model forKey:model.imgURL];

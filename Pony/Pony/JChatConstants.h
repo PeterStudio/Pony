@@ -26,6 +26,12 @@
 #define kScreenSize           [[UIScreen mainScreen] bounds].size                 //(e.g. 320,480)
 #define kScreenWidth          [[UIScreen mainScreen] bounds].size.width           //(e.g. 320)
 #define kScreenHeight  (kIOSVersions>=7.0 ? [[UIScreen mainScreen] bounds].size.height + 64 : [[UIScreen mainScreen] bounds].size.height)
+
+//屏幕 rect
+#define SCREEN_RECT ([UIScreen mainScreen].bounds)
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
 #define kIOS7OffHeight (kIOSVersions>=7.0 ? 64 : 0)
 
 #define kApplicationSize      [UIScreen mainScreen].bounds.size       //(e.g. 320,460)
@@ -153,7 +159,7 @@ static NSInteger const st_toolBarTextSize = 17.0f;
 #define kDeleteMessage @"DeleteMessage"
 
 //Color
-#define kNavigationBarColor UIColorFromRGB(0x3f80de)
+#define kNavigationBarColor UIColorFromRGB(0x053769)
 #define kTabbarColor UIColorFromRGB(0x3e3e3e)
 #define kTextfieldPlaceholderColor UIColorFromRGB(0x555555)
 #define kTableviewCellClickColor UIColorFromRGB(0xdddddd)

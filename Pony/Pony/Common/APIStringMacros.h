@@ -12,7 +12,9 @@
 //接口名称相关
 #ifdef DEBUG
 //Debug状态下的测试API
-#define API_BASE_URL_STRING      @"http://api.xiaomahome.com/api/v1/"
+#define API_BASE_URL_STRING      @"http://xiaoma.weabuy.cn/api/v1/"
+
+// @"http://192.168.1.105:8080/api/v1/"
 
 #else
 // 正式环境
@@ -43,7 +45,7 @@
 
 #define kAPIIndustryGetlist             @"industry/getlist"             // 搜索行业信息
 
-#define kAPICompanyGetlist              @"company/getlist"             // 搜索公司信息
+//#define kAPICompanyGetlist              @"company/getlist"             // 搜索公司信息
 #define kAPICompanySearch               @"company/search"             // 根据行业ID搜索公司信息
 
 #define kAPIJobSearch                   @"job/search"             // 根据公司ID搜索工作岗位信息

@@ -86,7 +86,7 @@
             [photoView adjustFrame];
           } else {
             JPIMLog(@"下载大图 error");
-            [MBProgressHUD showMessage:@"下载大图失败！" view:self];
+              [MBProgressHUD showError:@"下载大图失败！"];
             [photoView adjustFrame];
           }
         }];
@@ -133,7 +133,7 @@
             _imageView.image = strongPhoto.image;
             [photoView adjustFrame];
           } else {
-            [MBProgressHUD showMessage:@"下载大图失败!！" view:self];
+              [MBProgressHUD showError:@"下载大图失败!！"];
           }
         }];
       } else {

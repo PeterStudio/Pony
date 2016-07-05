@@ -20,9 +20,11 @@
 
 
 - (IBAction)logout:(id)sender {
-    [USERMANAGER logout];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
-                                                        object:USERLOGIC_SB];
+    [JMSGUser logout:^(id resultObject, NSError *error) {
+        [USERMANAGER logout];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
+                                                            object:USERLOGIC_SB];
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
