@@ -17,7 +17,8 @@
 
 
 #import "APIManager.h"
-#import "UserLogicService.h"
+
+#import "UIViewController+LangExt.h"
 
 #import "Macors.h"
 

@@ -12,6 +12,8 @@
 #import "PProfessionVC.h"
 #import "PCompanyVC.h"
 #import "PPositionVC.h"
+#import "PCallVC.h"
+
 
 #import "ProfessionLM.h"
 #import "CompanyLM.h"
@@ -30,29 +32,29 @@
 
 @implementation PHomeVC
 
-- (void)setProfessionM:(ProfessionM *)professionM{
-    if (professionM) {
-        self.hangYeLab.text = professionM.industry;
-    }else{
-        self.hangYeLab.text = @"未选择";
-    }
-}
-
-- (void)setCompanyM:(CompanyM *)companyM{
-    if (companyM) {
-        self.gongSiLab.text = companyM.company;
-    }else{
-        self.gongSiLab.text = @"未选择";
-    }
-}
-
-- (void)setPositionM:(PositionM *)positionM{
-    if (positionM) {
-        self.zhiYeLab.text = positionM.jobPost;
-    }else{
-        self.zhiYeLab.text = @"未选择";
-    }
-}
+//- (void)setProfessionM:(ProfessionM *)professionM{
+//    if (professionM) {
+//        self.hangYeLab.text = professionM.industry;
+//    }else{
+//        self.hangYeLab.text = @"未选择";
+//    }
+//}
+//
+//- (void)setCompanyM:(CompanyM *)companyM{
+//    if (companyM) {
+//        self.gongSiLab.text = companyM.company;
+//    }else{
+//        self.gongSiLab.text = @"未选择";
+//    }
+//}
+//
+//- (void)setPositionM:(PositionM *)positionM{
+//    if (positionM) {
+//        self.zhiYeLab.text = positionM.jobPost;
+//    }else{
+//        self.zhiYeLab.text = @"未选择";
+//    }
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,9 +78,11 @@
 }
 
 - (IBAction)callButonClicked:(id)sender {
-    JCHATContactsViewController *contactsViewController = [[JCHATContactsViewController alloc]
-                                                           initWithNibName:@"JCHATContactsViewController" bundle:nil];
-    [self.navigationController pushViewController:contactsViewController animated:YES];
+    if (self.professionM) {
+        [self performSegueWithIdentifier:@"PCallVC" sender:nil];
+    }else{
+        [MBProgressHUD showError:@"请选择行业" toView:self.view];
+    }
 }
 
 - (void)loginJPush{
@@ -135,10 +139,10 @@
 }
 
 - (IBAction)goToPositionVC:(id)sender {
-    if (self.professionM) {
+    if (self.companyM) {
         [self performSegueWithIdentifier:@"PPositionVC" sender:nil];
     }else{
-        [MBProgressHUD showError:@"请选择行业" toView:self.view];
+        [MBProgressHUD showError:@"请选择公司" toView:self.view];
     }
 }
 
@@ -147,14 +151,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    id object = [segue destinationViewController];
+    if ([object isKindOfClass:[PProfessionVC class]]) {
+        PProfessionVC * vc = object;
+        @weakify(self)
+        vc.successBlock = ^(ProfessionM * obj){
+            @strongify(self)
+            if (obj != self.professionM) {
+                self.professionM = obj;
+                self.hangYeLab.text = self.professionM.industry;
+                self.companyM = nil;
+                self.positionM = nil;
+                self.gongSiLab.text = @"未选择";
+                self.zhiYeLab.text = @"未选择";
+            }
+        };
+    }else if ([object isKindOfClass:[PCompanyVC class]]){
+        PCompanyVC * vc = object;
+        vc.obj = self.professionM;
+        @weakify(self)
+        vc.successBlock = ^(CompanyM * obj){
+            @strongify(self)
+            self.companyM = obj;
+            self.gongSiLab.text = self.companyM.company;
+        };
+    }else if ([object isKindOfClass:[PPositionVC class]]){
+        PPositionVC * vc = object;
+        vc.obj = self.companyM;
+        @weakify(self)
+        vc.successBlock = ^(PositionM * obj){
+            @strongify(self)
+            self.positionM = obj;
+            self.zhiYeLab.text = self.positionM.jobPost;
+        };
+    }else if ([object isKindOfClass:[PCallVC class]]){
+        PCallVC * vc = object;
+        vc.name1 = self.professionM.industry;
+        vc.name2 = self.companyM.company;
+        vc.name3 = self.positionM.jobPost;
+    }
 }
-*/
+
 
 @end

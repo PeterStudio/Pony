@@ -7,7 +7,9 @@
 //  公司
 
 #import "BaseViewController.h"
-
+#import "ProfessionLM.h"
+#import "CompanyLM.h"
 @interface PCompanyVC : BaseViewController
-
+@property (nonatomic, strong) ProfessionM * obj;
+@property (nonatomic, copy) void (^successBlock)(CompanyM * companyM);
 @end

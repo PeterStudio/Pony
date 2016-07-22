@@ -8,17 +8,13 @@
 
 #import "PProfessionVC.h"
 #import "RefreshTableView.h"
-#import "ProfessionLM.h"
 #import "BaseCell.h"
 
 static NSString * cellIdentifier = @"BaseCell";
-@interface PProfessionVC ()<RefreshTableViewDelegate>
+@interface PProfessionVC ()
 
-@property (weak, nonatomic) IBOutlet RefreshTableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray * dataSourceArray;
-@property (assign, nonatomic) NSInteger page;
-@property (assign, nonatomic) BOOL      isPulling;
-@property (assign, nonatomic) BOOL      hasMore;
 @end
 
 @implementation PProfessionVC
@@ -26,60 +22,26 @@ static NSString * cellIdentifier = @"BaseCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"行业";
-    self.page = 0;
-    self.isPulling = YES;
-    self.hasMore = YES;
     self.dataSourceArray = [[NSMutableArray alloc] init];
-    self.tableView.refreshDelegate = self;
-    [self loadNewData];
+    [self requestData];
 }
 
-- (void)requestDataWithPage:(NSInteger)page{
-    [MBProgressHUD showMessage:nil toView:self.view];
+- (void)requestData{
+    [MBProgressHUD showMessage:nil toView:self.tableView];
     @weakify(self)
-    [APIHTTP wPost:kAPIIndustryGetlist parameters:@{@"pageSize":[NSString stringWithFormat:@"%ld",page],@"pageNum":@"10"} success:^(NSArray * responseObject) {
+    [APIHTTP wPost:kAPIIndustryGetlist parameters:@{@"pageSize":@"0",@"pageNum":@""} success:^(NSArray * responseObject) {
         @strongify(self)
-        _isPulling?[self.tableView.mj_header endRefreshing]:[self.tableView.mj_footer endRefreshing];
-        if (_isPulling) {
-            [self.dataSourceArray removeAllObjects];
-        }
-        if (responseObject.count < 10) {
-            self.hasMore = NO;
-        }else{
-            self.hasMore = YES;
-        }
         [self.dataSourceArray addObjectsFromArray:responseObject];
-        if (self.dataSourceArray.count > 0) {
-            [self.tableView reloadData];
-        }
+        [self.tableView reloadData];
     } error:^(NSError *err) {
         @strongify(self)
-        _isPulling?[self.tableView.mj_header endRefreshing]:[self.tableView.mj_footer endRefreshing];
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
     } failure:^(NSError *err) {
         @strongify(self)
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
-        _isPulling?[self.tableView.mj_header endRefreshing]:[self.tableView.mj_footer endRefreshing];
+        [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
     } completion:^{
-        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD hideHUDForView:self.tableView];
     }];
-}
-
-#pragma mark - RefreshTableViewDelegate
-
-- (void)loadNewData{
-    self.isPulling = YES;
-    self.page = 0;
-    [self requestDataWithPage:self.page];
-}
-
-- (void)loadMoreData{
-    if (self.hasMore) {
-        [self requestDataWithPage:++self.page];
-        self.isPulling = NO;
-    }else{
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -98,22 +60,13 @@ static NSString * cellIdentifier = @"BaseCell";
 }
 
 #pragma mark - UITableViewDelegate
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [tableView fd_heightForCellWithIdentifier:cellIdentifier configuration:^(UITableViewCell *cell) {
-//        [self configureCell:cell atIndexPath:indexPath];
-//    }];
-//}
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    XXDFoundModel * foundModel = (XXDFoundModel *)self.dataSourceArray[indexPath.row];
-//    if ([@"1" isEqualToString:foundModel.clickable]) {
-//        XXDCustomWebVC * webVC = [[XXDCustomWebVC alloc] init];
-//        webVC.docTitle = @"发现详情";
-//        webVC.docUrl = foundModel.activityUrl;
-//        [self.navigationController pushViewController:webVC animated:YES];
-//    }
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProfessionM * baseM = [[ProfessionM alloc] initWithDictionary:self.dataSourceArray[indexPath.row] error:nil];
+    if (self.successBlock) {
+        self.successBlock(baseM);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 

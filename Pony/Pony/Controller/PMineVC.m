@@ -9,15 +9,25 @@
 #import "PMineVC.h"
 
 @interface PMineVC()
-
+@property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLab;
 
 @end
 
 
 @implementation PMineVC
 
+
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    UserInfoM * uModel = [USERMANAGER userInfoM];
+    [self.headBtn setImage:[UIImage imageNamed:uModel.user_img] forState:UIControlStateNormal];
+    self.nameLab.text = uModel.user_phone;
+    self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",uModel.balance];
+}
 
 - (IBAction)logout:(id)sender {
     [JMSGUser logout:^(id resultObject, NSError *error) {
@@ -28,7 +38,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 130.0f;
+    return 150.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

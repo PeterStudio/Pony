@@ -7,7 +7,7 @@
 //  注册页面
 
 #import "BaseViewController.h"
-
+#import "UserLogicService.h"
 @interface RegistVC : BaseViewController
 
 @end

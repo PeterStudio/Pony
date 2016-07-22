@@ -12,7 +12,7 @@
 //接口名称相关
 #ifdef DEBUG
 //Debug状态下的测试API
-#define API_BASE_URL_STRING      @"http://xiaoma.weabuy.cn/api/v1/"
+#define API_BASE_URL_STRING      @"http://api.xiaomahome.com/api/v1/"//@"http://xiaoma.weabuy.cn/api/v1/"
 
 // @"http://192.168.1.105:8080/api/v1/"
 
@@ -20,7 +20,7 @@
 // 正式环境
 #define API_BASE_URL_STRING     @"http://api.xiaomahome.com/api/v1/"
 #endif
-
+  
 #define POSTMethod                      @"POST"
 #define GETMethod                       @"GET"
 
@@ -40,6 +40,7 @@
 
 #define kAPISave                        @"userjobs/save"                 // 新增工作经历（伯乐认证接口）
 #define kAPIUserjobsUpdate              @"userjobs/update"                 // 更新工作经历（更新认证后，用户审核状态重置为未认证）
+#define kAPIUserjobsGet                 @"userjobs/get"
 #define kAPIGetlist                     @"userjobs/getlist"             // 搜索工作经历
 #define kAPIUserjobsSearch              @"userjobs/search"             // 小马搜索伯乐触发推送接口
 
@@ -49,7 +50,7 @@
 #define kAPICompanySearch               @"company/search"             // 根据行业ID搜索公司信息
 
 #define kAPIJobSearch                   @"job/search"             // 根据公司ID搜索工作岗位信息
-#define kAPIJobGetlist                  @"job/getlist"             // 搜索工作岗位信息
+//#define kAPIJobGetlist                  @"job/getlist"             // 搜索工作岗位信息
 
 #define kAPIGradeGetlist             @"grade/getlist"             // 获取伯乐等级信息
 

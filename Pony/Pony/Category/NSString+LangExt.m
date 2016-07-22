@@ -35,4 +35,17 @@
     return ret;
 }
 
+- (BOOL)validBlank{
+    if (self == nil || self == NULL) {
+        return YES;
+    }
+    if ([self isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

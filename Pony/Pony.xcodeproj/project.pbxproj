@@ -211,6 +211,15 @@
 		0B1C1D531D2B971100746192 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1D3E1D2B971100746192 /* UIScrollView+MJRefresh.m */; };
 		0B1C1D541D2B971100746192 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1D401D2B971100746192 /* UIView+MJExtension.m */; };
 		0B1C1D571D2B9E4800746192 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1D561D2B9E4800746192 /* BaseCell.m */; };
+		0B1C1D5E1D2CFC2200746192 /* PCallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1D5D1D2CFC2200746192 /* PCallVC.m */; };
+		0B1C1D621D2D1D0E00746192 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B1C1D601D2D1D0D00746192 /* AlipaySDK.bundle */; };
+		0B1C1D631D2D1D0E00746192 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */; };
+		0B1C1D651D2D1D8500746192 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D641D2D1D8500746192 /* libc++.tbd */; };
+		0B1C1D671D2D1D9D00746192 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */; };
+		0B2B1FDB1D3F74D9003C3ADF /* HRAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDA1D3F74D9003C3ADF /* HRAuthTVC.m */; };
+		0B2B1FDE1D40FF00003C3ADF /* UIViewController+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDD1D40FF00003C3ADF /* UIViewController+LangExt.m */; };
+		0B2B1FE11D41018E003C3ADF /* UIImage+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FE01D41018E003C3ADF /* UIImage+LangExt.m */; };
+		0B2B1FE81D42065B003C3ADF /* SingleUserInfoM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FE71D42065B003C3ADF /* SingleUserInfoM.m */; };
 		0B87FC321D055A04008FBB42 /* shareicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B87FC311D055A04008FBB42 /* shareicon.png */; };
 		0B87FC351D055E82008FBB42 /* XXDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B87FC341D055E82008FBB42 /* XXDGuideView.m */; };
 		0B9CE3701CD836680009A160 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE36F1CD836680009A160 /* MainViewController.m */; };
@@ -658,6 +667,20 @@
 		0B1C1D401D2B971100746192 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		0B1C1D551D2B9E4800746192 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
 		0B1C1D561D2B9E4800746192 /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
+		0B1C1D5C1D2CFC2200746192 /* PCallVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCallVC.h; sourceTree = "<group>"; };
+		0B1C1D5D1D2CFC2200746192 /* PCallVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCallVC.m; sourceTree = "<group>"; };
+		0B1C1D601D2D1D0D00746192 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		0B1C1D641D2D1D8500746192 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0B2B1FD91D3F74D9003C3ADF /* HRAuthTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAuthTVC.h; sourceTree = "<group>"; };
+		0B2B1FDA1D3F74D9003C3ADF /* HRAuthTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAuthTVC.m; sourceTree = "<group>"; };
+		0B2B1FDC1D40FF00003C3ADF /* UIViewController+LangExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LangExt.h"; sourceTree = "<group>"; };
+		0B2B1FDD1D40FF00003C3ADF /* UIViewController+LangExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LangExt.m"; sourceTree = "<group>"; };
+		0B2B1FDF1D41018E003C3ADF /* UIImage+LangExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LangExt.h"; sourceTree = "<group>"; };
+		0B2B1FE01D41018E003C3ADF /* UIImage+LangExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LangExt.m"; sourceTree = "<group>"; };
+		0B2B1FE61D42065B003C3ADF /* SingleUserInfoM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleUserInfoM.h; sourceTree = "<group>"; };
+		0B2B1FE71D42065B003C3ADF /* SingleUserInfoM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleUserInfoM.m; sourceTree = "<group>"; };
 		0B87FC311D055A04008FBB42 /* shareicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareicon.png; sourceTree = "<group>"; };
 		0B87FC331D055E82008FBB42 /* XXDGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDGuideView.h; sourceTree = "<group>"; };
 		0B87FC341D055E82008FBB42 /* XXDGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDGuideView.m; sourceTree = "<group>"; };
@@ -946,6 +969,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1C1D671D2D1D9D00746192 /* CoreMotion.framework in Frameworks */,
+				0B1C1D651D2D1D8500746192 /* libc++.tbd in Frameworks */,
 				0BAD46BD1D1E136700B5B27A /* JMessage.framework in Frameworks */,
 				0BB15CF91D0151A10014C6E7 /* libiconv.tbd in Frameworks */,
 				0BB15CF21D0150F50014C6E7 /* libSocialQQ.a in Frameworks */,
@@ -957,6 +982,7 @@
 				0BFB48CA1CE3269B00799730 /* libicucore.tbd in Frameworks */,
 				09353A741C50CCEF00DC5A1A /* libz.tbd in Frameworks */,
 				0BFB48C81CE3265E00799730 /* SMS_SDK.framework in Frameworks */,
+				0B1C1D631D2D1D0E00746192 /* AlipaySDK.framework in Frameworks */,
 				09353A721C50CCE600DC5A1A /* libsqlite3.0.tbd in Frameworks */,
 				0BB15CF31D0150F50014C6E7 /* TencentOpenAPI.framework in Frameworks */,
 				09353A701C50CCD800DC5A1A /* CoreAudio.framework in Frameworks */,
@@ -983,6 +1009,8 @@
 		04AA17C9518FA8D15BBAB49F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */,
+				0B1C1D641D2D1D8500746192 /* libc++.tbd */,
 				0BAD46BC1D1E136700B5B27A /* JMessage.framework */,
 				0BB15CF81D0151A10014C6E7 /* libiconv.tbd */,
 				0BFB48CF1CE326BC00799730 /* libstdc++.tbd */,
@@ -1196,6 +1224,7 @@
 		091FD6191C55B7DE00BB461C /* External */ = {
 			isa = PBXGroup;
 			children = (
+				0B1C1D5F1D2D1D0D00746192 /* AliPaySDK */,
 				0B1C1D121D2B971100746192 /* MJRefresh */,
 				0BF553B31D22A5F500DE47F3 /* PreviewPicture */,
 				0BF553651D229FC700DE47F3 /* HMPhotoPicker */,
@@ -1334,6 +1363,10 @@
 				0BB77B7C1CD1ED7200C7146C /* NSString+LangExt.m */,
 				0BBF8F461CD9E0A30049D143 /* UITextField+LangExt.h */,
 				0BBF8F471CD9E0A30049D143 /* UITextField+LangExt.m */,
+				0B2B1FDC1D40FF00003C3ADF /* UIViewController+LangExt.h */,
+				0B2B1FDD1D40FF00003C3ADF /* UIViewController+LangExt.m */,
+				0B2B1FDF1D41018E003C3ADF /* UIImage+LangExt.h */,
+				0B2B1FE01D41018E003C3ADF /* UIImage+LangExt.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1500,6 +1533,24 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		0B1C1D5F1D2D1D0D00746192 /* AliPaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				0B1C1D601D2D1D0D00746192 /* AlipaySDK.bundle */,
+				0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */,
+			);
+			path = AliPaySDK;
+			sourceTree = "<group>";
+		};
+		0B2B1FE21D420335003C3ADF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B2B1FE61D42065B003C3ADF /* SingleUserInfoM.h */,
+				0B2B1FE71D42065B003C3ADF /* SingleUserInfoM.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		0B9CE36D1CD833B90009A160 /* PonyTerminal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1535,6 +1586,7 @@
 		0B9CE3791CD878230009A160 /* HRVC */ = {
 			isa = PBXGroup;
 			children = (
+				0B2B1FE21D420335003C3ADF /* Model */,
 				0B9CE37D1CD8785C0009A160 /* ViewController */,
 				0B9CE37E1CD878680009A160 /* ViewModel */,
 			);
@@ -1546,6 +1598,8 @@
 			children = (
 				0B9CE37A1CD8784B0009A160 /* HRVC.h */,
 				0B9CE37B1CD8784B0009A160 /* HRVC.m */,
+				0B2B1FD91D3F74D9003C3ADF /* HRAuthTVC.h */,
+				0B2B1FDA1D3F74D9003C3ADF /* HRAuthTVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1639,6 +1693,8 @@
 				0BF553CC1D22AE8000DE47F3 /* PCompanyVC.m */,
 				0BF553CE1D22AEA000DE47F3 /* PPositionVC.h */,
 				0BF553CF1D22AEA000DE47F3 /* PPositionVC.m */,
+				0B1C1D5C1D2CFC2200746192 /* PCallVC.h */,
+				0B1C1D5D1D2CFC2200746192 /* PCallVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -2236,6 +2292,7 @@
 				0B9CE3761CD83B270009A160 /* HR.storyboard in Resources */,
 				0906E2E11C58C757003FF9FF /* voice_time-short@2x.png in Resources */,
 				0906E2BA1C58C757003FF9FF /* 切图_43.png in Resources */,
+				0B1C1D621D2D1D0E00746192 /* AlipaySDK.bundle in Resources */,
 				0B1C1D4F1D2B971100746192 /* MJRefresh.bundle in Resources */,
 				0906E2CF1C58C757003FF9FF /* RecordingSignal002@2x.png in Resources */,
 				0906E2E21C58C757003FF9FF /* yuyin@2x.png in Resources */,
@@ -2401,6 +2458,7 @@
 				0BF553211D229AB100DE47F3 /* JCHATConversationViewController.m in Sources */,
 				0B87FC351D055E82008FBB42 /* XXDGuideView.m in Sources */,
 				0BF553AD1D22A08900DE47F3 /* JCHATSendMsgManager.m in Sources */,
+				0B2B1FE11D41018E003C3ADF /* UIImage+LangExt.m in Sources */,
 				0BF553381D229AB100DE47F3 /* JCHATLoadMessageTableViewCell.m in Sources */,
 				0BF553CA1D22ACBE00DE47F3 /* PProfessionVC.m in Sources */,
 				0BF5534A1D229AB100DE47F3 /* JCHATMessageTextView.m in Sources */,
@@ -2408,6 +2466,7 @@
 				0BF2A83D1CDAF409004A48E5 /* APIManager.m in Sources */,
 				0BF5532D1D229AB100DE47F3 /* JCHATRawAudioDataPlayer.m in Sources */,
 				0908CEEF1CE4763800C53926 /* PMineVC.m in Sources */,
+				0B1C1D5E1D2CFC2200746192 /* PCallVC.m in Sources */,
 				0BF553C61D22A5F500DE47F3 /* MJPhotoToolbar.m in Sources */,
 				0BF5532A1D229AB100DE47F3 /* JCHATSelectFriendsCtl.m in Sources */,
 				0B9CE3861CD879070009A160 /* HRChatVC.m in Sources */,
@@ -2431,6 +2490,7 @@
 				0BF553231D229AB100DE47F3 /* JCHATDetailsInfoViewController.m in Sources */,
 				091FD6871C55B7DE00BB461C /* NSData+GIF.m in Sources */,
 				0BF5533E1D229AB100DE47F3 /* JCHATAudioPlayerHelper.m in Sources */,
+				0B2B1FDB1D3F74D9003C3ADF /* HRAuthTVC.m in Sources */,
 				0BF553C71D22A5F500DE47F3 /* MJPhotoView.m in Sources */,
 				0BA48A7F1CF6DC0300307B14 /* RegistVM.m in Sources */,
 				0B1C1D431D2B971100746192 /* MJRefreshComponent.m in Sources */,
@@ -2446,6 +2506,7 @@
 				091FD6171C55B7B500BB461C /* JCHATFileManager.m in Sources */,
 				0BF553591D229F1F00DE47F3 /* ChatImageBubble.m in Sources */,
 				0B9CE37C1CD8784B0009A160 /* HRVC.m in Sources */,
+				0B2B1FE81D42065B003C3ADF /* SingleUserInfoM.m in Sources */,
 				0BF553C51D22A5F500DE47F3 /* MJPhotoProgressView.m in Sources */,
 				0BE5E7CE1CF7EBD400BCB48A /* ResetVM.m in Sources */,
 				0BF553521D229AB100DE47F3 /* XHVoiceRecordHUD.m in Sources */,
@@ -2479,6 +2540,7 @@
 				091FD68A1C55B7DE00BB461C /* SDWebImageDecoder.m in Sources */,
 				091FD6701C55B7DE00BB461C /* JCHATCustomFormatter.m in Sources */,
 				0BA48A7E1CF6DC0300307B14 /* LoginVM.m in Sources */,
+				0B2B1FDE1D40FF00003C3ADF /* UIViewController+LangExt.m in Sources */,
 				0BF553951D229FC700DE47F3 /* JCHATPhotoModel.m in Sources */,
 				0BF553251D229AB100DE47F3 /* JCHATFriendDetailViewController.m in Sources */,
 				0B1C1D0E1D2B913800746192 /* RefreshTableView.m in Sources */,
@@ -2640,6 +2702,7 @@
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/Pony/External/SMS_SDK",
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/Pony/External/AliPaySDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Pony/PrefixHeader.pch";
@@ -2670,6 +2733,7 @@
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/Pony/External/SMS_SDK",
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/Pony/External/AliPaySDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Pony/PrefixHeader.pch";

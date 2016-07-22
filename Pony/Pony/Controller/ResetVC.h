@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "UserLogicService.h"
 @interface ResetVC : BaseViewController
 @property (copy, nonatomic) NSString * userName;
 @property (copy, nonatomic) NSString * code;

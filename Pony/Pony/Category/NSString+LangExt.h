@@ -15,4 +15,12 @@
 - (BOOL)validLoginPassword;
 
 - (NSString *)md5Hex;
+
+/**
+ *  字符串是否为空
+ *
+ *  @return
+ */
+- (BOOL)validBlank;
+
 @end

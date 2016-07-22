@@ -47,9 +47,7 @@
       failure:(void (^)(NSError *error))failure
    completion:(void (^)(void))completion{
     DLog(@"\n===========POST===========\n%@:\n%@", URLString, parameters);
-    [self POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self POST:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         DLog(@"\n===========success===========\n%@:\n%@", URLString, responseObject);
         completion();
         NSDictionary * object = (NSDictionary *)responseObject;

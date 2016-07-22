@@ -7,7 +7,7 @@
 //  行业
 
 #import "BaseViewController.h"
-
+#import "ProfessionLM.h"
 @interface PProfessionVC : BaseViewController
-
+@property (nonatomic, copy) void (^successBlock)(ProfessionM * professionM);
 @end

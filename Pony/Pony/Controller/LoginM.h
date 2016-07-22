@@ -12,7 +12,7 @@
 @property (copy, nonatomic) NSString<Optional> * balance;
 @property (copy, nonatomic) NSString<Optional> * bole_im_id;
 @property (copy, nonatomic) NSString<Optional> * im_password;
-@property (copy, nonatomic) NSString<Optional> * user_auth;
+@property (copy, nonatomic) NSString<Optional> * user_auth; // 0为未认证，1为认证 2待审核 3审核失败
 @property (copy, nonatomic) NSString<Optional> * user_id;
 @property (copy, nonatomic) NSString<Optional> * user_img;
 @property (copy, nonatomic) NSString<Optional> * user_name;

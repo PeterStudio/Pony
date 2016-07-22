@@ -7,7 +7,9 @@
 //  职位
 
 #import "BaseViewController.h"
-
+#import "CompanyLM.h"
+#import "PositionLM.h"
 @interface PPositionVC : BaseViewController
-
+@property (nonatomic, strong) CompanyM * obj;
+@property (nonatomic, copy) void (^successBlock)(PositionM * positionM);
 @end

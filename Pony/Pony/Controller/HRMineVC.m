@@ -10,6 +10,11 @@
 #import "HRMineVM.h"
 
 @interface HRMineVC ()
+
+@property (weak, nonatomic) IBOutlet UIButton *headBtn;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLab;
+
 @property (nonatomic, strong) HRMineVM * hrMineVM;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
@@ -19,7 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UserInfoM * uModel = [USERMANAGER userInfoM];
+    [self.headBtn setImage:[UIImage imageNamed:uModel.user_img] forState:UIControlStateNormal];
+    self.nameLab.text = uModel.user_phone;
+    self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",uModel.balance];
 }
 
 #pragma mark - Private
@@ -35,6 +43,7 @@
                                                             object:USERLOGIC_SB];
     }];
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 1) {

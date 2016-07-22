@@ -7,7 +7,7 @@
 //  找回密码页面
 
 #import "BaseViewController.h"
-
+#import "UserLogicService.h"
 @interface ForgetVC : BaseViewController
 
 @end

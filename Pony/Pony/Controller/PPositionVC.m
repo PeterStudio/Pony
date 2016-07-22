@@ -22,23 +22,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataList=[[NSMutableArray alloc] init];
-    for (NSInteger i=0; i<100; i++) {
-        [self.dataList addObject:[NSString stringWithFormat:@"%ld-FlyElephant",(long)i]];
-    }
-//    [self requestToService];
+//    for (NSInteger i=0; i<100; i++) {
+//        [self.dataList addObject:[NSString stringWithFormat:@"%ld-FlyElephant",(long)i]];
+//    }
+    [self requestToService];
 }
 
 - (void)requestToService{
-    [MBProgressHUD showMessage:nil toView:self.view];
-    [APIHTTP wPost:kAPIJobSearch parameters:@{@"company_id":@"1",@"pageSize":@"0",@"pageNum":@"10000"} success:^(NSArray * responseObject) {
-        self.dataList = [NSMutableArray arrayWithArray:responseObject];
+    [MBProgressHUD showMessage:nil toView:self.tableView];
+    [APIHTTP wPost:kAPIJobSearch parameters:@{@"company_id":self.obj.id,@"pageSize":@"0",@"pageNum":@"10000"} success:^(NSArray * responseObject) {
+        [self.dataList addObjectsFromArray:responseObject];
         [self.tableView reloadData];
     } error:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
     } completion:^{
-        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD hideHUDForView:self.tableView];
     }];
 }
 
@@ -60,20 +60,26 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
     }
     if (tableView==self.searchDisplayController.searchResultsTableView) {
-        [cell.textLabel setText:self.searchList[indexPath.row]];
+        PositionM * m = [[PositionM alloc] initWithDictionary:self.searchList[indexPath.row] error:nil];
+        [cell.textLabel setText:m.jobPost];
     }
     else{
-        [cell.textLabel setText:self.dataList[indexPath.row]];
+        PositionM * m = [[PositionM alloc] initWithDictionary:self.dataList[indexPath.row] error:nil];
+        [cell.textLabel setText:m.jobPost];
     }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PositionM * m = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
+        m = [[PositionM alloc] initWithDictionary:self.searchList[indexPath.row] error:nil];
     }else{
-        
+        m = [[PositionM alloc] initWithDictionary:self.dataList[indexPath.row] error:nil];
+    }
+    if (self.successBlock) {
+        self.successBlock(m);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -91,7 +97,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
     // 谓词的包含语法,之前文章介绍过http://www.cnblogs.com/xiaofeixiang/
-    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", searchString];
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF.jobPost CONTAINS[c] %@", searchString];
     
     if (self.searchList!= nil) {
         [self.searchList removeAllObjects];

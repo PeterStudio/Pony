@@ -22,6 +22,8 @@ typedef enum {
 
 /**保存资料*/
 - (void)saveUserInfo:(LoginM *)_loginM;
+/**保存认证状态*/
+- (void)saveUserAuth:(NSString *)_auth;
 
 /**获取token*/
 - (NSString *)token;

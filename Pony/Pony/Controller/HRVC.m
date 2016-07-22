@@ -7,19 +7,45 @@
 //
 
 #import "HRVC.h"
-
 #import "HRVM.h"
-
 #import <JMessage/JMessage.h>
+#import "SingleUserInfoM.h"
 
 @interface HRVC ()
 @property (nonatomic, strong) HRVM * hrVM;
+
+@property (strong, nonatomic) IBOutlet UIView *headView;
+@property (weak, nonatomic) IBOutlet UIImageView *headIV;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLab;
+@property (weak, nonatomic) IBOutlet UILabel *statusLab;
+
+
+@property (strong, nonatomic) UserInfoM * uModel;
 @end
 
 @implementation HRVC
 
+- (void)refrashUI{
+    self.uModel = [USERMANAGER userInfoM];
+    [self.headIV setImage:[UIImage imageNamed:_uModel.user_img]];
+    self.nameLab.text = _uModel.user_phone;
+    self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",_uModel.balance];
+    if ([@"0" isEqualToString:_uModel.user_auth]) {
+        self.statusLab.text = @"未认证";
+    }else if ([@"1" isEqualToString:_uModel.user_auth]){
+        self.statusLab.text = @"已认证";
+    }else if ([@"2" isEqualToString:_uModel.user_auth]){
+        self.statusLab.text = @"待审核";
+    }else if ([@"3" isEqualToString:_uModel.user_auth]){
+        self.statusLab.text = @"审核失败";
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self refrashUI];
+    [self singleUserInfo];
 }
 
 #pragma mark - private
@@ -27,6 +53,24 @@
 - (void)bindViewModel{
     RAC(self, title) = RACObserve(_hrVM, title);
 }
+
+- (void)singleUserInfo{
+    @weakify(self)
+    [APIHTTP wPost:kAPIGet parameters:@{@"userId":_uModel.user_id} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        SingleUserInfoM * m = [[SingleUserInfoM alloc] initWithDictionary:responseObject error:nil];
+        [USERMANAGER saveUserAuth:m.userAuth];
+        [self refrashUI];
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+//        [MBProgressHUD hideHUD];
+    }];
+}
+
+
 
 - (IBAction)switchToPony:(id)sender {
     [MBProgressHUD showMessage:nil];
@@ -82,6 +126,36 @@
             [self setAlias:_alias];
         }
     }];
+}
+
+#pragma mark - private
+
+- (IBAction)authVC:(id)sender {
+    if ([@"2" isEqualToString:_uModel.user_auth]) {
+        [MBProgressHUD showError:@"您的资料待审核中，请稍候再试"];
+    }else{
+        [self performSegueWithIdentifier:@"HRAuthTVC" sender:nil];
+    }
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return _headView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 100.0f;
 }
 
 - (void)didReceiveMemoryWarning {
