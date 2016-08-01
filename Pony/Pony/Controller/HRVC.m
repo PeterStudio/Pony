@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
 @property (weak, nonatomic) IBOutlet UILabel *statusLab;
+@property (weak, nonatomic) IBOutlet UIButton *listenBtn;
 
 
 @property (strong, nonatomic) UserInfoM * uModel;
@@ -40,6 +41,12 @@
     }else if ([@"3" isEqualToString:_uModel.user_auth]){
         self.statusLab.text = @"审核失败";
     }
+    
+    if ([@"1" isEqualToString:_uModel.user_auth]) {
+        self.listenBtn.hidden = NO;
+    }else{
+        self.listenBtn.hidden = YES;
+    }
 }
 
 - (void)viewDidLoad {
@@ -47,6 +54,8 @@
     [self refrashUI];
     [self singleUserInfo];
 }
+
+
 
 #pragma mark - private
 
@@ -137,6 +146,39 @@
         [self performSegueWithIdentifier:@"HRAuthTVC" sender:nil];
     }
 }
+
+- (IBAction)listenTalkClicked:(id)sender {
+    if (!self.listenBtn.selected) {
+        [MBProgressHUD showMessage:nil];
+        @weakify(self)
+        [APIHTTP wPost:kAPITalkListenTalk parameters:@{@"status":@"1"} success:^(NSDictionary * responseObject) {
+            @strongify(self)
+            self.listenBtn.selected = YES;
+            [MBProgressHUD showSuccess:@"听单成功！"];
+        } error:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } failure:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } completion:^{
+            [MBProgressHUD hideHUD];
+        }];
+    }else{
+        [MBProgressHUD showMessage:nil];
+        @weakify(self)
+        [APIHTTP wPost:kAPITalkListenTalk parameters:@{@"status":@"0"} success:^(NSDictionary * responseObject) {
+            @strongify(self)
+            self.listenBtn.selected = NO;
+            [MBProgressHUD showSuccess:@"取消听单成功！"];
+        } error:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } failure:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } completion:^{
+            [MBProgressHUD hideHUD];
+        }];
+    }
+}
+
 
 #pragma mark - UITableViewDataSource
 

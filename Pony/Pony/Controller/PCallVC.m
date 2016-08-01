@@ -27,8 +27,8 @@
 
 - (void)requestToService{
     NSString * obj1 = [@"不限" isEqualToString:_name1]?@"":_name1;
-    NSString * obj2 = [@"不限" isEqualToString:_name2]?@"":_name2;
-    NSString * obj3 = [@"不限" isEqualToString:_name3]?@"":_name3;
+    NSString * obj2 = _name2?([@"不限" isEqualToString:_name2]?@"":_name2):@"";
+    NSString * obj3 = _name3?([@"不限" isEqualToString:_name3]?@"":_name3):@"";
     NSDictionary * dic = @{@"industry":obj1,@"company":obj2,@"jobPost":obj3};
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)

@@ -32,30 +32,6 @@
 
 @implementation PHomeVC
 
-//- (void)setProfessionM:(ProfessionM *)professionM{
-//    if (professionM) {
-//        self.hangYeLab.text = professionM.industry;
-//    }else{
-//        self.hangYeLab.text = @"未选择";
-//    }
-//}
-//
-//- (void)setCompanyM:(CompanyM *)companyM{
-//    if (companyM) {
-//        self.gongSiLab.text = companyM.company;
-//    }else{
-//        self.gongSiLab.text = @"未选择";
-//    }
-//}
-//
-//- (void)setPositionM:(PositionM *)positionM{
-//    if (positionM) {
-//        self.zhiYeLab.text = positionM.jobPost;
-//    }else{
-//        self.zhiYeLab.text = @"未选择";
-//    }
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -79,7 +55,18 @@
 
 - (IBAction)callButonClicked:(id)sender {
     if (self.professionM) {
-        [self performSegueWithIdentifier:@"PCallVC" sender:nil];
+        @weakify(self)
+        [MBProgressHUD showMessage:@"开始呼叫"];
+        [APIHTTP wPost:kAPIUserjobsSearch parameters:@{@"industry":self.professionM.industry,@"company":self.companyM.company?self.companyM.company:@"",@"jobPost":self.positionM.jobPost?self.positionM.jobPost:@""} success:^(NSDictionary * responseObject) {
+            @strongify(self)
+            [self performSegueWithIdentifier:@"PCallVC" sender:nil];
+        } error:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } failure:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } completion:^{
+            [MBProgressHUD hideHUD];
+        }];
     }else{
         [MBProgressHUD showError:@"请选择行业" toView:self.view];
     }

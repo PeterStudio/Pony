@@ -19,7 +19,7 @@
 
 #import "Macors.h"
 
-//#import "AppDelegate.h"
+#import "UIColor+Hex.h"
 
 #import "UserManager.h"
 

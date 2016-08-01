@@ -313,6 +313,13 @@
     NSDictionary *info = notification.userInfo;
     if (info) {
         DDLogDebug(@"The message - %@", info);
+        
+        
+        /*
+         2016-07-26 14:46:21:957 Pony[1173:326671] The message - {
+         content = "{\"nickName\":\"151***8133\",\"virtualTalkid\":\"8fd94706933c41198e487d5654079ec4\",\"msg_type\":1,\"msg_time\":\"2016-46-26 02:46:21\",\"userid\":\"6fc22a6ef13243609b908f5cbacbb399\",\"user_img\":\"head_0\"}";
+         }
+         */
     } else {
         DDLogWarn(@"Unexpected - no user info in jpush mesasge");
     }

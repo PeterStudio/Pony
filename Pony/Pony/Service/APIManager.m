@@ -67,6 +67,14 @@
             success(object[@"data"]);
         }
         else {
+            if (code == 100) {
+                // 非法token 退出
+                [JMSGUser logout:^(id resultObject, NSError *error) {
+                    [USERMANAGER logout];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
+                                                                        object:USERLOGIC_SB];
+                }];
+            }
             NSInteger errnoInteger = code;
             NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : object[@"message"] };
             NSError *uError = [NSError errorWithDomain:@"com.peterstudio.pony"

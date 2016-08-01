@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
+    [self.view setBackgroundColor:[UIColor colorWithHex:0xF0F0F0]];
     [self configureView];
     [self bindViewModel];
 }
