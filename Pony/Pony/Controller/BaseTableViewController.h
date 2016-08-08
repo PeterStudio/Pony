@@ -15,6 +15,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
+#import "APIManager.h"
+
 #import "UIViewController+LangExt.h"
 
 #import "Macors.h"

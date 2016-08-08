@@ -10,13 +10,29 @@
 
 @interface OrderVC ()
 
+
 @end
 
 @implementation OrderVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [MBProgressHUD showMessage:nil];
+    @weakify(self)
+    [APIHTTP wPost:kAPITalkGetlist parameters:@{} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+//        PMoneyM * model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
+//        self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",model.moneyBalance];
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

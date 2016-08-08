@@ -75,7 +75,6 @@
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="0mi-YR-gF1"/>
                                     <constraint firstAttribute="trailing" secondItem="cIo-0B-dhO" secondAttribute="trailing" id="3zV-DN-FEk"/>
@@ -392,7 +391,6 @@
                                         </variation>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="3Db-K6-uLz" firstAttribute="top" secondItem="FNW-V6-Q1S" secondAttribute="top" constant="49" id="00l-Al-SU9"/>
                                     <constraint firstItem="fhS-Se-GN9" firstAttribute="height" secondItem="ztW-Je-7Ec" secondAttribute="height" id="30H-le-qb9"/>
@@ -739,7 +737,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="NfV-Ei-tRX" firstAttribute="leading" secondItem="5PG-gG-tKV" secondAttribute="trailing" constant="15" id="Bfn-nP-BT8"/>
                                     <constraint firstItem="TfJ-DK-vIw" firstAttribute="centerY" secondItem="AWV-JI-LQ7" secondAttribute="centerY" id="CgI-Wv-a1F"/>
@@ -972,7 +969,6 @@
                                         <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ZAt-F2-rjx" firstAttribute="centerY" secondItem="MmO-gh-oEl" secondAttribute="centerY" multiplier="3/2" id="2T5-1O-4cg"/>
                                     <constraint firstItem="CvP-ii-TB4" firstAttribute="trailing" secondItem="UCX-fx-lCf" secondAttribute="trailing" id="4d6-uq-EuR"/>

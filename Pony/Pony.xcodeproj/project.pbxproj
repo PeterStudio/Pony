@@ -220,6 +220,9 @@
 		0B2B1FDE1D40FF00003C3ADF /* UIViewController+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDD1D40FF00003C3ADF /* UIViewController+LangExt.m */; };
 		0B2B1FE11D41018E003C3ADF /* UIImage+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FE01D41018E003C3ADF /* UIImage+LangExt.m */; };
 		0B2B1FE81D42065B003C3ADF /* SingleUserInfoM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FE71D42065B003C3ADF /* SingleUserInfoM.m */; };
+		0B4B07531D4EE0CE007347F6 /* PRDealPswVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4B07521D4EE0CE007347F6 /* PRDealPswVC.m */; };
+		0B4B07561D4F30EF007347F6 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4B07551D4F30EF007347F6 /* OrderCell.m */; };
+		0B4B07591D4F61C9007347F6 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4B07581D4F61C9007347F6 /* OrderDetailVC.m */; };
 		0B6E7FAB1D47595500F34911 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E7FAA1D47595500F34911 /* UIColor+Hex.m */; };
 		0B87FC321D055A04008FBB42 /* shareicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B87FC311D055A04008FBB42 /* shareicon.png */; };
 		0B87FC351D055E82008FBB42 /* XXDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B87FC341D055E82008FBB42 /* XXDGuideView.m */; };
@@ -381,6 +384,12 @@
 		0BFB48CC1CE326A600799730 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48CB1CE326A600799730 /* MessageUI.framework */; };
 		0BFB48CE1CE326AE00799730 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48CD1CE326AE00799730 /* JavaScriptCore.framework */; };
 		0BFB48D01CE326BC00799730 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFB48CF1CE326BC00799730 /* libstdc++.tbd */; };
+		0BFE77251D531093007A2005 /* PMoneyLogM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE77241D531093007A2005 /* PMoneyLogM.m */; };
+		0BFE77281D53141C007A2005 /* PMoneyLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE77271D53141B007A2005 /* PMoneyLogCell.m */; };
+		0BFE772B1D531B16007A2005 /* PTalkLogM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE772A1D531B16007A2005 /* PTalkLogM.m */; };
+		0BFE772E1D531BAE007A2005 /* PTalkLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE772D1D531BAE007A2005 /* PTalkLogCell.m */; };
+		0BFE77311D5326EA007A2005 /* HRInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE77301D5326EA007A2005 /* HRInfoVC.m */; };
+		0BFE77351D53271B007A2005 /* HRInfoM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE77341D53271B007A2005 /* HRInfoM.m */; };
 		357EA377BB986919020E9994 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -689,6 +698,12 @@
 		0B2B1FE01D41018E003C3ADF /* UIImage+LangExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LangExt.m"; sourceTree = "<group>"; };
 		0B2B1FE61D42065B003C3ADF /* SingleUserInfoM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleUserInfoM.h; sourceTree = "<group>"; };
 		0B2B1FE71D42065B003C3ADF /* SingleUserInfoM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleUserInfoM.m; sourceTree = "<group>"; };
+		0B4B07511D4EE0CE007347F6 /* PRDealPswVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRDealPswVC.h; sourceTree = "<group>"; };
+		0B4B07521D4EE0CE007347F6 /* PRDealPswVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRDealPswVC.m; sourceTree = "<group>"; };
+		0B4B07541D4F30EF007347F6 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		0B4B07551D4F30EF007347F6 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		0B4B07571D4F61C9007347F6 /* OrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailVC.h; sourceTree = "<group>"; };
+		0B4B07581D4F61C9007347F6 /* OrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailVC.m; sourceTree = "<group>"; };
 		0B6E7FA91D47595500F34911 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		0B6E7FAA1D47595500F34911 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		0B87FC311D055A04008FBB42 /* shareicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareicon.png; sourceTree = "<group>"; };
@@ -983,6 +998,18 @@
 		0BFB48CB1CE326A600799730 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0BFB48CD1CE326AE00799730 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		0BFB48CF1CE326BC00799730 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		0BFE77231D531093007A2005 /* PMoneyLogM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMoneyLogM.h; sourceTree = "<group>"; };
+		0BFE77241D531093007A2005 /* PMoneyLogM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMoneyLogM.m; sourceTree = "<group>"; };
+		0BFE77261D53141B007A2005 /* PMoneyLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMoneyLogCell.h; sourceTree = "<group>"; };
+		0BFE77271D53141B007A2005 /* PMoneyLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMoneyLogCell.m; sourceTree = "<group>"; };
+		0BFE77291D531B16007A2005 /* PTalkLogM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTalkLogM.h; sourceTree = "<group>"; };
+		0BFE772A1D531B16007A2005 /* PTalkLogM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTalkLogM.m; sourceTree = "<group>"; };
+		0BFE772C1D531BAE007A2005 /* PTalkLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTalkLogCell.h; sourceTree = "<group>"; };
+		0BFE772D1D531BAE007A2005 /* PTalkLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTalkLogCell.m; sourceTree = "<group>"; };
+		0BFE772F1D5326EA007A2005 /* HRInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRInfoVC.h; sourceTree = "<group>"; };
+		0BFE77301D5326EA007A2005 /* HRInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRInfoVC.m; sourceTree = "<group>"; };
+		0BFE77331D53271B007A2005 /* HRInfoM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRInfoM.h; sourceTree = "<group>"; };
+		0BFE77341D53271B007A2005 /* HRInfoM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRInfoM.m; sourceTree = "<group>"; };
 		9E7DDC73EEE0D7BA80F3FC04 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A596F5E4225526C479994396 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CE3BEDCAE90A94E587BE6925 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -1464,6 +1491,10 @@
 				0BDEE6F61D4B392800F0CEF2 /* PaySignM.m */,
 				0BDEE6F81D4B4CFB00F0CEF2 /* PMoneyM.h */,
 				0BDEE6F91D4B4CFB00F0CEF2 /* PMoneyM.m */,
+				0BFE77231D531093007A2005 /* PMoneyLogM.h */,
+				0BFE77241D531093007A2005 /* PMoneyLogM.m */,
+				0BFE77291D531B16007A2005 /* PTalkLogM.h */,
+				0BFE772A1D531B16007A2005 /* PTalkLogM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1598,6 +1629,7 @@
 		0B9CE3771CD877F40009A160 /* HRMineVC */ = {
 			isa = PBXGroup;
 			children = (
+				0BFE77321D532703007A2005 /* Model */,
 				0B9CE38B1CD8792A0009A160 /* ViewController */,
 				0B9CE38A1CD879230009A160 /* ViewModel */,
 			);
@@ -1687,6 +1719,10 @@
 				0B9CE3901CD879620009A160 /* HRMineVC.m */,
 				093B20631CE56768001541BF /* OrderVC.h */,
 				093B20641CE56768001541BF /* OrderVC.m */,
+				0B4B07541D4F30EF007347F6 /* OrderCell.h */,
+				0B4B07551D4F30EF007347F6 /* OrderCell.m */,
+				0B4B07571D4F61C9007347F6 /* OrderDetailVC.h */,
+				0B4B07581D4F61C9007347F6 /* OrderDetailVC.m */,
 				093B20661CE567CB001541BF /* ExtraMoneyVC.h */,
 				093B20671CE567CB001541BF /* ExtraMoneyVC.m */,
 				093B20691CE567F1001541BF /* BillVC.h */,
@@ -1695,6 +1731,8 @@
 				093B206D1CE56811001541BF /* MessageVC.m */,
 				095A3ED31CE9968B00BB2BB3 /* ShareVC.h */,
 				095A3ED41CE9968B00BB2BB3 /* ShareVC.m */,
+				0BFE772F1D5326EA007A2005 /* HRInfoVC.h */,
+				0BFE77301D5326EA007A2005 /* HRInfoVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1731,10 +1769,16 @@
 				0BDEE6F31D4B353400F0CEF2 /* PPayVC.m */,
 				0BDEE6FB1D4B53FF00F0CEF2 /* PMoneyLogVC.h */,
 				0BDEE6FC1D4B53FF00F0CEF2 /* PMoneyLogVC.m */,
+				0BFE77261D53141B007A2005 /* PMoneyLogCell.h */,
+				0BFE77271D53141B007A2005 /* PMoneyLogCell.m */,
 				0BDEE6FE1D4B549E00F0CEF2 /* PTalkLogVC.h */,
 				0BDEE6FF1D4B549E00F0CEF2 /* PTalkLogVC.m */,
+				0BFE772C1D531BAE007A2005 /* PTalkLogCell.h */,
+				0BFE772D1D531BAE007A2005 /* PTalkLogCell.m */,
 				0BDEE7011D4B54DB00F0CEF2 /* PDealPasswordVC.h */,
 				0BDEE7021D4B54DB00F0CEF2 /* PDealPasswordVC.m */,
+				0B4B07511D4EE0CE007347F6 /* PRDealPswVC.h */,
+				0B4B07521D4EE0CE007347F6 /* PRDealPswVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -2147,6 +2191,15 @@
 			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
+		0BFE77321D532703007A2005 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BFE77331D53271B007A2005 /* HRInfoM.h */,
+				0BFE77341D53271B007A2005 /* HRInfoM.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		BEDF6921D7554971819ADFFC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2466,11 +2519,14 @@
 				0906E1F31C587168003FF9FF /* BaseNavigationController.m in Sources */,
 				09353A4C1C50AAAE00DC5A1A /* ViewController.m in Sources */,
 				0BF5533A1D229AB100DE47F3 /* JCHATSelectFriendCell.m in Sources */,
+				0BFE77251D531093007A2005 /* PMoneyLogM.m in Sources */,
 				0BF553AE1D22A08900DE47F3 /* JCHATTimeOutManager.m in Sources */,
 				0BF553301D229AB100DE47F3 /* JCHATDetailTableViewCell.m in Sources */,
 				0BF553CD1D22AE8000DE47F3 /* PCompanyVC.m in Sources */,
 				0BE5E7D41CF8247D00BCB48A /* UserManager.m in Sources */,
+				0BFE77351D53271B007A2005 /* HRInfoM.m in Sources */,
 				091FD6941C55B7DE00BB461C /* UIImageView+MJWebCache.m in Sources */,
+				0BFE77311D5326EA007A2005 /* HRInfoVC.m in Sources */,
 				091FD6951C55B7DE00BB461C /* UIImageView+WebCache.m in Sources */,
 				0BF553A11D229FC700DE47F3 /* ThumbImageCollectionViewCell.m in Sources */,
 				0B9CE3941CD879750009A160 /* HRMineVM.m in Sources */,
@@ -2505,6 +2561,7 @@
 				0BF553CA1D22ACBE00DE47F3 /* PProfessionVC.m in Sources */,
 				0BF5534A1D229AB100DE47F3 /* JCHATMessageTextView.m in Sources */,
 				0BF553901D229FC700DE47F3 /* JCHATPhotoPickerViewController.m in Sources */,
+				0B4B07591D4F61C9007347F6 /* OrderDetailVC.m in Sources */,
 				0BF2A83D1CDAF409004A48E5 /* APIManager.m in Sources */,
 				0BF5532D1D229AB100DE47F3 /* JCHATRawAudioDataPlayer.m in Sources */,
 				0908CEEF1CE4763800C53926 /* PMineVC.m in Sources */,
@@ -2535,6 +2592,7 @@
 				091FD6871C55B7DE00BB461C /* NSData+GIF.m in Sources */,
 				0BF5533E1D229AB100DE47F3 /* JCHATAudioPlayerHelper.m in Sources */,
 				0B2B1FDB1D3F74D9003C3ADF /* HRAuthTVC.m in Sources */,
+				0BFE772E1D531BAE007A2005 /* PTalkLogCell.m in Sources */,
 				0BF553C71D22A5F500DE47F3 /* MJPhotoView.m in Sources */,
 				0BA48A7F1CF6DC0300307B14 /* RegistVM.m in Sources */,
 				0B1C1D431D2B971100746192 /* MJRefreshComponent.m in Sources */,
@@ -2542,6 +2600,7 @@
 				0BB77B7D1CD1ED7200C7146C /* NSString+LangExt.m in Sources */,
 				091FD6861C55B7DE00BB461C /* MKAnnotationView+WebCache.m in Sources */,
 				095A3ED51CE9968B00BB2BB3 /* ShareVC.m in Sources */,
+				0B4B07531D4EE0CE007347F6 /* PRDealPswVC.m in Sources */,
 				0B9CE3981CD8A5960009A160 /* LoginVC.m in Sources */,
 				0B9CE39E1CD8A5C10009A160 /* ForgetVC.m in Sources */,
 				0BF5532C1D229AB100DE47F3 /* JCHATChatModel.m in Sources */,
@@ -2565,6 +2624,7 @@
 				0BF553A01D229FC700DE47F3 /* JCHATSelectImgCollectionView.m in Sources */,
 				0BF553631D229F7200DE47F3 /* JCHATContactsViewController.m in Sources */,
 				0BBF8F481CD9E0A30049D143 /* UITextField+LangExt.m in Sources */,
+				0B4B07561D4F30EF007347F6 /* OrderCell.m in Sources */,
 				0BF553581D229F1F00DE47F3 /* ChatBubbleLayer.m in Sources */,
 				0BF553491D229AB100DE47F3 /* JCHATMessageTableView.m in Sources */,
 				0B1C1D501D2B971100746192 /* MJRefreshConst.m in Sources */,
@@ -2596,6 +2656,7 @@
 				0BF553421D229AB100DE47F3 /* JCHATFootTableViewCell.m in Sources */,
 				091FD68D1C55B7DE00BB461C /* SDWebImageManager+MJ.m in Sources */,
 				0BF553941D229FC700DE47F3 /* JCHATAlbumModel.m in Sources */,
+				0BFE77281D53141C007A2005 /* PMoneyLogCell.m in Sources */,
 				0BF553AB1D22A08900DE47F3 /* JCHATAlertToSendImage.m in Sources */,
 				091FD6881C55B7DE00BB461C /* SDImageCache.m in Sources */,
 				091FD68B1C55B7DE00BB461C /* SDWebImageDownloader.m in Sources */,
@@ -2610,6 +2671,7 @@
 				0BF553481D229AB100DE47F3 /* JCHATMessageContentView.m in Sources */,
 				091FD6741C55B7DE00BB461C /* MASConstraintMaker.m in Sources */,
 				0BDEE6F71D4B392800F0CEF2 /* PaySignM.m in Sources */,
+				0BFE772B1D531B16007A2005 /* PTalkLogM.m in Sources */,
 				092C07C11C52037200FF4981 /* NSDate+Utilities.m in Sources */,
 				093B206B1CE567F1001541BF /* BillVC.m in Sources */,
 				0BF5533C1D229AB100DE47F3 /* JCHATShowTimeCell.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "PCallVC.h"
+#import "JCHATConversationViewController.h"
 
 @interface PCallVC ()
 @property (weak, nonatomic) IBOutlet UILabel *professonLab;
@@ -70,6 +71,26 @@
         }  
     });  
     dispatch_resume(_timer);
+}
+
+
+- (void)skipToSingleChatView :(NSNotification *)notification {
+    JMSGUser *user = [[notification object] copy];
+    __block JCHATConversationViewController *sendMessageCtl =[[JCHATConversationViewController alloc] init];//!!
+    __weak typeof(self)weakSelf = self;
+    sendMessageCtl.superViewController = self;
+    [JMSGConversation createSingleConversationWithUsername:user.username completionHandler:^(id resultObject, NSError *error) {
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        if (error == nil) {
+            sendMessageCtl.conversation = resultObject;
+            JCHATMAINTHREAD(^{
+                sendMessageCtl.hidesBottomBarWhenPushed = YES;
+                [strongSelf.navigationController pushViewController:sendMessageCtl animated:YES];
+            });
+        } else {
+            DDLogDebug(@"createSingleConversationWithUsername");
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

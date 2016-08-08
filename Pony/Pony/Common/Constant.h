@@ -53,4 +53,5 @@
 
 #define STRING_NOT_EMPTY(string)              (string && (string.length > 0))
 #define ARRAY_NOT_EMPTY(array)                (array && (array.count > 0))
+
 #endif /* Constant_h */

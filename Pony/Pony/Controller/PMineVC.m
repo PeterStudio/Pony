@@ -9,7 +9,7 @@
 #import "PMineVC.h"
 #import "PPayVC.h"
 #import "PMoneyM.h"
-
+#import "PMoneyLogVC.h"
 @interface PMineVC()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
 @property (strong, nonatomic) UIAlertView * cusAlertV;
 @property (strong, nonatomic) UserInfoM * uModel;
+@property (strong, nonatomic) PMoneyM * model;
 @end
 
 
@@ -55,8 +56,8 @@
     @weakify(self)
     [APIHTTP wPost:kAPIMoneyGet parameters:@{@"moneyUserId":self.uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
-        PMoneyM * model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
-        self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",model.moneyBalance];
+        self.model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
+        self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",self.model.moneyBalance];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
@@ -65,6 +66,8 @@
         [MBProgressHUD hideHUD];
     }];
 }
+
+#pragma mark - UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 150.0f;
@@ -82,6 +85,25 @@
     return _footerView;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (1 == indexPath.row) {
+        // 交易密码
+        if ([@"1" isEqualToString:self.uModel.charge_status]) {
+            // 已设置
+            [self performSegueWithIdentifier:@"PRDealPswVC" sender:nil];
+        }else{
+            // 未设置
+            [self performSegueWithIdentifier:@"PDealPasswordVC" sender:nil];
+        }
+    }else if (2 == indexPath.row){
+        // 充值记录
+        if (self.model) {
+            [self performSegueWithIdentifier:@"PMoneyLogVC" sender:nil];
+        }
+    }
+}
 
 #pragma mark - Private
 
@@ -117,6 +139,9 @@
     if ([obj isKindOfClass:[PPayVC class]]) {
         PPayVC * vc = (PPayVC *)obj;
         vc.sum = sender;
+    }else if ([obj isKindOfClass:[PMoneyLogVC class]]){
+        PMoneyLogVC * vc = (PMoneyLogVC *)obj;
+        vc.moneyUserId = self.model.moneyUserId;
     }
 }
 

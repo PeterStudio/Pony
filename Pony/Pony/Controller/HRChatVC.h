@@ -7,7 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
-
-@interface HRChatVC : BaseTableViewController
-
+#import "JCHATChatTable.h"
+@interface HRChatVC : BaseTableViewController<UISearchBarDelegate,UISearchControllerDelegate,UISearchControllerDelegate,UISearchResultsUpdating,UITableViewDataSource,UITableViewDelegate,UISearchDisplayDelegate,TouchTableViewDelegate,UIGestureRecognizerDelegate,JMessageDelegate,JMSGConversationDelegate>
+@property (weak, nonatomic) IBOutlet JCHATChatTable *chatTableView;
 @end

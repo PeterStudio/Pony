@@ -58,14 +58,14 @@
 #define kAPITalkGetlist             @"talk/getlist"             // 用户聊天记录
 #define kAPITalkListenTalk          @"talk/listenTalk"             // 监听小马的订单接口
 #define kAPITalkGrabTalk            @"talk/grabTalk"             // 伯乐抢单接口
-
+#define kAPIGetBoleStatics          @"getBoleStatics"               // 伯乐抢单&流水
 
 #define kAPICommentsConfigGetlist           @"commentsConfig/getlist"             // 获取评价标签配置信息（评价标签可配置）
 #define kAPICommentsSave                @"comments/save"             // 新增伯乐服务评价
 #define kAPICommentsGetlist             @"comments/getlist"             // 获取伯乐服务评价
 
 
-#define kAPIMongeylogGetlist           @"mongeylog/getlist"             // 消费流水记录
+#define kAPIMoneylogGetlist           @"moneylog/getlist"             // 消费流水记录
 #define kAPIMongeylogSave               @"mongeylog/save"             // 新增消费流水
 #define kAPIMongeylogCashout           @"mongeylog/cashout"             // 提现接口
 #define kAPIHeartbeatCheck            @"heartbeat/check"             // 心跳应答接口

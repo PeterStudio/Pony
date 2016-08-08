@@ -1,20 +1,21 @@
 //
-//  PDealPasswordVC.m
+//  PRDealPswVC.m
 //  Pony
 //
-//  Created by 杜文 on 16/7/29.
+//  Created by 杜文 on 16/8/1.
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "PDealPasswordVC.h"
+#import "PRDealPswVC.h"
 
-@interface PDealPasswordVC ()
-@property (weak, nonatomic) IBOutlet UITextField *dealPswTF;
-@property (weak, nonatomic) IBOutlet UITextField *sureDealPswTF;
+@interface PRDealPswVC ()
+@property (weak, nonatomic) IBOutlet UITextField *dealTF1;
+@property (weak, nonatomic) IBOutlet UITextField *dealTF2;
+@property (weak, nonatomic) IBOutlet UITextField *dealTF3;
 
 @end
 
-@implementation PDealPasswordVC
+@implementation PRDealPswVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,21 +23,26 @@
 }
 
 - (IBAction)sureBtnClicked:(id)sender {
-    if ([self.dealPswTF.text validBlank]) {
+    if ([self.dealTF1.text validBlank]) {
+        [MBProgressHUD showError:@"请输入原交易密码"];
+        return;
+    }
+    
+    if ([self.dealTF2.text validBlank]) {
         [MBProgressHUD showError:@"请输入交易密码"];
         return;
     }
     
-    if ([self.sureDealPswTF.text validBlank]) {
+    if (![self.dealTF2.text isEqualToString:self.dealTF3.text]) {
         [MBProgressHUD showError:@"请确认交易密码"];
         return;
     }
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":self.dealPswTF.text} success:^(NSDictionary * responseObject) {
+    [APIHTTP wPost:kAPIResetBalancePassowrd parameters:@{@"oldpassword":self.dealTF1.text,@"newpassword":self.dealTF2.text} success:^(NSDictionary * responseObject) {
         @strongify(self)
-        [MBProgressHUD showSuccess:@"设置成功！"];
+        [MBProgressHUD showSuccess:@"重置交易密码成功！"];
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
@@ -45,6 +51,7 @@
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

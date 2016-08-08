@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface PMoneyLogVC : BaseViewController
-
+@property (nonatomic, copy) NSString * moneyUserId;
 @end
