@@ -313,7 +313,7 @@
     NSDictionary *info = notification.userInfo;
     if (info) {
         DDLogDebug(@"The message - %@", info);
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BOLE_QIANGDAN_NOTIC object:info[@"content"]];
         
         /*
          2016-07-26 14:46:21:957 Pony[1173:326671] The message - {

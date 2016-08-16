@@ -8,21 +8,38 @@
 
 #import "PCallVC.h"
 #import "JCHATConversationViewController.h"
+#import "BoleQDNoticM.h"
+#import "PReceiveBoleListVC.h"
 
-@interface PCallVC ()
+@interface PCallVC (){
+    PReceiveBoleListVC * pReceiveBoleListVC;
+}
 @property (weak, nonatomic) IBOutlet UILabel *professonLab;
 @property (weak, nonatomic) IBOutlet UILabel *companyLab;
 @property (weak, nonatomic) IBOutlet UILabel *positionLab;
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
+
 @end
 
 @implementation PCallVC
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getBoleQDNotic:) name:BOLE_QIANGDAN_NOTIC object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:BOLE_QIANGDAN_NOTIC object:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.professonLab.text = _name1;
     self.companyLab.text = _name2?_name2:@"公司";
     self.positionLab.text = _name3?_name3:@"职位";
+    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+    pReceiveBoleListVC = [sb instantiateViewControllerWithIdentifier:@"PReceiveBoleListVC"];
     [self requestToService];
 }
 
@@ -55,7 +72,6 @@
     dispatch_source_set_event_handler(_timer, ^{
         if(timeout<=0){ //倒计时结束，关闭
             dispatch_source_cancel(_timer);
-//            dispatch_release(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 [self.navigationController popViewControllerAnimated:YES];
@@ -91,6 +107,31 @@
             DDLogDebug(@"createSingleConversationWithUsername");
         }
     }];
+}
+
+- (void)getBoleQDNotic:(NSNotification *)noti{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:BOLE_QIANGDAN_NOTIC object:nil];
+    NSDictionary * dic = [self toArrayOrNSDictionary:[noti.object dataUsingEncoding:NSASCIIStringEncoding]];
+    BoleQDNoticM * model = [[BoleQDNoticM alloc] initWithDictionary:dic error:nil];
+    pReceiveBoleListVC.entity = model;
+    [self.navigationController pushViewController:pReceiveBoleListVC animated:YES];
+}
+
+
+// 将JSON串转化为字典或者数组
+- (id)toArrayOrNSDictionary:(NSData *)jsonData{
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                    options:NSJSONReadingAllowFragments
+                                                      error:&error];
+    
+    if (jsonObject != nil && error == nil){
+        return jsonObject;
+    }else{
+        // 解析错误
+        return nil;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

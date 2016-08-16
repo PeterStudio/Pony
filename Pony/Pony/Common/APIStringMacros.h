@@ -54,6 +54,7 @@
 
 #define kAPIGradeGetlist             @"grade/getlist"             // 获取伯乐等级信息
 
+#define kAPIAddTalk                 @"talk/addTalk"                 // 添加聊天
 #define kAPICloseTalk               @"talk/closeTalk"             // 用户结束聊天接口
 #define kAPITalkGetlist             @"talk/getlist"             // 用户聊天记录
 #define kAPITalkListenTalk          @"talk/listenTalk"             // 监听小马的订单接口

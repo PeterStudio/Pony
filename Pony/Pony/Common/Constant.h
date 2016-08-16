@@ -12,7 +12,7 @@
 /*
  * 引导页
  */
-#define VERSION_NUM_FOR_GUIDE    2      //备注：如果需要显示新的引导页，该变量＋1
+#define VERSION_NUM_FOR_GUIDE    1      //备注：如果需要显示新的引导页，该变量＋1
 #define VERSION_NUM_FOR_GUIDE_KEY       @"VERSION_NUM_FOR_GUIDE_KEY"
 
 
@@ -53,5 +53,21 @@
 
 #define STRING_NOT_EMPTY(string)              (string && (string.length > 0))
 #define ARRAY_NOT_EMPTY(array)                (array && (array.count > 0))
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define BOLE_QIANGDAN_NOTIC     @"BOLE_QIANGDAN_NOTIC"
+
+
 
 #endif /* Constant_h */

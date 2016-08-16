@@ -183,6 +183,9 @@
 		093B20771CE5695D001541BF /* BillVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 093B20761CE5695D001541BF /* BillVM.m */; };
 		093B207A1CE5696D001541BF /* MessageVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 093B20791CE5696D001541BF /* MessageVM.m */; };
 		095A3ED51CE9968B00BB2BB3 /* ShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 095A3ED41CE9968B00BB2BB3 /* ShareVC.m */; };
+		0B01DE2F1D59AEFC006E53C8 /* BoleQDNoticM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B01DE2E1D59AEFC006E53C8 /* BoleQDNoticM.m */; };
+		0B01DE321D59B8A4006E53C8 /* PReceiveBoleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B01DE311D59B8A4006E53C8 /* PReceiveBoleListVC.m */; };
+		0B01DE351D59D59D006E53C8 /* PAddTalkM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B01DE341D59D59D006E53C8 /* PAddTalkM.m */; };
 		0B1C1CFC1D27A59C00746192 /* ProfessionLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1CFB1D27A59C00746192 /* ProfessionLM.m */; };
 		0B1C1CFF1D27A64400746192 /* CompanyLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1CFE1D27A64400746192 /* CompanyLM.m */; };
 		0B1C1D021D27A68800746192 /* PositionLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1D011D27A68800746192 /* PositionLM.m */; };
@@ -242,6 +245,7 @@
 		0BA48A7D1CF6DC0300307B14 /* ForgetVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA48A781CF6DC0300307B14 /* ForgetVM.m */; };
 		0BA48A7E1CF6DC0300307B14 /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA48A7A1CF6DC0300307B14 /* LoginVM.m */; };
 		0BA48A7F1CF6DC0300307B14 /* RegistVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA48A7C1CF6DC0300307B14 /* RegistVM.m */; };
+		0BA5B31B1D61B15600A63A73 /* PReceiveBoleListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5B31A1D61B15600A63A73 /* PReceiveBoleListCell.m */; };
 		0BAD46BD1D1E136700B5B27A /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAD46BC1D1E136700B5B27A /* JMessage.framework */; };
 		0BAFAE771D06A74E00B06B6F /* PHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFAE761D06A74E00B06B6F /* PHomeVC.m */; };
 		0BAFAE7A1D06A76B00B06B6F /* PHomeVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFAE791D06A76B00B06B6F /* PHomeVM.m */; };
@@ -628,6 +632,12 @@
 		093B20791CE5696D001541BF /* MessageVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVM.m; sourceTree = "<group>"; };
 		095A3ED31CE9968B00BB2BB3 /* ShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareVC.h; sourceTree = "<group>"; };
 		095A3ED41CE9968B00BB2BB3 /* ShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareVC.m; sourceTree = "<group>"; };
+		0B01DE2D1D59AEFC006E53C8 /* BoleQDNoticM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoleQDNoticM.h; sourceTree = "<group>"; };
+		0B01DE2E1D59AEFC006E53C8 /* BoleQDNoticM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoleQDNoticM.m; sourceTree = "<group>"; };
+		0B01DE301D59B8A4006E53C8 /* PReceiveBoleListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PReceiveBoleListVC.h; sourceTree = "<group>"; };
+		0B01DE311D59B8A4006E53C8 /* PReceiveBoleListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PReceiveBoleListVC.m; sourceTree = "<group>"; };
+		0B01DE331D59D59D006E53C8 /* PAddTalkM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAddTalkM.h; sourceTree = "<group>"; };
+		0B01DE341D59D59D006E53C8 /* PAddTalkM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAddTalkM.m; sourceTree = "<group>"; };
 		0B1C1CFA1D27A59C00746192 /* ProfessionLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfessionLM.h; sourceTree = "<group>"; };
 		0B1C1CFB1D27A59C00746192 /* ProfessionLM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfessionLM.m; sourceTree = "<group>"; };
 		0B1C1CFD1D27A64400746192 /* CompanyLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyLM.h; sourceTree = "<group>"; };
@@ -739,6 +749,8 @@
 		0BA48A7A1CF6DC0300307B14 /* LoginVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVM.m; sourceTree = "<group>"; };
 		0BA48A7B1CF6DC0300307B14 /* RegistVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistVM.h; sourceTree = "<group>"; };
 		0BA48A7C1CF6DC0300307B14 /* RegistVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistVM.m; sourceTree = "<group>"; };
+		0BA5B3191D61B15600A63A73 /* PReceiveBoleListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PReceiveBoleListCell.h; sourceTree = "<group>"; };
+		0BA5B31A1D61B15600A63A73 /* PReceiveBoleListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PReceiveBoleListCell.m; sourceTree = "<group>"; };
 		0BAD46BC1D1E136700B5B27A /* JMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JMessage.framework; path = lib/JMessage.framework; sourceTree = "<group>"; };
 		0BAFAE751D06A74E00B06B6F /* PHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHomeVC.h; sourceTree = "<group>"; };
 		0BAFAE761D06A74E00B06B6F /* PHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHomeVC.m; sourceTree = "<group>"; };
@@ -1495,6 +1507,8 @@
 				0BFE77241D531093007A2005 /* PMoneyLogM.m */,
 				0BFE77291D531B16007A2005 /* PTalkLogM.h */,
 				0BFE772A1D531B16007A2005 /* PTalkLogM.m */,
+				0B01DE2D1D59AEFC006E53C8 /* BoleQDNoticM.h */,
+				0B01DE2E1D59AEFC006E53C8 /* BoleQDNoticM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1765,6 +1779,10 @@
 				0BF553CF1D22AEA000DE47F3 /* PPositionVC.m */,
 				0B1C1D5C1D2CFC2200746192 /* PCallVC.h */,
 				0B1C1D5D1D2CFC2200746192 /* PCallVC.m */,
+				0B01DE301D59B8A4006E53C8 /* PReceiveBoleListVC.h */,
+				0B01DE311D59B8A4006E53C8 /* PReceiveBoleListVC.m */,
+				0BA5B3191D61B15600A63A73 /* PReceiveBoleListCell.h */,
+				0BA5B31A1D61B15600A63A73 /* PReceiveBoleListCell.m */,
 				0BDEE6F21D4B353400F0CEF2 /* PPayVC.h */,
 				0BDEE6F31D4B353400F0CEF2 /* PPayVC.m */,
 				0BDEE6FB1D4B53FF00F0CEF2 /* PMoneyLogVC.h */,
@@ -2196,6 +2214,8 @@
 			children = (
 				0BFE77331D53271B007A2005 /* HRInfoM.h */,
 				0BFE77341D53271B007A2005 /* HRInfoM.m */,
+				0B01DE331D59D59D006E53C8 /* PAddTalkM.h */,
+				0B01DE341D59D59D006E53C8 /* PAddTalkM.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2244,6 +2264,14 @@
 					09353A401C50AAAE00DC5A1A = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = FHRN25K2EQ;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2561,6 +2589,7 @@
 				0BF553CA1D22ACBE00DE47F3 /* PProfessionVC.m in Sources */,
 				0BF5534A1D229AB100DE47F3 /* JCHATMessageTextView.m in Sources */,
 				0BF553901D229FC700DE47F3 /* JCHATPhotoPickerViewController.m in Sources */,
+				0B01DE321D59B8A4006E53C8 /* PReceiveBoleListVC.m in Sources */,
 				0B4B07591D4F61C9007347F6 /* OrderDetailVC.m in Sources */,
 				0BF2A83D1CDAF409004A48E5 /* APIManager.m in Sources */,
 				0BF5532D1D229AB100DE47F3 /* JCHATRawAudioDataPlayer.m in Sources */,
@@ -2575,6 +2604,8 @@
 				09353A491C50AAAE00DC5A1A /* AppDelegate.m in Sources */,
 				0B1C1D111D2B915600746192 /* BaseTableView.m in Sources */,
 				0BDEE6FA1D4B4CFB00F0CEF2 /* PMoneyM.m in Sources */,
+				0B01DE2F1D59AEFC006E53C8 /* BoleQDNoticM.m in Sources */,
+				0B01DE351D59D59D006E53C8 /* PAddTalkM.m in Sources */,
 				0BF553441D229AB100DE47F3 /* JCHATGroupDetailFooterReusableView.m in Sources */,
 				0B1C1D4C1D2B971100746192 /* MJRefreshGifHeader.m in Sources */,
 				0BDEE7001D4B549E00F0CEF2 /* PTalkLogVC.m in Sources */,
@@ -2633,6 +2664,7 @@
 				0B1C1D4E1D2B971100746192 /* MJRefreshStateHeader.m in Sources */,
 				0BF553C41D22A5F500DE47F3 /* MJPhotoLoadingView.m in Sources */,
 				091FD6901C55B7DE00BB461C /* UIButton+WebCache.m in Sources */,
+				0BA5B31B1D61B15600A63A73 /* PReceiveBoleListCell.m in Sources */,
 				0B1C1D461D2B971100746192 /* MJRefreshAutoGifFooter.m in Sources */,
 				091FD6931C55B7DE00BB461C /* UIImage+WebP.m in Sources */,
 				0B1C1D021D27A68800746192 /* PositionLM.m in Sources */,
