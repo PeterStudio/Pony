@@ -12,7 +12,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UIImage+LangExt.h"
-
+#import "HRAuthM.h"
+#import "UIButton+WebCache.h"
 
 #define IMAGE_AUTH_TITLE        @"此应用程序对您的相册没有访问权限"
 #define IMAGE_AUTH_MESSAGE      @"请在iPhone的“设置-隐私-照片”选项中，允许小马过河访问你的手机相册"
@@ -39,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *imgBtn2;
 @property (strong, nonatomic) UIButton * tempBtn;
 
+@property (nonatomic, strong) HRAuthM * hrAuthM;
 @end
 
 @implementation HRAuthTVC
@@ -57,8 +59,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.professionM = [[ProfessionM alloc] init];
     [self getQiniuToken];
-    
+    [self getUserAuthInfo];
     UIToolbar *toolbar	= [[UIToolbar alloc] init];
     [toolbar sizeToFit];
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelClick)];
@@ -74,6 +77,44 @@
     self.workTimeTF.inputView = self.datePicker;
     self.workTimeTF.inputAccessoryView = toolbar;
 }
+
+- (void)getUserAuthInfo{
+    @weakify(self)
+    [MBProgressHUD showMessage:nil];
+    [APIHTTP wwPost:kAPIUserjobsGet parameters:@{} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        self.hrAuthM = [[HRAuthM alloc] initWithDictionary:responseObject error:nil];
+        [self refrashUI];
+        DDLogInfo(@"token == %@",self.token);
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
+}
+
+- (void)refrashUI{
+    if (![self.hrAuthM.industry validBlank]) {
+        
+        self.professionM.id = self.hrAuthM.industryId;
+        self.professionM.industry = self.hrAuthM.industry;
+        
+        self.hangYeLab.text = self.hrAuthM.industry;
+        self.nameTF.text = self.hrAuthM.realName;
+        self.workTimeTF.text = self.hrAuthM.startTime;
+        self.companyTF.text =self.hrAuthM.company;
+        self.jobTF.text = self.hrAuthM.job;
+        
+        key1 = self.hrAuthM.userAuthorityImg;
+        key2 = self.hrAuthM.userAgeImg;
+        
+        [self.imgBtn1 setImageWithURL:[NSURL URLWithString:key1] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"upload1"]];
+        [self.imgBtn2 setImageWithURL:[NSURL URLWithString:key2] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"upload2"]];
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
@@ -93,7 +134,7 @@
 
 - (void)getQiniuToken{
     @weakify(self)
-    [APIHTTP wPost:kAPIUploadToken parameters:@{@"bucketname":@"xiaomaapp"} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIUploadToken parameters:@{@"bucketname":@"xiaomaapp"} success:^(NSDictionary * responseObject) {
         @strongify(self)
         self.token = responseObject[@"uploadToken"];
         DDLogInfo(@"token == %@",self.token);
@@ -154,21 +195,6 @@
     }
 }
 
-- (void)getMyInfo{
-    UserInfoM *uModel = [USERMANAGER userInfoM];
-    @weakify(self)
-    [APIHTTP wPost:kAPIUserjobsGet parameters:@{@"userId":uModel.user_id} success:^(NSDictionary * responseObject) {
-        @strongify(self)
-        
-    } error:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
-    } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
-    } completion:^{
-        //        [MBProgressHUD hideHUD];
-    }];
-}
-
 - (IBAction)submitBtnClicked:(id)sender {
     if (!self.professionM) {
         [MBProgressHUD showError:@"请选择行业"];
@@ -209,7 +235,7 @@
     @weakify(self)
     NSDictionary * dic = @{@"industryId":self.professionM.id,@"industry":self.professionM.industry,@"realName":self.nameTF.text,@"startTime":startTime,@"company":self.companyTF.text,@"job":self.jobTF.text,@"userAuthorityImg":key1,@"userAgeImg":key2};
     [MBProgressHUD showMessage:nil];
-    [APIHTTP wPost:kAPISave parameters:dic success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPISave parameters:dic success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"保存成功"];
         [self.navigationController popViewControllerAnimated:YES];

@@ -18,7 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.startTimeLab.text = self.model.talk_start_time;
+    self.endTimeLab.text = self.model.talk_end_time;
+    self.moneyLab.text = self.model.talk_fee;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = nil;
     
     DDLogDebug(@"Action - viewDidLoad");
     
@@ -337,6 +338,8 @@ NSInteger sortHRType(id object1,id object2,void *cha) {
     JCHATConversationViewController *sendMessageCtl =[[JCHATConversationViewController alloc] init];
     sendMessageCtl.hidesBottomBarWhenPushed = YES;
     sendMessageCtl.superViewController = self;
+//    sendMessageCtl.bole_ID = strongSelf.userId;
+    sendMessageCtl.isShowInputView = YES;
     JMSGConversation *conversation = [_conversationArr objectAtIndex:indexPath.row];
     sendMessageCtl.conversation = conversation;
     [self.navigationController pushViewController:sendMessageCtl animated:YES];

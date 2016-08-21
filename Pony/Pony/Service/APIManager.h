@@ -17,7 +17,7 @@
 + (instancetype)sharedManager;
 
 
-- (void)wPost:(NSString *)URLString
+- (void)wwPost:(NSString *)URLString
    parameters:(id)parameters
       success:(void (^)(id responseObject))success
         error:(void (^)(NSError * err))error

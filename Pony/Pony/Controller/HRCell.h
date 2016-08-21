@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PonyHJNoticM.h"
+
+
+@protocol HRCellDelegate <NSObject>
+- (void)boleQDAction:(NSIndexPath *)_indx;
+@end
 
 @interface HRCell : UITableViewCell
-
+@property (weak, nonatomic) id<HRCellDelegate> delegate;
+@property (strong, nonatomic) NSIndexPath * indx;
+@property (strong, nonatomic) PonyHJNoticM * entity;
 @end

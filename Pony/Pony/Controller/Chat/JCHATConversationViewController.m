@@ -27,6 +27,9 @@
 #import "JCHATSendMsgManager.h"
 #import "JCHATGroupDetailViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "HRInfoVC.h"
+#import "PEndTalkM.h"
+#import "PFeedBackVC.h"
 
 @interface JCHATConversationViewController () {
   
@@ -38,7 +41,6 @@
   NSMutableDictionary *_allMessageDic; //缓存所有的message model
   NSMutableArray *_allmessageIdArr; //按序缓存后有的messageId， 于allMessage 一起使用
   NSMutableArray *_userArr;//
-  UIButton *_rightBtn;
 }
 
 @end
@@ -64,6 +66,10 @@
   DDLogDebug(@"Event - viewWillAppear");
   [super viewWillAppear:animated];
   [self.toolBarContainer.toolbar drawRect:self.toolBarContainer.toolbar.frame];
+    if (!self.isShowInputView) {
+        self.toolBarHeightConstrait.constant = 0;
+    }
+    
   
   [_conversation refreshTargetInfoFromServer:^(id resultObject, NSError *error) {
     [self.navigationController setNavigationBarHidden:NO];
@@ -121,10 +127,10 @@
   [self setupComponentView];
 }
 
-- (void)addtoolbar {
-  self.toolBarContainer.toolbar.frame = CGRectMake(0, 0, kApplicationWidth, 45);
-  [self.toolBarContainer addSubview:self.toolBarContainer.toolbar];
-}
+//- (void)addtoolbar {
+//  self.toolBarContainer.toolbar.frame = CGRectMake(0, 0, kApplicationWidth, 45);
+//  [self.toolBarContainer addSubview:self.toolBarContainer.toolbar];
+//}
 
 - (void)setupComponentView {
   UITapGestureRecognizer *gesture =[[UITapGestureRecognizer alloc] initWithTarget:self
@@ -147,30 +153,7 @@
 
 - (void)setupNavigation {
   self.navigationController.navigationBar.translucent = NO;
-  _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-  [_rightBtn setFrame:navigationRightButtonRect];
-  if (_conversation.conversationType == kJMSGConversationTypeSingle) {
-    [_rightBtn setImage:[UIImage imageNamed:@"userDetail"] forState:UIControlStateNormal];
-  } else {
-    [self updateGroupConversationTittle:nil];
-    if ([((JMSGGroup *)_conversation.target) isMyselfGroupMember]) {
-      [_rightBtn setImage:[UIImage imageNamed:@"groupDetail"] forState:UIControlStateNormal];
-    } else _rightBtn.hidden = YES;
-  }
-  
   [_conversation clearUnreadCount];
-  
-  [_rightBtn addTarget:self action:@selector(addFriends) forControlEvents:UIControlEventTouchUpInside];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBtn];//为导航栏添加右侧按钮
-  
-  UIButton *leftBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-  [leftBtn setFrame:kNavigationLeftButtonRect];
-  [leftBtn setImage:[UIImage imageNamed:@"goBack"] forState:UIControlStateNormal];
-  [leftBtn setImageEdgeInsets:kGoBackBtnImageOffset];
-
-  [leftBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];//为导航栏添加左侧按钮
-  self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)getGroupMemberListWithGetMessageFlag:(BOOL)getMesageFlag {
@@ -186,7 +169,6 @@
     if (getMesageFlag) {
       [self getPageMessage];
     }
-    [self hidenDetailBtn:NO];
   }
 }
 
@@ -199,11 +181,6 @@
       break;
     }
   }
-  [self hidenDetailBtn:hideFlag];
-}
-
-- (void)hidenDetailBtn:(BOOL)flag {
-  [_rightBtn setHidden:flag];
 }
 
 - (void)setTitleWithUser:(JMSGUser *)user {
@@ -524,11 +501,16 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
   return _voiceRecordHUD;
 }
 
-- (void)backClick {
-  if ([[JCHATAudioPlayerHelper shareInstance] isPlaying]) {
-    [[JCHATAudioPlayerHelper shareInstance] stopAudio];
-  }
-  [self.navigationController popViewControllerAnimated:YES];
+- (void)click_backBarButtonItem{
+    if (!self.isShowInputView) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定结束聊天吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+        [alert show];
+    }else{
+        if ([[JCHATAudioPlayerHelper shareInstance] isPlaying]) {
+            [[JCHATAudioPlayerHelper shareInstance] stopAudio];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)pressVoiceBtnToHideKeyBoard {///!!!
@@ -541,15 +523,6 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
   UITextField *inputview = self.toolBarContainer.toolbar.textView;
   [inputview becomeFirstResponder];
   [self layoutAndAnimateMessageInputTextView:inputview];
-}
-#pragma mark --增加朋友
-- (void)addFriends
-{
-    JCHATGroupDetailViewController *groupDetailCtl = [[JCHATGroupDetailViewController alloc] init];
-    groupDetailCtl.hidesBottomBarWhenPushed = YES;
-    groupDetailCtl.conversation = _conversation;
-    groupDetailCtl.sendMessageCtl = self;
-    [self.navigationController pushViewController:groupDetailCtl animated:YES];
 }
 
 #pragma mark -调用相册
@@ -1030,6 +1003,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)selectHeadView:(JCHATChatModel *)model {
+    if (!self.isShowInputView) {
+        return;
+    }
   if (!model.message.fromUser) {
       [MBProgressHUD showError:@"该用户为API用户" toView:self.view];
     return;
@@ -1040,16 +1016,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    personCtl.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:personCtl animated:YES];
   } else {
-    JCHATFriendDetailViewController *friendCtl = [[JCHATFriendDetailViewController alloc]initWithNibName:@"JCHATFriendDetailViewController" bundle:nil];
-    if (self.conversation.conversationType == kJMSGConversationTypeSingle) {
-      friendCtl.userInfo = model.message.fromUser;
-      friendCtl.isGroupFlag = NO;
-    } else {
-      friendCtl.userInfo = model.message.fromUser;
-      friendCtl.isGroupFlag = YES;
-    }
-    
-    [self.navigationController pushViewController:friendCtl animated:YES];
+      UIStoryboard * sb = [UIStoryboard storyboardWithName:@"HR" bundle:[NSBundle mainBundle]];
+      HRInfoVC * vc = [sb instantiateViewControllerWithIdentifier:@"HRInfoVC"];
+      vc.userId = self.bole_ID;
+      vc.isRepeatCall = NO;
+    [self.navigationController pushViewController:vc animated:YES];
   }
 }
 
@@ -1363,5 +1334,34 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 // ---------------------------------- Private methods
+
+
+#pragma mark - private
+
+- (void)endTalk{
+    [MBProgressHUD showMessage:nil toView:self.view];
+    @weakify(self)
+    [APIHTTP wwPost:kAPICloseTalk parameters:@{@"talkid": self.pTalkM.talkid} success:^(NSDictionary * data) {
+        @strongify(self)
+        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+        PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
+        vc.pEndTalkM = [[PEndTalkM alloc] initWithDictionary:data error:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        @strongify(self)
+        [MBProgressHUD hideHUDForView:self.view];
+    }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self endTalk];
+    }
+}
+
 
 @end

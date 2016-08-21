@@ -40,7 +40,7 @@
     NSDictionary * parameters = @{@"userName":_userName,@"code":_code,@"userPassword":_nPasswordTextField.text};
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIReset parameters:parameters success:^(id responseObject) {
+    [APIHTTP wwPost:kAPIReset parameters:parameters success:^(id responseObject) {
         @strongify(self)
         [self.navigationController popToRootViewControllerAnimated:YES];
     } error:^(NSError *err) {

@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface PHomeVC : BaseViewController
+@interface PHomeVC : UIViewController
 
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *positionLab;
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
 
+@property (strong, nonatomic) dispatch_source_t _timer;
 @end
 
 @implementation PCallVC
@@ -50,7 +51,7 @@
     NSDictionary * dic = @{@"industry":obj1,@"company":obj2,@"jobPost":obj3};
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)
-    [APIHTTP wPost:kAPIUserjobsSearch parameters:dic success:^(NSArray * responseObject) {
+    [APIHTTP wwPost:kAPIUserjobsSearch parameters:dic success:^(NSArray * responseObject) {
         @strongify(self)
         [self startCountTime];
     } error:^(NSError *err) {
@@ -67,11 +68,11 @@
 - (void)startCountTime{
     __block int timeout = 10 * 60; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
+    self._timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(self._timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(self._timer, ^{
         if(timeout<=0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
+            dispatch_source_cancel(self._timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 [self.navigationController popViewControllerAnimated:YES];
@@ -86,7 +87,7 @@
             timeout--;
         }  
     });  
-    dispatch_resume(_timer);
+    dispatch_resume(self._timer);
 }
 
 
@@ -110,6 +111,7 @@
 }
 
 - (void)getBoleQDNotic:(NSNotification *)noti{
+    dispatch_source_cancel(self._timer);
     [[NSNotificationCenter defaultCenter] removeObserver:self name:BOLE_QIANGDAN_NOTIC object:nil];
     NSDictionary * dic = [self toArrayOrNSDictionary:[noti.object dataUsingEncoding:NSASCIIStringEncoding]];
     BoleQDNoticM * model = [[BoleQDNoticM alloc] initWithDictionary:dic error:nil];

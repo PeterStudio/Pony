@@ -13,6 +13,6 @@
 @property (nonatomic, copy) NSString<Optional> * balance;           // 余额校正
 @property (nonatomic, copy) NSString<Optional> * heartbeat;         // 扣费频率
 @property (nonatomic, copy) NSString<Optional> * bole_im_id;
-@property (nonatomic, copy) NSString<Optional> * free_time;         // 免费时间
+@property (nonatomic, copy) NSString<Optional> * free_time;         // 免费时间-用于倒计时
 @property (nonatomic, copy) NSString<Optional> * talkid;            // 扣费接口要用
 @end

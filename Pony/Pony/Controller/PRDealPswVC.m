@@ -40,7 +40,7 @@
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIResetBalancePassowrd parameters:@{@"oldpassword":self.dealTF1.text,@"newpassword":self.dealTF2.text} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIResetBalancePassowrd parameters:@{@"oldpassword":self.dealTF1.text,@"newpassword":self.dealTF2.text} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"重置交易密码成功！"];
         [self.navigationController popViewControllerAnimated:YES];

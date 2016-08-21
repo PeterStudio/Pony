@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+//    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (IBAction)switchToHR:(id)sender {
@@ -57,7 +57,7 @@
     if (self.professionM) {
         @weakify(self)
         [MBProgressHUD showMessage:@"开始呼叫"];
-        [APIHTTP wPost:kAPIUserjobsSearch parameters:@{@"industry":self.professionM.industry,@"company":self.companyM.company?self.companyM.company:@"",@"jobPost":self.positionM.jobPost?self.positionM.jobPost:@""} success:^(NSDictionary * responseObject) {
+        [APIHTTP wwPost:kAPIUserjobsSearch parameters:@{@"industry":self.professionM.industry,@"company":self.companyM.company?self.companyM.company:@"",@"jobPost":self.positionM.jobPost?self.positionM.jobPost:@""} success:^(NSDictionary * responseObject) {
             @strongify(self)
             [self performSegueWithIdentifier:@"PCallVC" sender:nil];
         } error:^(NSError *err) {

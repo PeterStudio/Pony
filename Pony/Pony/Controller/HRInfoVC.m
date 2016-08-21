@@ -22,13 +22,14 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *startArray;
 @property (nonatomic, strong) HRInfoM * hrInfoM;
+@property (nonatomic, strong) PAddTalkM * pAddTalkM;
 @end
 
 @implementation HRInfoVC
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.toolbarHidden = NO;
+//    self.navigationController.toolbarHidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -38,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.tableView setHidden:YES];
     [self requestToService];
 }
 
@@ -57,25 +57,35 @@
         [btn setSelected:YES];
     }
     
+    if (!self.isRepeatCall) {
+        return;
+    }
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setExclusiveTouch:YES];
-    [btn setTitle:@"开始咨询" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
-    [btn setBackgroundColor:[UIColor blueColor]];
-    [btn addTarget:self action:@selector(addTalk) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(0, 0, SCREEN_WIDTH, 49);
-    UIBarButtonItem *offerbuyButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [self setToolbarItems:@[leftBarButtonItem, offerbuyButtonItem, rightBarButtonItem]];
+    if ([@"1" isEqualToString:self.hrInfoM.bolestatus]) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setExclusiveTouch:YES];
+        [btn setTitle:@"开始咨询" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+        [btn setBackgroundColor:[UIColor blueColor]];
+        [btn addTarget:self action:@selector(addTalk) forControlEvents:UIControlEventTouchUpInside];
+        btn.frame = CGRectMake(0, 0, SCREEN_WIDTH, 49);
+        UIBarButtonItem *offerbuyButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        [self setToolbarItems:@[leftBarButtonItem, offerbuyButtonItem, rightBarButtonItem]];
+        self.navigationController.toolbarHidden = NO;
+    }else{
+        self.navigationController.toolbarHidden = YES;
+    }
+    
+    
 }
 
 - (void)requestToService{
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)
-    [APIHTTP wPost:kAPIGetBoleDetail parameters:@{@"userId": self.userId} success:^(NSDictionary * data) {
+    [APIHTTP wwPost:kAPIGetBoleDetail parameters:@{@"userId": self.userId} success:^(NSDictionary * data) {
         @strongify(self)
         self.hrInfoM = [[HRInfoM alloc] initWithDictionary:data error:nil];
         [self refrashUI];
@@ -92,8 +102,9 @@
 - (void)addTalk{
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)
-    [APIHTTP wPost:kAPIAddTalk parameters:@{@"bole_userid": self.userId} success:^(NSDictionary * data) {
+    [APIHTTP wwPost:kAPIAddTalk parameters:@{@"bole_userid": self.userId} success:^(NSDictionary * data) {
         @strongify(self)
+        self.pAddTalkM = [[PAddTalkM alloc] initWithDictionary:data error:nil];
         [self callBole];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
@@ -116,6 +127,9 @@
             sendMessageCtl.conversation = resultObject;
             JCHATMAINTHREAD(^{
                 sendMessageCtl.hidesBottomBarWhenPushed = YES;
+                sendMessageCtl.pTalkM = strongSelf.pAddTalkM;
+                sendMessageCtl.bole_ID = strongSelf.userId;
+                sendMessageCtl.isShowInputView = YES;
                 [strongSelf.navigationController pushViewController:sendMessageCtl animated:YES];
             });
         } else {

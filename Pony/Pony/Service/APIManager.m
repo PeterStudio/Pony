@@ -12,35 +12,25 @@
 
 @implementation APIManager
 
-- (id)initWithBaseURL:(NSURL *)url {
-    self = [super initWithBaseURL:url];
-    if (!self) {
-        return nil;
-    }
-    // Requset JSON
-    self.requestSerializer = [AFJSONRequestSerializer serializer];
-    // Response JSON
-    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
-    [self setResponseSerializer:responseSerializer];
-    [self.requestSerializer setValue:[USERMANAGER token] forHTTPHeaderField:@"X-Auth-Token"];
-    // Timte Out
-    self.requestSerializer.timeoutInterval = 30;
-    return self;
-}
-
 #pragma mark - Static Public
 + (instancetype)sharedManager {
-    static APIManager *sessionManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sessionManager = [[APIManager alloc] initWithBaseURL:[NSURL URLWithString:API_BASE_URL_STRING]];
-    });
+    APIManager *sessionManager = [[APIManager alloc] initWithBaseURL:[NSURL URLWithString:API_BASE_URL_STRING]];
+    // Requset JSON
+    sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    // Response JSON
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+    [sessionManager setResponseSerializer:responseSerializer];
+    [sessionManager.requestSerializer setValue:[USERMANAGER token] forHTTPHeaderField:@"X-Auth-Token"];
+    NSLog(@"token == %@",[USERMANAGER token]);
+    // Timte Out
+    sessionManager.requestSerializer.timeoutInterval = 30;
+    
     return sessionManager;
 }
 
 #pragma mark - Public
 
-- (void)wPost:(NSString *)URLString
+- (void)wwPost:(NSString *)URLString
    parameters:(id)parameters
       success:(void (^)(id responseObject))success
         error:(void (^)(NSError * err))error

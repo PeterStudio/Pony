@@ -54,7 +54,7 @@
 - (void)grapUserInfo{
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIMoneyGet parameters:@{@"moneyUserId":self.uModel.user_id} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIMoneyGet parameters:@{@"moneyUserId":self.uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
         self.model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
         self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",self.model.moneyBalance];

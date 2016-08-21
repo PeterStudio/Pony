@@ -67,7 +67,7 @@
 
 
 #define BOLE_QIANGDAN_NOTIC     @"BOLE_QIANGDAN_NOTIC"
-
+#define XIAOMA_CALL_NOTIC       @"XIAOMA_CALL_NOTIC"
 
 
 #endif /* Constant_h */

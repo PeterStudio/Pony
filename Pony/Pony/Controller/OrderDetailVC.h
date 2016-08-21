@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "HROrderM.h"
 
 @interface OrderDetailVC : BaseViewController
-
+@property (strong, nonatomic) HROrderM * model;
 @end

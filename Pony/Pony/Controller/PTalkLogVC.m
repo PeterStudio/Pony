@@ -11,6 +11,7 @@
 #import "PTalkLogCell.h"
 #import "PTalkLogM.h"
 #import "HRInfoVC.h"
+#import "JCHATConversationViewController.h"
 
 @interface PTalkLogVC ()<PTalkLogCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -55,7 +56,7 @@
 - (void)requestDataWithPage:(NSInteger)page{
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)
-    [APIHTTP wPost:kAPITalkGetlist parameters:@{@"pageNum": [NSString stringWithFormat:@"%ld",(long)page],@"pageSize": @"10",@"requestUserId": @"requestUserId"} success:^(NSArray * data) {
+    [APIHTTP wwPost:kAPITalkGetlist parameters:@{@"pageNum": [NSString stringWithFormat:@"%ld",(long)page],@"pageSize": @"10",@"requestUserId": @"requestUserId"} success:^(NSArray * data) {
         @strongify(self)
         if (_isPulling) {
             [self.dataSourceArray removeAllObjects];
@@ -114,6 +115,29 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 70.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = self.dataSourceArray[indexPath.row];
+    PTalkLogM * model = [[PTalkLogM alloc] initWithDictionary:dic error:nil];
+    
+    __block JCHATConversationViewController *sendMessageCtl =[[JCHATConversationViewController alloc] init];//!!
+    __weak typeof(self)weakSelf = self;
+    sendMessageCtl.superViewController = self;
+    [JMSGConversation createSingleConversationWithUsername:model.im_bole completionHandler:^(id resultObject, NSError *error) {
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        if (error == nil) {
+            sendMessageCtl.conversation = resultObject;
+            JCHATMAINTHREAD(^{
+                sendMessageCtl.hidesBottomBarWhenPushed = YES;
+                sendMessageCtl.isShowInputView = NO;
+                sendMessageCtl.bole_ID = model.reponse_user_id;
+                [strongSelf.navigationController pushViewController:sendMessageCtl animated:YES];
+            });
+        } else {
+            DDLogDebug(@"createSingleConversationWithUsername");
+        }
+    }];
 }
 
 #pragma mark - PTalkLogCellDelegate

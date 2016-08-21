@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HROrderM.h"
 
 @interface OrderCell : UITableViewCell
-
+@property (nonatomic, strong) HROrderM * entity;
 @end

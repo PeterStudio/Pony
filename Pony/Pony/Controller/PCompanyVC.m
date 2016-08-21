@@ -25,7 +25,7 @@
 
 - (void)requestToService{
     [MBProgressHUD showMessage:nil toView:self.tableView];
-    [APIHTTP wPost:kAPICompanySearch parameters:@{@"industry_id":self.obj.id,@"pageSize":@"0",@"pageNum":@"100000"} success:^(NSArray * responseObject) {
+    [APIHTTP wwPost:kAPICompanySearch parameters:@{@"industry_id":self.obj.id,@"pageSize":@"0",@"pageNum":@"100000"} success:^(NSArray * responseObject) {
         [self.dataList addObjectsFromArray:responseObject];
         [self.tableView reloadData];
     } error:^(NSError *err) {

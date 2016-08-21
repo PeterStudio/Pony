@@ -515,9 +515,9 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="DaK-FR-oU5">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XJO-iX-QdL" customClass="HRCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HRCell" id="XJO-iX-QdL" customClass="HRCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XJO-iX-QdL" id="Hqk-ge-Smm">
@@ -722,6 +722,7 @@
                         <outlet property="moneyLab" destination="iBa-ju-K3p" id="T1j-Qy-9Sm"/>
                         <outlet property="nameLab" destination="LcT-Os-d4W" id="BW3-o9-bsQ"/>
                         <outlet property="statusLab" destination="4bB-tP-twU" id="oZk-lI-XXV"/>
+                        <outlet property="tableView" destination="DaK-FR-oU5" id="fIN-dg-EAL"/>
                         <segue destination="jaf-Vw-bxV" kind="show" identifier="HRAuthTVC" id="g1h-0I-Gx7"/>
                     </connections>
                 </viewController>
@@ -1483,6 +1484,8 @@
                         <outlet property="logoutBtn" destination="yez-IV-kxA" id="cnE-IV-5sq"/>
                         <outlet property="moneyLab" destination="vSI-yC-wKb" id="NES-KY-cNn"/>
                         <outlet property="nameLab" destination="g1q-nX-l19" id="noU-zz-PUd"/>
+                        <outlet property="todayCallNumLab" destination="UF3-7v-p3T" id="TQi-uL-Awk"/>
+                        <outlet property="todayMoneyLab" destination="3lz-sd-JmL" id="YKu-6J-wGM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7GK-Ze-jAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1498,7 +1501,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="70" id="50A-UA-EJu" customClass="OrderCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="70" id="50A-UA-EJu" customClass="OrderCell">
                                 <rect key="frame" x="0.0" y="92" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50A-UA-EJu" id="WLh-bI-HLR">
@@ -1607,7 +1610,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="dB0-im-rcf" kind="show" id="DJ7-3Q-F0d"/>
+                        <segue destination="dB0-im-rcf" kind="show" identifier="OrderDetailVC" id="DJ7-3Q-F0d"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fm-09-ldc" userLabel="First Responder" sceneMemberID="firstResponder"/>

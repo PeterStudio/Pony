@@ -53,7 +53,7 @@
 - (void)requestDataWithPage:(NSInteger)page{
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)
-    [APIHTTP wPost:kAPIMoneylogGetlist parameters:@{@"logType": @"0",@"moneyToUser": self.moneyUserId,@"pageNum": [NSString stringWithFormat:@"%ld",(long)page],@"pageSize": @"10"} success:^(NSArray * data) {
+    [APIHTTP wwPost:kAPIMoneylogGetlist parameters:@{@"logType": @"0",@"moneyToUser": self.moneyUserId,@"pageNum": [NSString stringWithFormat:@"%ld",(long)page],@"pageSize": @"10"} success:^(NSArray * data) {
         @strongify(self)
         if (_isPulling) {
             [self.dataSourceArray removeAllObjects];

@@ -344,7 +344,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <rect key="contentStretch" x="0.29999999999999999" y="0.29999999999999999" width="0.10000000000000001" height="0.10000000000000001"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMO-EI-COL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMO-EI-COL">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="beD-OU-tnc">
@@ -363,6 +363,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <mask key="constraints">
                                                 <include reference="beD-OU-tnc"/>
                                                 <include reference="fgH-VK-EpB"/>
@@ -710,7 +711,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <rect key="contentStretch" x="0.29999999999999999" y="0.29999999999999999" width="0.10000000000000001" height="0.10000000000000001"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfJ-DK-vIw">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfJ-DK-vIw">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="a5t-aU-gCj"/>
@@ -727,6 +728,7 @@
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <mask key="constraints">
                                                 <include reference="a5t-aU-gCj"/>
                                                 <include reference="k0U-ZT-mA0"/>

@@ -84,6 +84,7 @@
     UIStoryboard * sb = [UIStoryboard storyboardWithName:@"HR" bundle:[NSBundle mainBundle]];
     HRInfoVC * vc = [sb instantiateViewControllerWithIdentifier:@"HRInfoVC"];
     vc.userId = model.userid;
+    vc.isRepeatCall = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

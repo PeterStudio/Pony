@@ -23,6 +23,17 @@
     // Initialization code
 }
 
+- (void)setEntity:(HROrderM *)entity{
+    [self.headIV setImage:[UIImage imageNamed:entity.user_img]];
+    self.timeLab.text = entity.talk_end_time;
+    self.nameLab.text = entity.user_nickname;
+    if ([@"1" isEqualToString:entity.talk_status]) {
+        self.statusLab.text = @"已完成";
+    }else{
+        self.statusLab.text = @"未完成";
+    }
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

@@ -65,7 +65,7 @@
     NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"code":_codeTextField.text};
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIForget parameters:parameters success:^(id responseObject) {
+    [APIHTTP wwPost:kAPIForget parameters:parameters success:^(id responseObject) {
         @strongify(self)
         [self performSegueWithIdentifier:@"ResetVC" sender:nil];
     } error:^(NSError *err) {

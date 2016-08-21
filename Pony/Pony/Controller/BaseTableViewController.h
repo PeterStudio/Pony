@@ -12,7 +12,7 @@
 #import "MBProgressHUD+LangExt.h"
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+//#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
 #import "APIManager.h"
@@ -26,5 +26,5 @@
 #import "UserManager.h"
 
 @interface BaseTableViewController : UITableViewController
-
+- (void)click_backBarButtonItem;
 @end

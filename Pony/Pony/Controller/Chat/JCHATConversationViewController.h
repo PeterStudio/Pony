@@ -6,7 +6,8 @@
 //  Copyright (c) 2014年 Apple. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 #import "JCHATToolBar.h"
 #import "JCHATMoreView.h"
 #import "JCHATRecordAnimationView.h"
@@ -18,6 +19,10 @@
 #import "JCHATMessageTableViewCell.h"
 #import "JCHATPhotoPickerViewController.h"
 
+#import "PAddTalkM.h"
+
+
+
 #define interval 60*2 //static =const
 #define navigationRightButtonRect CGRectMake(0, 0, 14, 17)
 #define messageTableColor [UIColor colorWithRed:236/255.0 green:237/255.0 blue:240/255.0 alpha:1]
@@ -25,7 +30,7 @@
 static NSInteger const messagePageNumber = 25;
 static NSInteger const messagefristPageNumber = 20;
 
-@interface JCHATConversationViewController : UIViewController <
+@interface JCHATConversationViewController : BaseViewController <
 UITableViewDataSource,
 UITableViewDelegate,
 SendMessageDelegate,
@@ -54,6 +59,10 @@ UITextViewDelegate>
 @property(strong, nonatomic) NSString *targetName;
 @property(assign, nonatomic) BOOL isConversationChange;
 @property(weak,nonatomic)id superViewController;
+
+@property (assign, nonatomic) BOOL isShowInputView;
+@property (copy, nonatomic) NSString * bole_ID;
+@property (strong, nonatomic) PAddTalkM * pTalkM;
 
 /**
  *  管理录音工具对象

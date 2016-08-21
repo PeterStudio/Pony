@@ -12,7 +12,7 @@
 #import "MBProgressHUD+LangExt.h"
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
+//#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
 
@@ -28,4 +28,5 @@
 
 @interface BaseViewController : UIViewController
 
+- (void)click_backBarButtonItem;
 @end

@@ -23,7 +23,15 @@
     // Initialization code
 }
 
+- (void)setEntity:(PonyHJNoticM *)entity{
+    [self.headIV setImage:[UIImage imageNamed:entity.user_img]];
+    self.nameLab.text = entity.nickName;
+}
+
 - (IBAction)grapAction:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(boleQDAction:)]) {
+        [self.delegate boleQDAction:self.indx];
+    }
 }
 
 

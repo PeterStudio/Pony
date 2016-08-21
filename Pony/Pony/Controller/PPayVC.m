@@ -25,7 +25,7 @@
     NSString * body = [NSString stringWithFormat:@"充值金额:%@元",self.sum];
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIMoneyCashSign parameters:@{@"subject":title,@"body":body,@"total":self.sum} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIMoneyCashSign parameters:@{@"subject":title,@"body":body,@"total":self.sum} success:^(NSDictionary * responseObject) {
         @strongify(self)
         PaySignM * model = [[PaySignM alloc] initWithDictionary:responseObject error:nil];
         if (model.orderwithsign) {

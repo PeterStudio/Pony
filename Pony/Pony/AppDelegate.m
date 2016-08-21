@@ -12,6 +12,7 @@
 
 #import "UserManager.h"
 #import "Macors.h"
+#import "PonyHJNoticM.h"
 
 /** ViewController*/
 #import "HRVC.h"
@@ -414,6 +415,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     DDLogDebug(@"Action - didReceiveRemoteNotification:fetchCompletionHandler");
     [JPUSHService handleRemoteNotification:userInfo];
+    
+    PonyHJNoticM * model = [[PonyHJNoticM alloc] initWithDictionary:userInfo error:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:XIAOMA_CALL_NOTIC object:model];
     NSLog(@"收到通知 - %@", userInfo);
     completionHandler(UIBackgroundFetchResultNewData);
 }

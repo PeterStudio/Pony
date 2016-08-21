@@ -27,8 +27,28 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initializeProperty];
+        [self configNav];
     }
     return self;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        [self configNav];
+    }
+    return self;
+}
+
+- (void)configNav{
+    UIBarButtonItem * backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Return-Grey"] style:UIBarButtonItemStylePlain target:self action:@selector(click_backBarButtonItem)];
+    backItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    self.navigationItem.leftBarButtonItem = backItem;
+}
+
+- (void)click_backBarButtonItem{
+    [MBProgressHUD hideHUD];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {

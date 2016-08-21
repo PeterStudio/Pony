@@ -29,7 +29,7 @@ static NSString * cellIdentifier = @"BaseCell";
 - (void)requestData{
     [MBProgressHUD showMessage:nil toView:self.tableView];
     @weakify(self)
-    [APIHTTP wPost:kAPIIndustryGetlist parameters:@{@"pageSize":@"0",@"pageNum":@""} success:^(NSArray * responseObject) {
+    [APIHTTP wwPost:kAPIIndustryGetlist parameters:@{@"pageSize":@"0",@"pageNum":@""} success:^(NSArray * responseObject) {
         @strongify(self)
         [self.dataSourceArray addObjectsFromArray:responseObject];
         [self.tableView reloadData];

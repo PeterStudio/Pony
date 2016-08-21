@@ -34,7 +34,7 @@
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":self.dealPswTF.text} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":self.dealPswTF.text} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"设置成功！"];
         [self.navigationController popViewControllerAnimated:YES];

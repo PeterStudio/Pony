@@ -10,8 +10,10 @@
 #import "HRVM.h"
 #import <JMessage/JMessage.h>
 #import "SingleUserInfoM.h"
+#import "HRCell.h"
+#import "PonyHJNoticM.h"
 
-@interface HRVC ()
+@interface HRVC ()<HRCellDelegate>
 @property (nonatomic, strong) HRVM * hrVM;
 
 @property (strong, nonatomic) IBOutlet UIView *headView;
@@ -20,12 +22,31 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
 @property (weak, nonatomic) IBOutlet UILabel *statusLab;
 @property (weak, nonatomic) IBOutlet UIButton *listenBtn;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
+@property (strong, nonatomic) NSMutableArray * dataSourceArr;
 @property (strong, nonatomic) UserInfoM * uModel;
 @end
 
 @implementation HRVC
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTICE_SWITCH_VC object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (!self.listenBtn.hidden) {
+        if (!self.listenBtn.selected) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
+        }else{
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getXiaoMaNotic:) name:XIAOMA_CALL_NOTIC object:nil];
+        }
+    }
+    [self singleUserInfo];
+}
 
 - (void)refrashUI{
     self.uModel = [USERMANAGER userInfoM];
@@ -43,19 +64,22 @@
     }
     
     if ([@"1" isEqualToString:_uModel.user_auth]) {
+//        [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getXiaoMaNotic:) name:XIAOMA_CALL_NOTIC object:nil];
         self.listenBtn.hidden = NO;
     }else{
+//        [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
         self.listenBtn.hidden = YES;
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = nil;
+    self.dataSourceArr = [[NSMutableArray alloc] init];
     [self refrashUI];
-    [self singleUserInfo];
+//    [self singleUserInfo];
 }
-
-
 
 #pragma mark - private
 
@@ -65,7 +89,7 @@
 
 - (void)singleUserInfo{
     @weakify(self)
-    [APIHTTP wPost:kAPIGet parameters:@{@"userId":_uModel.user_id} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIGet parameters:@{@"userId":_uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
         SingleUserInfoM * m = [[SingleUserInfoM alloc] initWithDictionary:responseObject error:nil];
         [USERMANAGER saveUserAuth:m.userAuth];
@@ -78,8 +102,6 @@
 //        [MBProgressHUD hideHUD];
     }];
 }
-
-
 
 - (IBAction)switchToPony:(id)sender {
     [MBProgressHUD showMessage:nil];
@@ -151,10 +173,12 @@
     if (!self.listenBtn.selected) {
         [MBProgressHUD showMessage:nil];
         @weakify(self)
-        [APIHTTP wPost:kAPITalkListenTalk parameters:@{@"status":@"1"} success:^(NSDictionary * responseObject) {
+        [APIHTTP wwPost:kAPITalkListenTalk parameters:@{@"status":@"1"} success:^(NSDictionary * responseObject) {
             @strongify(self)
             self.listenBtn.selected = YES;
             [MBProgressHUD showSuccess:@"听单成功！"];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getXiaoMaNotic:) name:XIAOMA_CALL_NOTIC object:nil];
         } error:^(NSError *err) {
             [MBProgressHUD showError:err.localizedDescription toView:self.view];
         } failure:^(NSError *err) {
@@ -165,10 +189,13 @@
     }else{
         [MBProgressHUD showMessage:nil];
         @weakify(self)
-        [APIHTTP wPost:kAPITalkListenTalk parameters:@{@"status":@"0"} success:^(NSDictionary * responseObject) {
+        [APIHTTP wwPost:kAPITalkListenTalk parameters:@{@"status":@"0"} success:^(NSDictionary * responseObject) {
             @strongify(self)
             self.listenBtn.selected = NO;
             [MBProgressHUD showSuccess:@"取消听单成功！"];
+            [self.dataSourceArr removeAllObjects];
+            [self.tableView reloadData];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
         } error:^(NSError *err) {
             [MBProgressHUD showError:err.localizedDescription toView:self.view];
         } failure:^(NSError *err) {
@@ -179,15 +206,35 @@
     }
 }
 
+- (void)getXiaoMaNotic:(NSNotification *)noti{
+    PonyHJNoticM * model = (PonyHJNoticM *)noti.object;
+    if ([@"2" isEqualToString:model.mode]) {
+        [self.dataSourceArr addObject:model];
+        [self.tableView beginUpdates];
+        NSArray *arrInsertRows = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [self.tableView insertRowsAtIndexPaths:arrInsertRows withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView endUpdates];
+    }
+}
 
 #pragma mark - UITableViewDataSource
 
+- (void)configureCell:(HRCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.delegate = self;
+    cell.indx = indexPath;
+    cell.entity = (PonyHJNoticM *)self.dataSourceArr[indexPath.row];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return self.dataSourceArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    return [tableView dequeueReusableCellWithIdentifier:@"HRCell" forIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(HRCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self configureCell:cell atIndexPath:indexPath];
 }
 
 #pragma mark - UITableViewDelegate
@@ -196,8 +243,35 @@
     return _headView;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 60.0f;
+//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 100.0f;
+}
+
+#pragma mark- HRCellDelegate
+
+- (void)boleQDAction:(NSIndexPath *)_indx{
+    PonyHJNoticM * model = (PonyHJNoticM *)self.dataSourceArr[_indx.row];
+    [MBProgressHUD showMessage:nil];
+    @weakify(self)
+    [APIHTTP wwPost:kAPITalkGrabTalk parameters:@{@"virtualTalkid":model.virtualTalkid} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        [MBProgressHUD showSuccess:@"抢单成功！"];
+        [self.dataSourceArr removeObjectAtIndex:_indx.row];
+        [self.tableView beginUpdates];
+        NSArray *arrInsertRows = [NSArray arrayWithObject:_indx];
+        [self.tableView deleteRowsAtIndexPaths:arrInsertRows withRowAnimation:UITableViewRowAnimationRight];
+        [self.tableView endUpdates];
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

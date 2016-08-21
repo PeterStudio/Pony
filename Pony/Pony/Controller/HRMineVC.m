@@ -9,12 +9,17 @@
 #import "HRMineVC.h"
 #import "HRMineVM.h"
 #import "PMoneyM.h"
+#import "TodayBoleStaticsM.h"
 
 @interface HRMineVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
+
+@property (weak, nonatomic) IBOutlet UILabel *todayCallNumLab;
+@property (weak, nonatomic) IBOutlet UILabel *todayMoneyLab;
+
 
 @property (nonatomic, strong) HRMineVM * hrMineVM;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
@@ -26,19 +31,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = nil;
     self.uModel = [USERMANAGER userInfoM];
     [self.headBtn setImage:[UIImage imageNamed:_uModel.user_img] forState:UIControlStateNormal];
     self.nameLab.text = _uModel.user_phone;
     self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",_uModel.balance];
     
     [self getBoleMoney];
-//    [self getBoleStatics];
+    [self getBoleStatics];
 }
 
 - (void)getBoleMoney{
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIMoneyGet parameters:@{@"moneyUserId":_uModel.user_id} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIMoneyGet parameters:@{@"moneyUserId":_uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
         PMoneyM * model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
         self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",model.moneyBalance];
@@ -53,9 +59,11 @@
 
 - (void)getBoleStatics{
     @weakify(self)
-    [APIHTTP wPost:kAPIGetBoleStatics parameters:@{} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIGetBoleStatics parameters:@{} success:^(NSDictionary * responseObject) {
         @strongify(self)
-        
+        TodayBoleStaticsM * model = [[TodayBoleStaticsM alloc] initWithDictionary:responseObject error:nil];
+        self.todayCallNumLab.text = [NSString stringWithFormat:@"今天抢单：%@单",model.bole_count];
+        self.todayMoneyLab.text = [NSString stringWithFormat:@"今日流水：%@¥",model.bole_consume];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {

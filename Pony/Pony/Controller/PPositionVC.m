@@ -30,7 +30,7 @@
 
 - (void)requestToService{
     [MBProgressHUD showMessage:nil toView:self.tableView];
-    [APIHTTP wPost:kAPIJobSearch parameters:@{@"company_id":self.obj.id,@"pageSize":@"0",@"pageNum":@"10000"} success:^(NSArray * responseObject) {
+    [APIHTTP wwPost:kAPIJobSearch parameters:@{@"company_id":self.obj.id,@"pageSize":@"0",@"pageNum":@"10000"} success:^(NSArray * responseObject) {
         [self.dataList addObjectsFromArray:responseObject];
         [self.tableView reloadData];
     } error:^(NSError *err) {

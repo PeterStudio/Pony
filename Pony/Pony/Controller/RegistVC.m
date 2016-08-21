@@ -71,13 +71,14 @@
         return;
     }
     @weakify(self)
+    _codeBtn.enabled = NO;
     [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:_userNameTextField.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
         @strongify(self)
         if (!error) {
             [self countTime];
             [MBProgressHUD showSuccess:@"获取验证码成功" toView:self.view];
         } else {
-        
+            _codeBtn.enabled = YES;
             [MBProgressHUD showError:@"获取验证码失败，请重新获取" toView:self.view];
         }
     }];
@@ -106,7 +107,7 @@
     NSDictionary * parameters = @{@"userName":_userNameTextField.text,@"userPassword":_passwordTextField.text,@"code":_codeTextField.text};
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wPost:kAPIRegister parameters:parameters success:^(id responseObject) {
+    [APIHTTP wwPost:kAPIRegister parameters:parameters success:^(id responseObject) {
         @strongify(self)
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *err) {
@@ -122,7 +123,6 @@
  *  倒计时
  */
 - (void)countTime{
-    _codeBtn.enabled = NO;
     __block int timeout = VERIFICATION_SUM_TIME - 1;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
