@@ -14,7 +14,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) UITabBarController *tabBarController;
 @property (assign, nonatomic)BOOL isDBMigrating;
-+ (AppDelegate *) appDelegete; 
++ (AppDelegate *) appDelegete;
 
+- (void)appVersionUpdate;
 @end
 

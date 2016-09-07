@@ -37,6 +37,8 @@
         @strongify(self)
         self.isPulling = YES;
         self.page = 1;
+        self.hasMore = YES;
+        self.tableView.mj_footer.state = MJRefreshStateIdle;
         [self requestDataWithPage:self.page];
     }];
     
@@ -148,6 +150,7 @@
     UIStoryboard * sb = [UIStoryboard storyboardWithName:@"HR" bundle:[NSBundle mainBundle]];
     HRInfoVC * vc = [sb instantiateViewControllerWithIdentifier:@"HRInfoVC"];
     vc.userId = model.reponse_user_id;
+    vc.isRepeatCall = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

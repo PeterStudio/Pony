@@ -12,6 +12,8 @@
 #import "SingleUserInfoM.h"
 #import "HRCell.h"
 #import "PonyHJNoticM.h"
+#import "AppDelegate.h"
+
 
 @interface HRVC ()<HRCellDelegate>
 @property (nonatomic, strong) HRVM * hrVM;
@@ -37,6 +39,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[AppDelegate appDelegete] appVersionUpdate];
     if (!self.listenBtn.hidden) {
         if (!self.listenBtn.selected) {
             [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
@@ -64,11 +67,8 @@
     }
     
     if ([@"1" isEqualToString:_uModel.user_auth]) {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getXiaoMaNotic:) name:XIAOMA_CALL_NOTIC object:nil];
         self.listenBtn.hidden = NO;
     }else{
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:XIAOMA_CALL_NOTIC object:nil];
         self.listenBtn.hidden = YES;
     }
 }
@@ -78,7 +78,7 @@
     self.navigationItem.leftBarButtonItem = nil;
     self.dataSourceArr = [[NSMutableArray alloc] init];
     [self refrashUI];
-//    [self singleUserInfo];
+    [self uploadAvatarToJG];
 }
 
 #pragma mark - private
@@ -217,6 +217,15 @@
     }
 }
 
+// 上传头像至极光
+- (void)uploadAvatarToJG{
+    [JMSGUser updateMyInfoWithParameter:UIImageJPEGRepresentation([UIImage imageNamed:self.uModel.user_img], 1) userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
+        if (!error) {
+            NSLog(@"成功上传");
+        }
+    }];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (void)configureCell:(HRCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -239,16 +248,8 @@
 
 #pragma mark - UITableViewDelegate
 
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return _headView;
-}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 60.0f;
-//}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 100.0f;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 12.0f;
 }
 
 #pragma mark- HRCellDelegate

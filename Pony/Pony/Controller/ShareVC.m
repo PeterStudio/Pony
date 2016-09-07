@@ -60,9 +60,13 @@
 
 /**新浪微博*/
 - (IBAction)sina:(id)sender {
-    if (![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]){
-        return ;
-    }
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = AppOfficialURL;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = AppName;
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:AppInfo image:AppIcon location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *shareResponse){
+        if (shareResponse.responseCode == UMSResponseCodeSuccess) {
+            NSLog(@"分享成功！");
+        }
+    }];
 }
 
 /**QQ空间*/

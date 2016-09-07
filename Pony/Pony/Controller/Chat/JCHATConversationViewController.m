@@ -30,6 +30,9 @@
 #import "HRInfoVC.h"
 #import "PEndTalkM.h"
 #import "PFeedBackVC.h"
+#import "PHeartBeatCheckM.h"
+
+// 免费聊天倒计时30秒
 
 @interface JCHATConversationViewController () {
   
@@ -43,10 +46,148 @@
   NSMutableArray *_userArr;//
 }
 
+@property (strong, nonatomic) UIAlertController *mAlertController;
 @end
 
 
 @implementation JCHATConversationViewController//change name chatcontroller
+
+- (void)countDownTime{
+    if (!self.pTalkM) {
+        // 非聊天状态
+        return;
+    }
+    
+    if ([self.pTalkM.free_time intValue] > 0) {
+        UIView * bgV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        [bgV setBackgroundColor:[UIColor whiteColor]];
+        [bgV setAlpha:0.5];
+        [self.view addSubview:bgV];
+        UILabel * lab = [[UILabel alloc] initWithFrame:bgV.bounds];
+        [lab setTextColor:[UIColor redColor]];
+        [lab setFont:[UIFont systemFontOfSize:15]];
+        [lab setTextAlignment:NSTextAlignmentCenter];
+        [bgV addSubview:lab];
+        
+        __block int timeout = [self.pTalkM.free_time intValue] - 1;
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        @weakify(self)
+        dispatch_source_set_event_handler(_timer, ^{
+            @strongify(self)
+            if(timeout<=0){
+                dispatch_source_cancel(_timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self bucklesMoney];
+                    [bgV removeFromSuperview];
+                });
+            }else{
+                int seconds = timeout % [self.pTalkM.free_time intValue];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [lab setText:[NSString stringWithFormat:@"免费聊天倒计时%d秒",seconds]];
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(_timer);
+    }else{
+        [self bucklesMoney];
+    }
+}
+
+// 扣费接口
+- (void)bucklesMoney{
+    //
+    __block int timeout = [self.pTalkM.heartbeat intValue] - 1;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    @weakify(self)
+    dispatch_source_set_event_handler(_timer, ^{
+        @strongify(self)
+        if(timeout<=0){
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @weakify(self)
+                [APIHTTP wwPost:kAPIHeartbeatCheck parameters:@{@"talkid":self.pTalkM.talkid} success:^(NSDictionary * responseObject) {
+                    @strongify(self)
+                    PHeartBeatCheckM * model = [[PHeartBeatCheckM alloc] initWithDictionary:responseObject error:nil];
+                    if ([model.balance floatValue] < [self.pTalkM.fee_per_heart floatValue]) {
+                        // 余额不足
+                        [self showMoneyAlert];
+                    }else{
+                        [self bucklesMoney];
+                    }
+                } error:^(NSError *err) {
+                    @strongify(self)
+                    [self bucklesMoney];
+                    [MBProgressHUD showError:err.localizedDescription toView:self.view];
+                } failure:^(NSError *err) {
+                    @strongify(self)
+                    [self bucklesMoney];
+                    [MBProgressHUD showError:err.localizedDescription toView:self.view];
+                } completion:^{
+                    [MBProgressHUD hideHUDForView:self.view];
+                }];
+            });
+        }else{
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+}
+
+- (void)showMoneyAlert{
+    self.mAlertController = [UIAlertController  alertControllerWithTitle:@"充值金额"  message:nil  preferredStyle:UIAlertControllerStyleAlert];
+    @weakify(self)
+    [self.mAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = @"1";
+        textField.placeholder = @"最低充值金额1元";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }];
+    
+    UITextField * tf = self.mAlertController.textFields[0];
+    tf.delegate = self;
+    [tf addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"立即充值"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             @strongify(self)
+                             [tf resignFirstResponder];
+                             [self performSegueWithIdentifier:@"PPayVC" sender:tf.text];
+                             NSLog(@"Resolving UIAlert Action for tapping OK Button");
+                             [self dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"取消充值"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 @strongify(self)
+                                 [self endTalk];
+                                 NSLog(@"Resolving UIAlertActionController for tapping cancel button");
+                                 [self dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    [self.mAlertController addAction:cancel];
+    [self.mAlertController addAction:ok];
+}
+
+- (void)textFieldDidChangeValue:(UITextField *)sender{
+    UIAlertAction * ok = self.mAlertController.actions[1];
+    if ([sender.text validBlank]) {
+        ok.enabled = NO;
+    }else{
+        ok.enabled =YES;
+    }
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.automaticallyAdjustsScrollViewInsets = NO;
@@ -60,6 +201,7 @@
   [self addNotification];
   [self addDelegate];
   [self getGroupMemberListWithGetMessageFlag:YES];
+    [self countDownTime];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -502,10 +644,19 @@ NSInteger sortMessageType(id object1,id object2,void *cha) {
 }
 
 - (void)click_backBarButtonItem{
-    if (!self.isShowInputView) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定结束聊天吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
-        [alert show];
+    if (self.pTalkM) {
+        // 小马端
+        if (self.isShowInputView) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您确定结束聊天吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+            [alert show];
+        }else{
+            if ([[JCHATAudioPlayerHelper shareInstance] isPlaying]) {
+                [[JCHATAudioPlayerHelper shareInstance] stopAudio];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }else{
+       // 伯乐端
         if ([[JCHATAudioPlayerHelper shareInstance] isPlaying]) {
             [[JCHATAudioPlayerHelper shareInstance] stopAudio];
         }
@@ -1298,9 +1449,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark - Scroll Message TableView Helper Method
 
 - (void)setTableViewInsetsWithBottomValue:(CGFloat)bottom {
-  //    UIEdgeInsets insets = [self tableViewInsetsWithBottomValue:bottom];
-  //    self.messageTableView.contentInset = insets;
-  //    self.messageTableView.scrollIndicatorInsets = insets;
+//      UIEdgeInsets insets = [self tableViewInsetsWithBottomValue:bottom];
+//      self.messageTableView.contentInset = insets;
+//      self.messageTableView.scrollIndicatorInsets = insets;
 }
 
 - (UIEdgeInsets)tableViewInsetsWithBottomValue:(CGFloat)bottom {

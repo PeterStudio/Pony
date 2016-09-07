@@ -44,6 +44,7 @@ UIAlertViewDelegate,
 JMessageDelegate,
 UIScrollViewDelegate,
 JCHATPhotoPickerViewControllerDelegate,
+UITextFieldDelegate,
 UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet JCHATMessageTableView *messageTableView;

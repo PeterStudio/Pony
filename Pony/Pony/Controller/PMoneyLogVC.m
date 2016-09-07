@@ -34,6 +34,8 @@
         @strongify(self)
         self.isPulling = YES;
         self.page = 1;
+        self.hasMore = YES;
+        self.tableView.mj_footer.state = MJRefreshStateIdle;
         [self requestDataWithPage:self.page];
     }];
     

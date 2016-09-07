@@ -32,6 +32,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
+#import "VersionM.h"
+
 // 极光key
 #define JMSSAGE_APPKEY @"fda9d138fe7e4325f225106c"
 
@@ -43,7 +45,7 @@
 #define UmengAppkey @"57511c7567e58e72f7001044"
 
 @interface AppDelegate ()<JMessageDelegate,UIAlertViewDelegate>
-
+@property (nonatomic, strong) VersionM * vM;
 @end
 
 @implementation AppDelegate
@@ -194,12 +196,14 @@
                                           categories:nil];
     
     [self registerJPushStatusNotification];
-    
     return YES;
 }
 
 #pragma - mark JMessageDelegate
 - (void)onLoginUserKicked {
+    [JMSGUser logout:^(id resultObject, NSError *error) {
+        [USERMANAGER logout];
+    }];
     UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"登录状态出错"
                                                        message:@"你已在别的设备上登录!"
                                                       delegate:self
@@ -440,11 +444,51 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     [JPUSHService setBadge:badge];
 }
 
+- (void)appVersionUpdate{
+    @weakify(self)
+    [APIHTTP wwPost:kAPIVersionGet parameters:@{} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        self.vM = [[VersionM alloc] initWithDictionary:responseObject error:nil];
+        if (self.vM.iforceupdate) {
+            // 有更新
+            NSString * leftStr = @"取消";
+            NSString * rightStr = @"立即更新";
+            NSInteger isForce = 0;
+            if ([@"1" isEqualToString:self.vM.iforceupdate]) {
+                // 需强制更新
+                leftStr = @"退出";
+                isForce = 1;
+            }
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:self.vM.supdatetips message:self.vM.sversiondesc delegate:self cancelButtonTitle:leftStr otherButtonTitles:rightStr, nil];
+            alert.tag = isForce;
+            [alert show];
+        }
+        
+    } error:^(NSError *err) {
+    } failure:^(NSError *err) {
+    } completion:^{
+    }];
+}
+
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1200) {
         [self switchStoryboard:USERLOGIC_SB];
+    }else if (alertView.tag == 0){
+        // 非强制更新
+        if (buttonIndex == 1) {
+            // 更新
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.vM.sapkurl?self.vM.sapkurl:@"https://itunes.apple.com/cn/app/mai-ya-dai/id1107869379?mt=8"]];
+        }
+    }else if (alertView.tag == 1){
+        // 强制更新
+        if (buttonIndex == 1) {
+            // 更新
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.vM.sapkurl?self.vM.sapkurl:@"https://itunes.apple.com/cn/app/mai-ya-dai/id1107869379?mt=8"]];
+        }
+        exit(0);
     }
 }
 

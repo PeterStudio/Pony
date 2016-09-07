@@ -10,13 +10,15 @@
 #import "PPayVC.h"
 #import "PMoneyM.h"
 #import "PMoneyLogVC.h"
-@interface PMineVC()<UIAlertViewDelegate>
+#import "PublicCustomWebVC.h"
+
+@interface PMineVC()<UIAlertViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
-@property (strong, nonatomic) UIAlertView * cusAlertV;
+@property (strong, nonatomic) UIAlertController *mAlertController;
 @property (strong, nonatomic) UserInfoM * uModel;
 @property (strong, nonatomic) PMoneyM * model;
 @end
@@ -29,6 +31,12 @@
     [self grapUserInfo];
 }
 
+- (void)click_helpBarButtonItem{
+    PublicCustomWebVC * webVC = [[PublicCustomWebVC alloc] init];
+    webVC.docUrl = @"http://cdn.xiaomahome.com/protocrol/使用手册.html";
+    [self.navigationController pushViewController:webVC animated:YES];
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.uModel = [USERMANAGER userInfoM];
@@ -36,11 +44,49 @@
     self.nameLab.text = self.uModel.user_phone;
     self.moneyLab.text = @"我的伯乐币:0.0¥";//[NSString stringWithFormat:@"我的伯乐币:%@¥",self.uModel.balance];
     
-    self.cusAlertV = [[UIAlertView alloc] initWithTitle:@"充值金额" message:nil delegate:self cancelButtonTitle:@"取消充值" otherButtonTitles:@"立即充值", nil];
-    [self.cusAlertV setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    UITextField *moneyField = [self.cusAlertV textFieldAtIndex:0];
-    moneyField.placeholder = @"请输入充值金额";
-    moneyField.keyboardType = UIKeyboardTypeDecimalPad;
+    UIBarButtonItem * helpItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStylePlain target:self action:@selector(click_helpBarButtonItem)];
+    helpItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    self.navigationItem.rightBarButtonItem = helpItem;
+    
+    
+    self.mAlertController = [UIAlertController  alertControllerWithTitle:@"充值金额"  message:nil  preferredStyle:UIAlertControllerStyleAlert];
+    @weakify(self)
+    [self.mAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.text = @"1";
+        textField.placeholder = @"最低充值金额1元";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }];
+    
+    UITextField * tf = self.mAlertController.textFields[0];
+    tf.delegate = self;
+    [tf addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"立即充值"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             @strongify(self)
+                             [tf resignFirstResponder];
+                             [self performSegueWithIdentifier:@"PPayVC" sender:tf.text];
+                             NSLog(@"Resolving UIAlert Action for tapping OK Button");
+                             [self dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"取消充值"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 @strongify(self)
+                                 NSLog(@"Resolving UIAlertActionController for tapping cancel button");
+                                 [self dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    [self.mAlertController addAction:cancel];
+    [self.mAlertController addAction:ok];
 }
 
 - (IBAction)logout:(id)sender {
@@ -109,7 +155,16 @@
 
 // 充值
 - (IBAction)enterMoney:(id)sender {
-    [self.cusAlertV show];
+    [self presentViewController:self.mAlertController animated:YES completion:nil];
+}
+
+- (void)textFieldDidChangeValue:(UITextField *)sender{
+    UIAlertAction * ok = self.mAlertController.actions[1];
+    if ([sender.text validBlank]) {
+        ok.enabled = NO;
+    }else{
+        ok.enabled =YES;
+    }
 }
 
 // 提现

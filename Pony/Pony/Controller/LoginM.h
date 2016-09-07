@@ -20,6 +20,10 @@
 @property (copy, nonatomic) NSString<Optional> * user_nickname;
 @property (copy, nonatomic) NSString<Optional> * user_phone;
 @property (copy, nonatomic) NSString<Optional> * xiaoma_im_id;
+
+@property (copy, nonatomic) NSString<Optional> * bolebi_rate;
+@property (copy, nonatomic) NSString<Optional> * bolebi_rmb_max;
+@property (copy, nonatomic) NSString<Optional> * bolebi_tax;
 @end
 
 @interface LoginM : JSONModel

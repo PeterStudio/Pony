@@ -32,7 +32,7 @@
 @interface HRCommentStatisticsM : JSONModel
 @property (nonatomic, copy) NSString<Optional> * comment_count;
 @property (nonatomic, copy) NSString<Optional> * comment_title;
-@property (nonatomic, copy) NSString<Optional> * user_id;
+//@property (nonatomic, copy) NSString<Optional> * user_id;
 @end
 
 @interface HRInfoM : JSONModel

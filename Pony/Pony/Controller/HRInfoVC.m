@@ -57,6 +57,8 @@
         [btn setSelected:YES];
     }
     
+    [self.tableView reloadData];
+    
     if (!self.isRepeatCall) {
         return;
     }
@@ -78,8 +80,6 @@
     }else{
         self.navigationController.toolbarHidden = YES;
     }
-    
-    
 }
 
 - (void)requestToService{
@@ -138,6 +138,42 @@
     }];
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    NSInteger num = self.hrInfoM.commentStatistics.count / 3 + 1;
+    return self.hrInfoM.commentStatistics.count>0?(num * 40.0f + 30.0f + 25.0f) : 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView * v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 150)];
+    
+    UILabel * infoLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 300, 15)];
+    [infoLab setText:@"用户评价"];
+    [infoLab setTextColor:[UIColor blackColor]];
+    [infoLab setFont:[UIFont systemFontOfSize:15.0f]];
+    [infoLab setBackgroundColor:[UIColor clearColor]];
+    [v addSubview:infoLab];
+    
+    CGFloat w = (self.tableView.bounds.size.width - 50)/3.0;
+    CGFloat h = 40.0f;
+    
+    for (int i = 0; i < self.hrInfoM.commentStatistics.count; i++) {
+        HRCommentStatisticsM * cM = self.hrInfoM.commentStatistics[i];
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(15 + (10 + w)*(i%3), 25 + 15 + (15 + w)*(i/3), w, h)];
+        NSString * t = [NSString stringWithFormat:@"%@(%@)",cM.comment_title,cM.comment_count];
+        [btn setTitle:t forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        [btn setBackgroundColor:[UIColor whiteColor]];
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = 2;
+        btn.layer.borderWidth = 1.0f;
+        btn.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        [v addSubview:btn];
+    }
+    
+    return v;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

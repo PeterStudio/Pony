@@ -17,4 +17,18 @@
 @property (nonatomic, copy) NSString<Optional> * expire_time;
 @property (nonatomic, copy) NSString<Optional> * virtualTalkid;
 @property (nonatomic, copy) NSString<Optional> * nickName;
+@property (nonatomic, copy) NSString<Optional> * _j_msgid;
+@property (nonatomic, copy) NSString<Optional> * _j_type;
+
+
+
+@property (nonatomic, copy) NSString<Optional> * chattype;
+@property (nonatomic, copy) NSString<Optional> * from;
+@property (nonatomic, copy) NSString<Optional> * im_bole;
+@property (nonatomic, copy) NSString<Optional> * im_xiaoma;
+@property (nonatomic, copy) NSString<Optional> * platform;
+@property (nonatomic, copy) NSString<Optional> * sessionid;
+@property (nonatomic, copy) NSString<Optional> * timestamp;
+@property (nonatomic, copy) NSString<Optional> * to;
+
 @end

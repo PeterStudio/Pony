@@ -15,6 +15,7 @@
 #import "MBProgressHUD+LangExt.h"
 #import "JCHATAlertViewWait.h"
 #import "AppDelegate.h"
+#import "PonyHJNoticM.h"
 
 #define kHRBackBtnFrame CGRectMake(0, 0, 50, 30)
 #define kHRBubbleBtnColor UIColorFromRGB(0x4880d7)
@@ -31,9 +32,30 @@
 
 @implementation HRChatVC
 
+
+- (void)getXiaoMaNotic:(NSNotification *)noti{
+    PonyHJNoticM * model = (PonyHJNoticM *)noti.object;
+    if ([@"1" isEqualToString:model.mode]) {
+        // 小马结束聊天
+        [self.navigationController popToViewController:self animated:YES];
+        for (JMSGConversation *conversation in _conversationArr) {
+            JMSGUser * jmsgUser = conversation.target;
+            if ([jmsgUser.username isEqualToString:model.im_xiaoma]) {
+                [JMSGConversation deleteSingleConversationWithUsername:((JMSGUser *)conversation.target).username];
+                [_conversationArr removeObject:conversation];
+                [self.tableView reloadData];
+                break;
+            }
+        }
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getXiaoMaNotic:) name:XIAOMA_CALL_NOTIC object:nil];
     
     DDLogDebug(@"Action - viewDidLoad");
     
@@ -218,7 +240,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     DDLogDebug(@"Action - viewDidAppear");
     [super viewDidAppear:YES];
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -338,7 +359,6 @@ NSInteger sortHRType(id object1,id object2,void *cha) {
     JCHATConversationViewController *sendMessageCtl =[[JCHATConversationViewController alloc] init];
     sendMessageCtl.hidesBottomBarWhenPushed = YES;
     sendMessageCtl.superViewController = self;
-//    sendMessageCtl.bole_ID = strongSelf.userId;
     sendMessageCtl.isShowInputView = YES;
     JMSGConversation *conversation = [_conversationArr objectAtIndex:indexPath.row];
     sendMessageCtl.conversation = conversation;
@@ -349,6 +369,11 @@ NSInteger sortHRType(id object1,id object2,void *cha) {
 }
 
 - (void)saveBadge:(NSInteger)badge {
+    if (0 == badge) {
+        self.navigationController.tabBarItem.badgeValue = nil;
+    }else{
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",badge];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%zd",badge] forKey:kBADGE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

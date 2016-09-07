@@ -75,7 +75,7 @@
 #define kAPIMoneyCashSign           @"money/cashSign"             // 客户端签名接口
 #define kAPIMoneyCallback           @"money/callback"             // 支付宝回调接口
 
-
+#define kAPIVersionGet              @"version/get"              // 版本更新
 
 
 

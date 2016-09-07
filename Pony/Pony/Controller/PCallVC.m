@@ -111,9 +111,13 @@
 }
 
 - (void)getBoleQDNotic:(NSNotification *)noti{
+    NSData * data = [noti.object dataUsingEncoding:NSUTF8StringEncoding];
+//    if (!data) {
+//        return;
+//    }
     dispatch_source_cancel(self._timer);
     [[NSNotificationCenter defaultCenter] removeObserver:self name:BOLE_QIANGDAN_NOTIC object:nil];
-    NSDictionary * dic = [self toArrayOrNSDictionary:[noti.object dataUsingEncoding:NSASCIIStringEncoding]];
+    NSDictionary * dic = [self toArrayOrNSDictionary:data];
     BoleQDNoticM * model = [[BoleQDNoticM alloc] initWithDictionary:dic error:nil];
     pReceiveBoleListVC.entity = model;
     [self.navigationController pushViewController:pReceiveBoleListVC animated:YES];

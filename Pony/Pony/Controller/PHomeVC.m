@@ -19,6 +19,8 @@
 #import "CompanyLM.h"
 #import "PositionLM.h"
 
+#import "AppDelegate.h"
+
 @interface PHomeVC ()
 
 @property (nonatomic, strong) ProfessionM * professionM;
@@ -31,6 +33,11 @@
 @end
 
 @implementation PHomeVC
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[AppDelegate appDelegete] appVersionUpdate];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -9,6 +9,7 @@
 #import "RegistVC.h"
 #import "RegistVM.h"
 #import <SMS_SDK/SMSSDK.h>
+#import "PublicCustomWebVC.h"
 
 @interface RegistVC ()
 
@@ -162,6 +163,13 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
+- (IBAction)registProtolDoc:(id)sender {
+    PublicCustomWebVC * webVC = [[PublicCustomWebVC alloc] init];
+    webVC.docUrl = @"http://cdn.xiaomahome.com/protocrol/用户协议.html";
+    [self.navigationController pushViewController:webVC animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

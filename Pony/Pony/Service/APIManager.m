@@ -21,6 +21,7 @@
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     [sessionManager setResponseSerializer:responseSerializer];
     [sessionManager.requestSerializer setValue:[USERMANAGER token] forHTTPHeaderField:@"X-Auth-Token"];
+    [sessionManager.requestSerializer setValue:@"1" forHTTPHeaderField:@"channel"];
     NSLog(@"token == %@",[USERMANAGER token]);
     // Timte Out
     sessionManager.requestSerializer.timeoutInterval = 30;
