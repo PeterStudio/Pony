@@ -21,9 +21,9 @@
 @property (copy, nonatomic) NSString<Optional> * user_phone;
 @property (copy, nonatomic) NSString<Optional> * xiaoma_im_id;
 
-@property (copy, nonatomic) NSString<Optional> * bolebi_rate;
-@property (copy, nonatomic) NSString<Optional> * bolebi_rmb_max;
-@property (copy, nonatomic) NSString<Optional> * bolebi_tax;
+@property (copy, nonatomic) NSString<Optional> * bolebi_rate;       // 伯乐币兑换比例
+@property (copy, nonatomic) NSString<Optional> * bolebi_rmb_max;    // 提现最大额
+@property (copy, nonatomic) NSString<Optional> * bolebi_tax;        // 服务费比例
 @end
 
 @interface LoginM : JSONModel

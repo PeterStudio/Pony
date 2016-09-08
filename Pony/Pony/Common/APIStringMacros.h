@@ -77,9 +77,9 @@
 
 #define kAPIVersionGet              @"version/get"              // 版本更新
 
-
-
-
+#define kAPIAlipayInfo              @"alipay/cashout/searchbindalipay"
+#define kAPIAlipayBind              @"alipay/cashout/bindalipay"
+#define kAPIAlipayCashOut           @"alipay/cashout/addCashOut"
 
 
 

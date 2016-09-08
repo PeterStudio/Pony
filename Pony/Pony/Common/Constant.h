@@ -15,6 +15,8 @@
 #define VERSION_NUM_FOR_GUIDE    1      //备注：如果需要显示新的引导页，该变量＋1
 #define VERSION_NUM_FOR_GUIDE_KEY       @"VERSION_NUM_FOR_GUIDE_KEY"
 
+/**版本控制(默认1开始)*/
+#define VERSION_NUMBER_KEY      @"VERSION_NUMBER_KEY"
 
 #define DWRootViewController    [[[[UIApplication sharedApplication] delegate] window] rootViewController]
 #define DWRootView              [[[UIApplication sharedApplication] keyWindow].subviews lastObject]

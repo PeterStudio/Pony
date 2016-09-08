@@ -468,21 +468,28 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     [APIHTTP wwPost:kAPIVersionGet parameters:@{} success:^(NSDictionary * responseObject) {
         @strongify(self)
         self.vM = [[VersionM alloc] initWithDictionary:responseObject error:nil];
-        if (self.vM.iforceupdate) {
-            // 有更新
-            NSString * leftStr = @"取消";
-            NSString * rightStr = @"立即更新";
-            NSInteger isForce = 0;
-            if ([@"1" isEqualToString:self.vM.iforceupdate]) {
-                // 需强制更新
-                leftStr = @"退出";
-                isForce = 1;
+        if (self.vM.iversioncode) {
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:VERSION_NUMBER_KEY]) {
+                NSString * str = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION_NUMBER_KEY];
+                if ([str integerValue] < [self.vM.iversioncode integerValue]) {
+                    // 有更新
+                    NSString * leftStr = @"取消";
+                    NSString * rightStr = @"立即更新";
+                    NSInteger isForce = 0;
+                    if ([@"1" isEqualToString:self.vM.iforceupdate]) {
+                        // 需强制更新
+                        leftStr = @"退出";
+                        isForce = 1;
+                    }
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:self.vM.supdatetips message:self.vM.sversiondesc delegate:self cancelButtonTitle:leftStr otherButtonTitles:rightStr, nil];
+                    alert.tag = isForce;
+                    [alert show];
+                }
+            }else{
+                // 第一次安装
+                [[NSUserDefaults standardUserDefaults] setObject:self.vM.iversioncode forKey:VERSION_NUMBER_KEY];
             }
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:self.vM.supdatetips message:self.vM.sversiondesc delegate:self cancelButtonTitle:leftStr otherButtonTitles:rightStr, nil];
-            alert.tag = isForce;
-            [alert show];
         }
-        
     } error:^(NSError *err) {
     } failure:^(NSError *err) {
     } completion:^{

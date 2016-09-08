@@ -109,6 +109,9 @@
 		0B1C1D631D2D1D0E00746192 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */; };
 		0B1C1D651D2D1D8500746192 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D641D2D1D8500746192 /* libc++.tbd */; };
 		0B1C1D671D2D1D9D00746192 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */; };
+		0B21C6051D81055E00E17ADF /* BindZhiFuBaoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21C6041D81055E00E17ADF /* BindZhiFuBaoVC.m */; };
+		0B21C6081D81069000E17ADF /* GetMoneyFormPonyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21C6071D81069000E17ADF /* GetMoneyFormPonyVC.m */; };
+		0B21C60B1D8133AC00E17ADF /* SearchBindAlipayM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21C60A1D8133AC00E17ADF /* SearchBindAlipayM.m */; };
 		0B272AD11D7FF02C000BF17A /* PayReturnM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B272AD01D7FF02C000BF17A /* PayReturnM.m */; };
 		0B2B1FDB1D3F74D9003C3ADF /* HRAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDA1D3F74D9003C3ADF /* HRAuthTVC.m */; };
 		0B2B1FDE1D40FF00003C3ADF /* UIViewController+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDD1D40FF00003C3ADF /* UIViewController+LangExt.m */; };
@@ -675,6 +678,12 @@
 		0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		0B1C1D641D2D1D8500746192 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0B21C6031D81055E00E17ADF /* BindZhiFuBaoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindZhiFuBaoVC.h; sourceTree = "<group>"; };
+		0B21C6041D81055E00E17ADF /* BindZhiFuBaoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindZhiFuBaoVC.m; sourceTree = "<group>"; };
+		0B21C6061D81069000E17ADF /* GetMoneyFormPonyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMoneyFormPonyVC.h; sourceTree = "<group>"; };
+		0B21C6071D81069000E17ADF /* GetMoneyFormPonyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMoneyFormPonyVC.m; sourceTree = "<group>"; };
+		0B21C6091D8133AC00E17ADF /* SearchBindAlipayM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBindAlipayM.h; sourceTree = "<group>"; };
+		0B21C60A1D8133AC00E17ADF /* SearchBindAlipayM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBindAlipayM.m; sourceTree = "<group>"; };
 		0B272ACF1D7FF02C000BF17A /* PayReturnM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayReturnM.h; sourceTree = "<group>"; };
 		0B272AD01D7FF02C000BF17A /* PayReturnM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayReturnM.m; sourceTree = "<group>"; };
 		0B2B1FD91D3F74D9003C3ADF /* HRAuthTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAuthTVC.h; sourceTree = "<group>"; };
@@ -1571,6 +1580,8 @@
 				0B01DE2E1D59AEFC006E53C8 /* BoleQDNoticM.m */,
 				0B272ACF1D7FF02C000BF17A /* PayReturnM.h */,
 				0B272AD01D7FF02C000BF17A /* PayReturnM.m */,
+				0B21C6091D8133AC00E17ADF /* SearchBindAlipayM.h */,
+				0B21C60A1D8133AC00E17ADF /* SearchBindAlipayM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2098,6 +2109,10 @@
 				0B4B07521D4EE0CE007347F6 /* PRDealPswVC.m */,
 				0BF313261D633DD6008578AC /* PFeedBackVC.h */,
 				0BF313271D633DD6008578AC /* PFeedBackVC.m */,
+				0B21C6031D81055E00E17ADF /* BindZhiFuBaoVC.h */,
+				0B21C6041D81055E00E17ADF /* BindZhiFuBaoVC.m */,
+				0B21C6061D81069000E17ADF /* GetMoneyFormPonyVC.h */,
+				0B21C6071D81069000E17ADF /* GetMoneyFormPonyVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -2908,6 +2923,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				091FD68E1C55B7DE00BB461C /* SDWebImageManager.m in Sources */,
+				0B21C6051D81055E00E17ADF /* BindZhiFuBaoVC.m in Sources */,
 				0BF5534B1D229AB100DE47F3 /* JCHATMoreView.m in Sources */,
 				0BF553401D229AB100DE47F3 /* JCHATFootTableCollectionReusableView.m in Sources */,
 				0BAFAE771D06A74E00B06B6F /* PHomeVC.m in Sources */,
@@ -2960,6 +2976,7 @@
 				091FD6761C55B7DE00BB461C /* MASViewAttribute.m in Sources */,
 				0B1C1D471D2B971100746192 /* MJRefreshAutoNormalFooter.m in Sources */,
 				092C07C31C52037200FF4981 /* NSString+MessageInputView.m in Sources */,
+				0B21C6081D81069000E17ADF /* GetMoneyFormPonyVC.m in Sources */,
 				0BF553D01D22AEA000DE47F3 /* PPositionVC.m in Sources */,
 				091FD6921C55B7DE00BB461C /* UIImage+MultiFormat.m in Sources */,
 				0B62B2A51D740BE000BE90FD /* PublicCustomWebVC.m in Sources */,
@@ -3009,6 +3026,7 @@
 				091FD6871C55B7DE00BB461C /* NSData+GIF.m in Sources */,
 				0BF5533E1D229AB100DE47F3 /* JCHATAudioPlayerHelper.m in Sources */,
 				0B2B1FDB1D3F74D9003C3ADF /* HRAuthTVC.m in Sources */,
+				0B21C60B1D8133AC00E17ADF /* SearchBindAlipayM.m in Sources */,
 				0BFE772E1D531BAE007A2005 /* PTalkLogCell.m in Sources */,
 				0BF313281D633DD6008578AC /* PFeedBackVC.m in Sources */,
 				0BF553C71D22A5F500DE47F3 /* MJPhotoView.m in Sources */,

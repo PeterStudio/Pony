@@ -13,6 +13,10 @@
 #import "PublicCustomWebVC.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "PaySignM.h"
+#import "SearchBindAlipayM.h"
+
+#import "BindZhiFuBaoVC.h"
+#import "GetMoneyFormPonyVC.h"
 
 @interface PMineVC()<UIAlertViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
@@ -228,6 +232,26 @@
 
 // 提现
 - (IBAction)outMoney:(id)sender {
+    [MBProgressHUD showMessage:nil];
+    @weakify(self)
+    [APIHTTP wwPost:kAPIAlipayInfo parameters:@{} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        SearchBindAlipayM * searchBindAlipayM = [[SearchBindAlipayM alloc] initWithDictionary:responseObject error:nil];
+        if ([@"0" isEqualToString:searchBindAlipayM.alipaystatus]) {
+            // 未绑定
+            [self performSegueWithIdentifier:@"BindZhiFuBaoVC" sender:searchBindAlipayM];
+        }else if ([@"1" isEqualToString:searchBindAlipayM.alipaystatus]){
+            //  已绑定
+            [self performSegueWithIdentifier:@"GetMoneyFormPonyVC" sender:searchBindAlipayM];
+        }
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
+
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -253,6 +277,12 @@
     if ([obj isKindOfClass:[PMoneyLogVC class]]){
         PMoneyLogVC * vc = (PMoneyLogVC *)obj;
         vc.moneyUserId = self.model.moneyUserId;
+    }else if ([obj isKindOfClass:[BindZhiFuBaoVC class]]){
+        BindZhiFuBaoVC * vc = (BindZhiFuBaoVC *)obj;
+        vc.searchBindAlipayM = sender;
+    }else if ([obj isKindOfClass:[GetMoneyFormPonyVC class]]){
+        GetMoneyFormPonyVC * vc = (GetMoneyFormPonyVC *)obj;
+        vc.bindAlipayM = sender;
     }
 }
 
