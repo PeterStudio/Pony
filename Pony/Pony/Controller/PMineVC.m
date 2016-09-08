@@ -11,6 +11,8 @@
 #import "PMoneyM.h"
 #import "PMoneyLogVC.h"
 #import "PublicCustomWebVC.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "PaySignM.h"
 
 @interface PMineVC()<UIAlertViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
@@ -37,12 +39,45 @@
     [self.navigationController pushViewController:webVC animated:YES];
 }
 
+- (void)paySuccess:(NSNotification *)noti{
+    [self grapUserInfo];
+}
+
+- (void)payMoney:(NSString *)_money{
+    NSString * title = @"小马过河充值";
+    NSString * body = [NSString stringWithFormat:@"充值金额:%@元",_money];
+    [MBProgressHUD showMessage:nil];
+    @weakify(self)
+    [APIHTTP wwPost:kAPIMoneyCashSign parameters:@{@"subject":title,@"body":body,@"total":_money} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        PaySignM * model = [[PaySignM alloc] initWithDictionary:responseObject error:nil];
+        if (model.orderwithsign) {
+            [[AlipaySDK defaultService] payOrder:model.orderwithsign fromScheme:@"pony" callback:^(NSDictionary *resultDic) {
+                NSLog(@"reslut = %@",resultDic);
+            }];
+        }
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
+}
+
+- (void)refreshMoneyLab:(NSString *)_money{
+    NSString *testString = [NSString stringWithFormat:@"我的伯乐币:%@伯乐币",_money];
+    NSMutableAttributedString * testAttriString = [[NSMutableAttributedString alloc] initWithString:testString];
+    [testAttriString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(6, testAttriString.length - 9)];
+    self.moneyLab.attributedText = testAttriString;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.uModel = [USERMANAGER userInfoM];
     [self.headBtn setImage:[UIImage imageNamed:self.uModel.user_img] forState:UIControlStateNormal];
     self.nameLab.text = self.uModel.user_phone;
-    self.moneyLab.text = @"我的伯乐币:0.0¥";//[NSString stringWithFormat:@"我的伯乐币:%@¥",self.uModel.balance];
+    [self refreshMoneyLab:@"0.0"];
     
     UIBarButtonItem * helpItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStylePlain target:self action:@selector(click_helpBarButtonItem)];
     helpItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
@@ -69,7 +104,7 @@
                          {
                              @strongify(self)
                              [tf resignFirstResponder];
-                             [self performSegueWithIdentifier:@"PPayVC" sender:tf.text];
+                             [self payMoney:tf.text];
                              NSLog(@"Resolving UIAlert Action for tapping OK Button");
                              [self dismissViewControllerAnimated:YES completion:nil];
                              
@@ -87,6 +122,8 @@
     
     [self.mAlertController addAction:cancel];
     [self.mAlertController addAction:ok];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess:) name:@"PAY_SUCCESS" object:nil];
 }
 
 - (IBAction)logout:(id)sender {
@@ -103,7 +140,7 @@
     [APIHTTP wwPost:kAPIMoneyGet parameters:@{@"moneyUserId":self.uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
         self.model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
-        self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",self.model.moneyBalance];
+        [self refreshMoneyLab:self.model.moneyBalance];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
@@ -163,8 +200,30 @@
     if ([sender.text validBlank]) {
         ok.enabled = NO;
     }else{
-        ok.enabled =YES;
+        if ([@"0" isEqualToString:[sender.text substringToIndex:1]]) {
+            sender.text = [sender.text substringFromIndex:1];
+            if (sender.text.length == 0) {
+                ok.enabled = NO;
+            }else{
+                ok.enabled =YES;
+            }
+        }else{
+            ok.enabled =YES;
+        }
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (string.length == 0) return YES;
+    NSInteger existedLength = textField.text.length;
+    NSInteger selectedLength = range.length;
+    NSInteger replaceLength = string.length;
+    if (existedLength - selectedLength + replaceLength > 8) {
+        // 最大限制8位
+        return NO;
+    }
+    return YES;
 }
 
 // 提现
@@ -191,10 +250,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     id obj = [segue destinationViewController];
-    if ([obj isKindOfClass:[PPayVC class]]) {
-        PPayVC * vc = (PPayVC *)obj;
-        vc.sum = sender;
-    }else if ([obj isKindOfClass:[PMoneyLogVC class]]){
+    if ([obj isKindOfClass:[PMoneyLogVC class]]){
         PMoneyLogVC * vc = (PMoneyLogVC *)obj;
         vc.moneyUserId = self.model.moneyUserId;
     }

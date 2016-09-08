@@ -35,10 +35,31 @@
     self.uModel = [USERMANAGER userInfoM];
     [self.headBtn setImage:[UIImage imageNamed:_uModel.user_img] forState:UIControlStateNormal];
     self.nameLab.text = _uModel.user_phone;
-    self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",_uModel.balance];
-    
+
+    [self refreshMoneyLab:_uModel.balance];
     [self getBoleMoney];
     [self getBoleStatics];
+}
+
+- (void)refreshMoneyLab:(NSString *)_money{
+    NSString *testString = [NSString stringWithFormat:@"我的伯乐币:%@伯乐币",_money];
+    NSMutableAttributedString * testAttriString = [[NSMutableAttributedString alloc] initWithString:testString];
+    [testAttriString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(6, testAttriString.length - 9)];
+    self.moneyLab.attributedText = testAttriString;
+}
+
+- (void)refreshGrapLab:(NSString *)_num{
+    NSString *testString = [NSString stringWithFormat:@"今天抢单：%@单",_num];
+    NSMutableAttributedString * testAttriString = [[NSMutableAttributedString alloc] initWithString:testString];
+    [testAttriString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(5, testAttriString.length - 6)];
+    self.todayCallNumLab.attributedText = testAttriString;
+}
+
+- (void)refreshPayLab:(NSString *)_money{
+    NSString *testString = [NSString stringWithFormat:@"今日流水：%@伯乐币",_money];
+    NSMutableAttributedString * testAttriString = [[NSMutableAttributedString alloc] initWithString:testString];
+    [testAttriString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(5, testAttriString.length - 8)];
+    self.todayMoneyLab.attributedText = testAttriString;
 }
 
 - (void)getBoleMoney{
@@ -47,7 +68,7 @@
     [APIHTTP wwPost:kAPIMoneyGet parameters:@{@"moneyUserId":_uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
         PMoneyM * model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
-        self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",model.moneyBalance];
+        [self refreshMoneyLab:model.moneyBalance];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
@@ -62,8 +83,10 @@
     [APIHTTP wwPost:kAPIGetBoleStatics parameters:@{} success:^(NSDictionary * responseObject) {
         @strongify(self)
         TodayBoleStaticsM * model = [[TodayBoleStaticsM alloc] initWithDictionary:responseObject error:nil];
-        self.todayCallNumLab.text = [NSString stringWithFormat:@"今天抢单：%@单",model.bole_count];
-        self.todayMoneyLab.text = [NSString stringWithFormat:@"今日流水：%@¥",model.bole_consume];
+        [self refreshGrapLab:model.bole_count];
+        [self refreshPayLab:model.bole_consume];
+//        self.todayCallNumLab.text = [NSString stringWithFormat:@"今天抢单：%@单",model.bole_count];
+//        self.todayMoneyLab.text = [NSString stringWithFormat:@"今日流水：%@伯乐币",model.bole_consume];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {

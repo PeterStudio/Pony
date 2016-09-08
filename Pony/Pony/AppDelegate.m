@@ -34,6 +34,7 @@
 
 #import "VersionM.h"
 
+#import "PayReturnM.h"
 // 极光key
 #define JMSSAGE_APPKEY @"fda9d138fe7e4325f225106c"
 
@@ -233,6 +234,14 @@
             //跳转支付宝钱包进行支付，处理支付结果
             [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
                 NSLog(@"result = %@",resultDic);
+                PayReturnM * payReturnM = [[PayReturnM alloc] initWithDictionary:resultDic error:nil];
+                if ([@"9000" isEqualToString:payReturnM.resultStatus]) {
+                    // 支付成功
+                    [MBProgressHUD showSuccess:payReturnM.memo toView:nil];
+                }else{
+                    // 支付失败
+                    [MBProgressHUD showError:payReturnM.memo toView:nil];
+                }
             }];
         }
     }
@@ -249,6 +258,16 @@
             //跳转支付宝钱包进行支付，处理支付结果
             [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
                 NSLog(@"result = %@",resultDic);
+                PayReturnM * payReturnM = [[PayReturnM alloc] initWithDictionary:resultDic error:nil];
+                if ([@"9000" isEqualToString:payReturnM.resultStatus]) {
+                    // 支付成功
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PAY_SUCCESS" object:nil];
+                    [MBProgressHUD showSuccess:payReturnM.memo toView:nil];
+                }else{
+                    // 支付失败
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PAY_ERROR" object:nil];
+                    [MBProgressHUD showError:payReturnM.memo toView:nil];
+                }
             }];
         }
     }

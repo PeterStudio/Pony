@@ -37,6 +37,14 @@
     [self saveUserInfo:loginM];
 }
 
+/**保存交易密码设置状态*/
+- (void)saveUserDealStatus:(NSString *)_status{
+    NSDictionary * tokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:USER_INFO];
+    LoginM * loginM = [[LoginM alloc] initWithDictionary:tokenDic error:nil];
+    loginM.userinfo.charge_status = _status;
+    [self saveUserInfo:loginM];
+}
+
 /**获取token*/
 - (NSString *)token{
     NSDictionary * tokenDic = [[NSUserDefaults standardUserDefaults] objectForKey:USER_INFO];

@@ -34,6 +34,11 @@
 
 @implementation PHomeVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[AppDelegate appDelegete] appVersionUpdate];

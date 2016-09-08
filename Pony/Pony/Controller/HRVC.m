@@ -51,11 +51,18 @@
     [self singleUserInfo];
 }
 
+- (void)refreshMoneyLab:(NSString *)_money{
+    NSString *testString = [NSString stringWithFormat:@"我的伯乐币:%@伯乐币",_money];
+    NSMutableAttributedString * testAttriString = [[NSMutableAttributedString alloc] initWithString:testString];
+    [testAttriString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(6, testAttriString.length - 9)];
+    self.moneyLab.attributedText = testAttriString;
+}
+
 - (void)refrashUI{
     self.uModel = [USERMANAGER userInfoM];
     [self.headIV setImage:[UIImage imageNamed:_uModel.user_img]];
     self.nameLab.text = _uModel.user_phone;
-    self.moneyLab.text = [NSString stringWithFormat:@"我的伯乐币:%@¥",_uModel.balance];
+    [self refreshMoneyLab:_uModel.balance];
     if ([@"0" isEqualToString:_uModel.user_auth]) {
         self.statusLab.text = @"未认证";
     }else if ([@"1" isEqualToString:_uModel.user_auth]){

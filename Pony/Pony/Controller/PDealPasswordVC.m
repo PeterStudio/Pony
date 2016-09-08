@@ -32,11 +32,17 @@
         return;
     }
     
+    if (![self.dealPswTF.text isEqualToString:self.sureDealPswTF.text]) {
+        [MBProgressHUD showError:@"密码不一致"];
+        return;
+    }
+    
     [MBProgressHUD showMessage:nil];
     @weakify(self)
     [APIHTTP wwPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":self.dealPswTF.text} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"设置成功！"];
+        [USERMANAGER saveUserDealStatus:@"1"];
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];

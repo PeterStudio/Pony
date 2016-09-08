@@ -31,6 +31,8 @@
 #import "PEndTalkM.h"
 #import "PFeedBackVC.h"
 #import "PHeartBeatCheckM.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "PaySignM.h"
 
 // 免费聊天倒计时30秒
 
@@ -158,7 +160,7 @@
                          {
                              @strongify(self)
                              [tf resignFirstResponder];
-                             [self performSegueWithIdentifier:@"PPayVC" sender:tf.text];
+                             [self payMoney:tf.text];
                              NSLog(@"Resolving UIAlert Action for tapping OK Button");
                              [self dismissViewControllerAnimated:YES completion:nil];
                              
@@ -184,8 +186,79 @@
     if ([sender.text validBlank]) {
         ok.enabled = NO;
     }else{
-        ok.enabled =YES;
+        if ([@"0" isEqualToString:[sender.text substringToIndex:1]]) {
+            sender.text = [sender.text substringFromIndex:1];
+            if (sender.text.length == 0) {
+                ok.enabled = NO;
+            }else{
+                ok.enabled =YES;
+            }
+        }else{
+            ok.enabled =YES;
+        }
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (string.length == 0) return YES;
+    NSInteger existedLength = textField.text.length;
+    NSInteger selectedLength = range.length;
+    NSInteger replaceLength = string.length;
+    if (existedLength - selectedLength + replaceLength > 8) {
+        // 最大限制8位
+        return NO;
+    }
+    return YES;
+}
+
+- (void)payMoney:(NSString *)_money{
+    NSString * title = @"小马过河充值";
+    NSString * body = [NSString stringWithFormat:@"充值金额:%@元",_money];
+    [MBProgressHUD showMessage:nil];
+    @weakify(self)
+    [APIHTTP wwPost:kAPIMoneyCashSign parameters:@{@"subject":title,@"body":body,@"total":_money} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        PaySignM * model = [[PaySignM alloc] initWithDictionary:responseObject error:nil];
+        if (model.orderwithsign) {
+            [[AlipaySDK defaultService] payOrder:model.orderwithsign fromScheme:@"pony" callback:^(NSDictionary *resultDic) {
+                NSLog(@"reslut = %@",resultDic);
+            }];
+        }
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
+}
+
+- (void)addTalk{
+    [MBProgressHUD showMessage:nil toView:self.view];
+    @weakify(self)
+    [APIHTTP wwPost:kAPIAddTalk parameters:@{@"bole_userid": self.bole_ID} success:^(NSDictionary * data) {
+        @strongify(self)
+        self.pTalkM = [[PAddTalkM alloc] initWithDictionary:data error:nil];
+        [self countDownTime];
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } completion:^{
+        @strongify(self)
+        [MBProgressHUD hideHUDForView:self.view];
+    }];
+}
+
+- (void)paySuccess:(NSNotification *)noti{
+    // 付款成功继续聊天
+    [self addTalk];
+}
+
+- (void)payError:(NSNotification *)noti{
+    // 付款失败直接退出
+    [self endTalk];
 }
 
 - (void)viewDidLoad {
@@ -202,6 +275,9 @@
   [self addDelegate];
   [self getGroupMemberListWithGetMessageFlag:YES];
     [self countDownTime];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess:) name:@"PAY_SUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payError:) name:@"PAY_ERROR" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1052,6 +1128,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   //remove delegate
   [[NSNotificationCenter defaultCenter] removeObserver:self name:kAlertToSendImage object:self];
   [JMessage removeDelegate:self withConversation:_conversation];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PAY_SUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PAY_ERROR" object:nil];
 }
 
 - (void)tapClick:(UIGestureRecognizer *)gesture {
@@ -1490,14 +1569,19 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark - private
 
 - (void)endTalk{
+    if ([[JCHATAudioPlayerHelper shareInstance] isPlaying]) {
+        [[JCHATAudioPlayerHelper shareInstance] stopAudio];
+    }
     [MBProgressHUD showMessage:nil toView:self.view];
     @weakify(self)
     [APIHTTP wwPost:kAPICloseTalk parameters:@{@"talkid": self.pTalkM.talkid} success:^(NSDictionary * data) {
         @strongify(self)
-        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
-        PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
-        vc.pEndTalkM = [[PEndTalkM alloc] initWithDictionary:data error:nil];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        // 评价
+//        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+//        PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
+//        vc.pEndTalkM = [[PEndTalkM alloc] initWithDictionary:data error:nil];
+//        [self.navigationController pushViewController:vc animated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {

@@ -109,6 +109,7 @@
 		0B1C1D631D2D1D0E00746192 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */; };
 		0B1C1D651D2D1D8500746192 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D641D2D1D8500746192 /* libc++.tbd */; };
 		0B1C1D671D2D1D9D00746192 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */; };
+		0B272AD11D7FF02C000BF17A /* PayReturnM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B272AD01D7FF02C000BF17A /* PayReturnM.m */; };
 		0B2B1FDB1D3F74D9003C3ADF /* HRAuthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDA1D3F74D9003C3ADF /* HRAuthTVC.m */; };
 		0B2B1FDE1D40FF00003C3ADF /* UIViewController+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FDD1D40FF00003C3ADF /* UIViewController+LangExt.m */; };
 		0B2B1FE11D41018E003C3ADF /* UIImage+LangExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B1FE01D41018E003C3ADF /* UIImage+LangExt.m */; };
@@ -674,6 +675,8 @@
 		0B1C1D611D2D1D0E00746192 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		0B1C1D641D2D1D8500746192 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0B1C1D661D2D1D9D00746192 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0B272ACF1D7FF02C000BF17A /* PayReturnM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayReturnM.h; sourceTree = "<group>"; };
+		0B272AD01D7FF02C000BF17A /* PayReturnM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayReturnM.m; sourceTree = "<group>"; };
 		0B2B1FD91D3F74D9003C3ADF /* HRAuthTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAuthTVC.h; sourceTree = "<group>"; };
 		0B2B1FDA1D3F74D9003C3ADF /* HRAuthTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAuthTVC.m; sourceTree = "<group>"; };
 		0B2B1FDC1D40FF00003C3ADF /* UIViewController+LangExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LangExt.h"; sourceTree = "<group>"; };
@@ -1566,6 +1569,8 @@
 				0BF313241D633C96008578AC /* PEndTalkM.m */,
 				0B01DE2D1D59AEFC006E53C8 /* BoleQDNoticM.h */,
 				0B01DE2E1D59AEFC006E53C8 /* BoleQDNoticM.m */,
+				0B272ACF1D7FF02C000BF17A /* PayReturnM.h */,
+				0B272AD01D7FF02C000BF17A /* PayReturnM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3039,6 +3044,7 @@
 				0BBF8F481CD9E0A30049D143 /* UITextField+LangExt.m in Sources */,
 				0B4B07561D4F30EF007347F6 /* OrderCell.m in Sources */,
 				0BA5B4A01D62F82C00A63A73 /* TodayBoleStaticsM.m in Sources */,
+				0B272AD11D7FF02C000BF17A /* PayReturnM.m in Sources */,
 				0BF553581D229F1F00DE47F3 /* ChatBubbleLayer.m in Sources */,
 				0BF553491D229AB100DE47F3 /* JCHATMessageTableView.m in Sources */,
 				0B1C1D501D2B971100746192 /* MJRefreshConst.m in Sources */,

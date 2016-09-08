@@ -42,8 +42,7 @@
             JMSGUser * jmsgUser = conversation.target;
             if ([jmsgUser.username isEqualToString:model.im_xiaoma]) {
                 [JMSGConversation deleteSingleConversationWithUsername:((JMSGUser *)conversation.target).username];
-                [_conversationArr removeObject:conversation];
-                [self.tableView reloadData];
+                [self getConversationList];
                 break;
             }
         }

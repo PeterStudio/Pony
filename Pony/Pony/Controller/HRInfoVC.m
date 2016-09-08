@@ -69,7 +69,7 @@
         [btn setTitle:@"开始咨询" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
-        [btn setBackgroundColor:[UIColor blueColor]];
+        [btn setBackgroundColor:[UIColor colorWithRed:21/255.f green:118/255.f blue:182/255.f alpha:1]];
         [btn addTarget:self action:@selector(addTalk) forControlEvents:UIControlEventTouchUpInside];
         btn.frame = CGRectMake(0, 0, SCREEN_WIDTH, 49);
         UIBarButtonItem *offerbuyButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
