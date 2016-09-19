@@ -96,8 +96,7 @@
 }
 
 - (void)refrashUI{
-    if (![self.hrAuthM.industry validBlank]) {
-        
+    if (self.hrAuthM.industry) {
         self.professionM.id = self.hrAuthM.industryId;
         self.professionM.industry = self.hrAuthM.industry;
         

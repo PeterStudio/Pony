@@ -10,6 +10,10 @@
 #import "HRMineVM.h"
 #import "PMoneyM.h"
 #import "TodayBoleStaticsM.h"
+#import "SearchBindAlipayM.h"
+#import "BindZhiFuBaoVC.h"
+#import "GetMoneyFormPonyVC.h"
+#import "BillVC.h"
 
 @interface HRMineVC ()
 
@@ -25,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 
 @property (strong, nonatomic) UserInfoM * uModel;
+@property (copy, nonatomic) NSString * money;
 @end
 
 @implementation HRMineVC
@@ -39,6 +44,11 @@
     [self refreshMoneyLab:_uModel.balance];
     [self getBoleMoney];
     [self getBoleStatics];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:@"PMineVC" object:nil];
+}
+
+- (void)popToSelf:(NSNotification *)notic{
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 - (void)refreshMoneyLab:(NSString *)_money{
@@ -68,6 +78,7 @@
     [APIHTTP wwPost:kAPIMoneyGet parameters:@{@"moneyUserId":_uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
         PMoneyM * model = [[PMoneyM alloc] initWithDictionary:responseObject error:nil];
+        self.money = model.moneyBalance;
         [self refreshMoneyLab:model.moneyBalance];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
@@ -103,7 +114,9 @@
 }
 
 - (IBAction)logoutBtnClicked:(id)sender {
+    [MBProgressHUD showMessage:nil];
     [JMSGUser logout:^(id resultObject, NSError *error) {
+        [MBProgressHUD hideHUD];
         [USERMANAGER logout];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
                                                             object:USERLOGIC_SB];
@@ -119,19 +132,51 @@
     }
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (1 == indexPath.row) {
+        // 提现
+        [MBProgressHUD showMessage:nil];
+        @weakify(self)
+        [APIHTTP wwPost:kAPIAlipayInfo parameters:@{} success:^(NSDictionary * responseObject) {
+            @strongify(self)
+            SearchBindAlipayM * searchBindAlipayM = [[SearchBindAlipayM alloc] initWithDictionary:responseObject error:nil];
+            if ([@"0" isEqualToString:searchBindAlipayM.alipaystatus]) {
+                // 未绑定
+                UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+                BindZhiFuBaoVC * vc = [sb instantiateViewControllerWithIdentifier:@"BindZhiFuBaoVC"];
+                vc.searchBindAlipayM = searchBindAlipayM;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([@"1" isEqualToString:searchBindAlipayM.alipaystatus]){
+                //  已绑定
+                UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+                GetMoneyFormPonyVC * vc = [sb instantiateViewControllerWithIdentifier:@"GetMoneyFormPonyVC"];
+                vc.bindAlipayM = searchBindAlipayM;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        } error:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } failure:^(NSError *err) {
+            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        } completion:^{
+            [MBProgressHUD hideHUD];
+        }];
+    }
+    if (2 == indexPath.row) {
+        // 账单查询
+        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"HR" bundle:[NSBundle mainBundle]];
+        BillVC * vc = [sb instantiateViewControllerWithIdentifier:@"BillVC"];
+        vc.myMoney = self.money?self.money:@"0.0";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

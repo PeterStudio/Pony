@@ -39,7 +39,7 @@
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wwPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":self.dealPswTF.text} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":[self.dealPswTF.text md5Hex]} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"设置成功！"];
         [USERMANAGER saveUserDealStatus:@"1"];

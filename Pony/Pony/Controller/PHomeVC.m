@@ -21,6 +21,8 @@
 
 #import "AppDelegate.h"
 
+#import "PFeedBackVC.h"
+
 @interface PHomeVC ()
 
 @property (nonatomic, strong) ProfessionM * professionM;
@@ -66,6 +68,14 @@
 }
 
 - (IBAction)callButonClicked:(id)sender {
+    
+//    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+//    PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
+//    vc.pEndTalkM = nil;//[[PEndTalkM alloc] initWithDictionary:data error:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    return;
+    
+    
     if (self.professionM) {
         @weakify(self)
         [MBProgressHUD showMessage:@"开始呼叫"];

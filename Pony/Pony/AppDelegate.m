@@ -35,6 +35,12 @@
 #import "VersionM.h"
 
 #import "PayReturnM.h"
+
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
+
 // 极光key
 #define JMSSAGE_APPKEY @"fda9d138fe7e4325f225106c"
 
@@ -205,6 +211,9 @@
     [JMSGUser logout:^(id resultObject, NSError *error) {
         [USERMANAGER logout];
     }];
+    [JPUSHService setTags:nil alias:nil fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+    }];
+    
     UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"登录状态出错"
                                                        message:@"你已在别的设备上登录!"
                                                       delegate:self
@@ -364,6 +373,12 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [application cancelAllLocalNotifications];
+    // 判断是否开启通知
+    if (![self isAllowedNotification]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"你现在无法收到新消息通知。请到系统“设置”-“通知”-“小马过河”中开启" delegate:self cancelButtonTitle:@"不在提示" otherButtonTitles:@"确定", nil];
+        alert.tag = 99;
+        [alert show];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -423,6 +438,27 @@ forRemoteNotification:(NSDictionary *)userInfo
 }
 
 #endif // end of - > __IPHONE_7_1
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -506,16 +542,32 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
         // 非强制更新
         if (buttonIndex == 1) {
             // 更新
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.vM.sapkurl?self.vM.sapkurl:@"https://itunes.apple.com/cn/app/mai-ya-dai/id1107869379?mt=8"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.vM.sapkurl?self.vM.sapkurl:@"https://itunes.apple.com/us/app/xiao-ma-guo-he-zai-zhi-da/id1107869379?l=zh&ls=1&mt=8"]];
         }
     }else if (alertView.tag == 1){
         // 强制更新
         if (buttonIndex == 1) {
             // 更新
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.vM.sapkurl?self.vM.sapkurl:@"https://itunes.apple.com/cn/app/mai-ya-dai/id1107869379?mt=8"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.vM.sapkurl?self.vM.sapkurl:@"https://itunes.apple.com/us/app/xiao-ma-guo-he-zai-zhi-da/id1107869379?l=zh&ls=1&mt=8"]];
         }
         exit(0);
+    }else if (alertView.tag == 99){
+        if (buttonIndex == 1) {
+            UIApplication *app = [UIApplication sharedApplication];
+            NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([app canOpenURL:settingsURL]) {
+                [app openURL:settingsURL];
+            }
+        }
     }
+}
+
+- (BOOL)isAllowedNotification {
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (setting.types != UIUserNotificationTypeNone) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

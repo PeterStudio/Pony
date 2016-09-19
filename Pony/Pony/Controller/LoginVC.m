@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (strong, nonatomic) LoginVM * loginVM;
+@property (strong, nonatomic) UserInfoM * userInfoM;
 @end
 
 @implementation LoginVC
@@ -38,6 +39,21 @@
         if (error == nil) {
             // 登录极光成功！
             [self setAlias:jUsername];
+            
+            // 上传头像
+            [JMSGUser updateMyInfoWithParameter:UIImageJPEGRepresentation([UIImage imageNamed:self.userInfoM.user_img], 1) userFieldType:kJMSGUserFieldsAvatar completionHandler:^(id resultObject, NSError *error) {
+                if (!error) {
+                    NSLog(@"成功上传");
+                }
+            }];
+            
+            // 上传昵称
+            [JMSGUser updateMyInfoWithParameter:self.userInfoM.user_nickname userFieldType:kJMSGUserFieldsNickname completionHandler:^(id resultObject, NSError *error) {
+                if (!error) {
+                    NSLog(@"成功上传");
+                }
+            }];
+            
         }else{
             [MBProgressHUD hideHUD];
             NSString *alert = @"用户登录失败";
@@ -79,6 +95,7 @@
         @strongify(self)
         LoginM * m = [[LoginM alloc] initWithDictionary:responseObject error:nil];
         [USERMANAGER saveUserInfo:m];
+        self.userInfoM = m.userinfo;
         // 登录极光
         [self loginJPush];
     } error:^(NSError *err) {
@@ -112,6 +129,33 @@
     RAC(self.loginVM, username) = [self.userNameTextField rac_textSignal];
     RAC(self.loginVM, password) = [self.passwordTextField rac_textSignal];
     self.loginButton.rac_command = self.loginVM.loginCommand;
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (![[UIApplication sharedApplication]textInputMode].primaryLanguage) {
+        return NO;
+    }
+    
+    if (textField == self.userNameTextField) {
+        if (string.length == 0) return YES;
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength > 11) {
+            return NO;
+        }
+    }else if (textField == self.passwordTextField){
+        if (string.length == 0) return YES;
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength > 16) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 

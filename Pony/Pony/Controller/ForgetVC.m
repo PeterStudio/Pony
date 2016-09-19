@@ -114,6 +114,23 @@
     self.sureBtn.rac_command = self.forgetVM.checkCommand;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (![[UIApplication sharedApplication]textInputMode].primaryLanguage) {
+        return NO;
+    }
+    
+    if (textField == self.userNameTextField) {
+        if (string.length == 0) return YES;
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength > 11) {
+            return NO;
+        }
+    }
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

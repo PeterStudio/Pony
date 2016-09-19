@@ -231,6 +231,12 @@
             NSLog(@"成功上传");
         }
     }];
+    // 上传昵称
+    [JMSGUser updateMyInfoWithParameter:self.uModel.user_nickname userFieldType:kJMSGUserFieldsNickname completionHandler:^(id resultObject, NSError *error) {
+        if (!error) {
+            NSLog(@"成功上传");
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource

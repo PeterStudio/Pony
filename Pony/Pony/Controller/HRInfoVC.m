@@ -159,7 +159,7 @@
     
     for (int i = 0; i < self.hrInfoM.commentStatistics.count; i++) {
         HRCommentStatisticsM * cM = self.hrInfoM.commentStatistics[i];
-        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(15 + (10 + w)*(i%3), 25 + 15 + (15 + w)*(i/3), w, h)];
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(15 + (10 + w)*(i%3), 25 + 15 + (15 + h)*(i/3), w, h)];
         NSString * t = [NSString stringWithFormat:@"%@(%@)",cM.comment_title,cM.comment_count];
         [btn setTitle:t forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];

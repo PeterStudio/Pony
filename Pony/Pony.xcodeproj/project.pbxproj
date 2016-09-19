@@ -123,6 +123,8 @@
 		0B4F76801D6AE80800EB22AD /* PHeartBeatCheckM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F767F1D6AE80800EB22AD /* PHeartBeatCheckM.m */; };
 		0B62B2A51D740BE000BE90FD /* PublicCustomWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B62B2A41D740BE000BE90FD /* PublicCustomWebVC.m */; };
 		0B6E7FAB1D47595500F34911 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E7FAA1D47595500F34911 /* UIColor+Hex.m */; };
+		0B7606CF1D8FBA5A000B1F11 /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7606CE1D8FBA5A000B1F11 /* RatingBar.m */; };
+		0B83BED31D8FE3CB00DCFE23 /* BillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B83BED21D8FE3CB00DCFE23 /* BillCell.m */; };
 		0B87FC351D055E82008FBB42 /* XXDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B87FC341D055E82008FBB42 /* XXDGuideView.m */; };
 		0B9CE3701CD836680009A160 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9CE36F1CD836680009A160 /* MainViewController.m */; };
 		0B9CE3721CD83AEE0009A160 /* UserLogic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B9CE3711CD83AEE0009A160 /* UserLogic.storyboard */; };
@@ -706,6 +708,10 @@
 		0B62B2A41D740BE000BE90FD /* PublicCustomWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicCustomWebVC.m; sourceTree = "<group>"; };
 		0B6E7FA91D47595500F34911 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		0B6E7FAA1D47595500F34911 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		0B7606CD1D8FBA5A000B1F11 /* RatingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBar.h; sourceTree = "<group>"; };
+		0B7606CE1D8FBA5A000B1F11 /* RatingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBar.m; sourceTree = "<group>"; };
+		0B83BED11D8FE3CB00DCFE23 /* BillCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillCell.h; sourceTree = "<group>"; };
+		0B83BED21D8FE3CB00DCFE23 /* BillCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillCell.m; sourceTree = "<group>"; };
 		0B87FC331D055E82008FBB42 /* XXDGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDGuideView.h; sourceTree = "<group>"; };
 		0B87FC341D055E82008FBB42 /* XXDGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDGuideView.m; sourceTree = "<group>"; };
 		0B9CE36E1CD836680009A160 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -1345,6 +1351,8 @@
 				0BBF8F441CD9DC800049D143 /* NoPastingTextField.m */,
 				0B87FC331D055E82008FBB42 /* XXDGuideView.h */,
 				0B87FC341D055E82008FBB42 /* XXDGuideView.m */,
+				0B7606CD1D8FBA5A000B1F11 /* RatingBar.h */,
+				0B7606CE1D8FBA5A000B1F11 /* RatingBar.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1818,6 +1826,8 @@
 				093B20671CE567CB001541BF /* ExtraMoneyVC.m */,
 				093B20691CE567F1001541BF /* BillVC.h */,
 				093B206A1CE567F1001541BF /* BillVC.m */,
+				0B83BED11D8FE3CB00DCFE23 /* BillCell.h */,
+				0B83BED21D8FE3CB00DCFE23 /* BillCell.m */,
 				093B206C1CE56811001541BF /* MessageVC.h */,
 				093B206D1CE56811001541BF /* MessageVC.m */,
 				095A3ED31CE9968B00BB2BB3 /* ShareVC.h */,
@@ -3030,6 +3040,7 @@
 				0BFE772E1D531BAE007A2005 /* PTalkLogCell.m in Sources */,
 				0BF313281D633DD6008578AC /* PFeedBackVC.m in Sources */,
 				0BF553C71D22A5F500DE47F3 /* MJPhotoView.m in Sources */,
+				0B83BED31D8FE3CB00DCFE23 /* BillCell.m in Sources */,
 				0BA48A7F1CF6DC0300307B14 /* RegistVM.m in Sources */,
 				0B1C1D431D2B971100746192 /* MJRefreshComponent.m in Sources */,
 				0BDEE7031D4B54DB00F0CEF2 /* PDealPasswordVC.m in Sources */,
@@ -3071,6 +3082,7 @@
 				0B1C1D4E1D2B971100746192 /* MJRefreshStateHeader.m in Sources */,
 				0BF553C41D22A5F500DE47F3 /* MJPhotoLoadingView.m in Sources */,
 				091FD6901C55B7DE00BB461C /* UIButton+WebCache.m in Sources */,
+				0B7606CF1D8FBA5A000B1F11 /* RatingBar.m in Sources */,
 				0BA5B31B1D61B15600A63A73 /* PReceiveBoleListCell.m in Sources */,
 				0B1C1D461D2B971100746192 /* MJRefreshAutoGifFooter.m in Sources */,
 				091FD6931C55B7DE00BB461C /* UIImage+WebP.m in Sources */,

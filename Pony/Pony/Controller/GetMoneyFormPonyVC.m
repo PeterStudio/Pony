@@ -19,7 +19,7 @@
 @implementation GetMoneyFormPonyVC
 
 - (void)click_backBarButtonItem{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PMineVC" object:nil];
 }
 
 - (void)viewDidLoad {
@@ -29,6 +29,7 @@
     self.uModel = [USERMANAGER userInfoM];
      [self refreshTipLab:@"0" money:@"0"];
     [self.moneyLab addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
+    self.moneyLab.placeholder = [NSString stringWithFormat:@"最大可提现%@伯乐币",self.bindAlipayM.money];
 }
 
 - (void)textFieldDidChangeValue:(UITextField *)sender{
@@ -101,10 +102,10 @@
                                  [MBProgressHUD showError:@"请输入交易密码"];
                              }else{
                                  [MBProgressHUD showMessage:nil];
-                                 [APIHTTP wwPost:kAPIAlipayCashOut parameters:@{@"userId":self.bindAlipayM.alipayinfo.userId,@"outBolebi":self.moneyLab.text,@"cashPassword":tf.text} success:^(NSDictionary * responseObject) {
+                                 [APIHTTP wwPost:kAPIAlipayCashOut parameters:@{@"userId":self.bindAlipayM.alipayinfo.userId,@"outBolebi":self.moneyLab.text,@"cashPassword":[tf.text md5Hex]} success:^(NSDictionary * responseObject) {
                                      @strongify(self)
                                      [MBProgressHUD showSuccess:@"提现成功！"];
-                                     [self.navigationController popToRootViewControllerAnimated:YES];
+                                     [[NSNotificationCenter defaultCenter] postNotificationName:@"PMineVC" object:nil];
                                  } error:^(NSError *err) {
                                      [MBProgressHUD showError:err.localizedDescription toView:self.view];
                                  } failure:^(NSError *err) {
@@ -117,7 +118,7 @@
                              
                          }];
     UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"取消充值"
+                             actionWithTitle:@"取消"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {

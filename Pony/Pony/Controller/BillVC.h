@@ -6,8 +6,8 @@
 //  Copyright © 2016年 peterstudio. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface BillVC : BaseTableViewController
-
+@interface BillVC : BaseViewController
+@property (nonatomic, copy) NSString * myMoney;
 @end

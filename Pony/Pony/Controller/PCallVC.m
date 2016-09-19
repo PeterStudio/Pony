@@ -41,7 +41,8 @@
     self.positionLab.text = _name3?_name3:@"职位";
     UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
     pReceiveBoleListVC = [sb instantiateViewControllerWithIdentifier:@"PReceiveBoleListVC"];
-    [self requestToService];
+//    [self requestToService];
+    [self startCountTime];
 }
 
 - (void)requestToService{
@@ -112,9 +113,6 @@
 
 - (void)getBoleQDNotic:(NSNotification *)noti{
     NSData * data = [noti.object dataUsingEncoding:NSUTF8StringEncoding];
-//    if (!data) {
-//        return;
-//    }
     dispatch_source_cancel(self._timer);
     [[NSNotificationCenter defaultCenter] removeObserver:self name:BOLE_QIANGDAN_NOTIC object:nil];
     NSDictionary * dic = [self toArrayOrNSDictionary:data];

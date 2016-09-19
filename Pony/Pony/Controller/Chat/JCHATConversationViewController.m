@@ -112,26 +112,25 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 @weakify(self)
-                [APIHTTP wwPost:kAPIHeartbeatCheck parameters:@{@"talkid":self.pTalkM.talkid} success:^(NSDictionary * responseObject) {
-                    @strongify(self)
-                    PHeartBeatCheckM * model = [[PHeartBeatCheckM alloc] initWithDictionary:responseObject error:nil];
-                    if ([model.balance floatValue] < [self.pTalkM.fee_per_heart floatValue]) {
-                        // 余额不足
-                        [self showMoneyAlert];
-                    }else{
-                        [self bucklesMoney];
-                    }
-                } error:^(NSError *err) {
-                    @strongify(self)
-                    [self bucklesMoney];
-                    [MBProgressHUD showError:err.localizedDescription toView:self.view];
-                } failure:^(NSError *err) {
-                    @strongify(self)
-                    [self bucklesMoney];
-                    [MBProgressHUD showError:err.localizedDescription toView:self.view];
-                } completion:^{
-                    [MBProgressHUD hideHUDForView:self.view];
-                }];
+                [self bucklesMoney];
+                if (self.pTalkM.talkid) {
+                    [APIHTTP wwPost:kAPIHeartbeatCheck parameters:@{@"talkid":self.pTalkM.talkid} success:^(NSDictionary * responseObject) {
+                        @strongify(self)
+                        PHeartBeatCheckM * model = [[PHeartBeatCheckM alloc] initWithDictionary:responseObject error:nil];
+                        if ([model.balance floatValue] < [self.pTalkM.fee_per_heart floatValue]) {
+                            // 余额不足
+                            [self showMoneyAlert];
+                        }
+                    } error:^(NSError *err) {
+                        @strongify(self)
+                        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+                    } failure:^(NSError *err) {
+                        @strongify(self)
+                        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+                    } completion:^{
+                        [MBProgressHUD hideHUDForView:self.view];
+                    }];
+                }
             });
         }else{
             timeout--;
@@ -141,10 +140,13 @@
 }
 
 - (void)showMoneyAlert{
+    if ([self.presentedViewController isKindOfClass:[self.mAlertController class]]) {
+        return;
+    }
     self.mAlertController = [UIAlertController  alertControllerWithTitle:@"充值金额"  message:nil  preferredStyle:UIAlertControllerStyleAlert];
     @weakify(self)
     [self.mAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = @"1";
+        textField.text = @"";
         textField.placeholder = @"最低充值金额1元";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }];
@@ -165,6 +167,7 @@
                              [self dismissViewControllerAnimated:YES completion:nil];
                              
                          }];
+    ok.enabled = NO;
     UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"取消充值"
                              style:UIAlertActionStyleDefault
@@ -179,6 +182,7 @@
     
     [self.mAlertController addAction:cancel];
     [self.mAlertController addAction:ok];
+    [self presentViewController:self.mAlertController animated:YES completion:nil];
 }
 
 - (void)textFieldDidChangeValue:(UITextField *)sender{
@@ -253,12 +257,12 @@
 
 - (void)paySuccess:(NSNotification *)noti{
     // 付款成功继续聊天
-    [self addTalk];
+//    [self addTalk];
 }
 
 - (void)payError:(NSNotification *)noti{
     // 付款失败直接退出
-    [self endTalk];
+//    [self endTalk];
 }
 
 - (void)viewDidLoad {
@@ -1576,12 +1580,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     @weakify(self)
     [APIHTTP wwPost:kAPICloseTalk parameters:@{@"talkid": self.pTalkM.talkid} success:^(NSDictionary * data) {
         @strongify(self)
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
         // 评价
-//        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
-//        PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
-//        vc.pEndTalkM = [[PEndTalkM alloc] initWithDictionary:data error:nil];
-//        [self.navigationController pushViewController:vc animated:YES];
+        UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
+        PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
+        vc.pEndTalkM = [[PEndTalkM alloc] initWithDictionary:data error:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {

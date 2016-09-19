@@ -92,7 +92,7 @@
     @weakify(self)
     [self.mAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         
-        textField.text = @"1";
+        textField.text = @"";
         textField.placeholder = @"最低充值金额1元";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }];
@@ -113,6 +113,7 @@
                              [self dismissViewControllerAnimated:YES completion:nil];
                              
                          }];
+    ok.enabled = NO;
     UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"取消充值"
                              style:UIAlertActionStyleDefault
@@ -128,10 +129,17 @@
     [self.mAlertController addAction:ok];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess:) name:@"PAY_SUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:@"PMineVC" object:nil];
+}
+
+- (void)popToSelf:(NSNotification *)notic{
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 - (IBAction)logout:(id)sender {
+    [MBProgressHUD showMessage:nil];
     [JMSGUser logout:^(id resultObject, NSError *error) {
+        [MBProgressHUD hideHUD];
         [USERMANAGER logout];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC
                                                             object:USERLOGIC_SB];
@@ -139,7 +147,7 @@
 }
 
 - (void)grapUserInfo{
-    [MBProgressHUD showMessage:nil];
+//    [MBProgressHUD showMessage:nil];
     @weakify(self)
     [APIHTTP wwPost:kAPIMoneyGet parameters:@{@"moneyUserId":self.uModel.user_id} success:^(NSDictionary * responseObject) {
         @strongify(self)
@@ -150,7 +158,7 @@
     } failure:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } completion:^{
-        [MBProgressHUD hideHUD];
+//        [MBProgressHUD hideHUD];
     }];
 }
 
@@ -189,6 +197,11 @@
         if (self.model) {
             [self performSegueWithIdentifier:@"PMoneyLogVC" sender:nil];
         }
+    }else if (3 == indexPath.row){
+        // 关于
+        PublicCustomWebVC * webVC = [[PublicCustomWebVC alloc] init];
+        webVC.docUrl = @"http://cdn.xiaomahome.com/protocrol/关于我们.html";
+        [self.navigationController pushViewController:webVC animated:YES];
     }
 }
 

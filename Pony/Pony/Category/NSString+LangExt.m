@@ -18,7 +18,7 @@
 }
 
 - (BOOL)validLoginPassword{
-    NSString * numberRegex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+    NSString * numberRegex = @"^(?![0-9]+$)(?![_]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,16}$";
     NSPredicate * numberTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",numberRegex];
     return [numberTest evaluateWithObject:self];
 }

@@ -22,6 +22,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:BOLE_QIANGDAN_NOTIC object:nil];
 }
 
+- (void)click_backBarButtonItem{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSourceArr = [[NSMutableArray alloc] init];
@@ -34,10 +38,11 @@
     NSDictionary * dic = [self toArrayOrNSDictionary:[noti.object dataUsingEncoding:NSASCIIStringEncoding]];
     BoleQDNoticM * model = [[BoleQDNoticM alloc] initWithDictionary:dic error:nil];
     [self.dataSourceArr addObject:model];
-    [self.tableView beginUpdates];
-    NSArray *arrInsertRows = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-    [self.tableView insertRowsAtIndexPaths:arrInsertRows withRowAnimation:UITableViewRowAnimationTop];
-    [self.tableView endUpdates];
+    [self.tableView reloadData];
+//    [self.tableView beginUpdates];
+//    NSArray *arrInsertRows = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    [self.tableView insertRowsAtIndexPaths:arrInsertRows withRowAnimation:UITableViewRowAnimationTop];
+//    [self.tableView endUpdates];
 }
 
 // 将JSON串转化为字典或者数组

@@ -32,12 +32,12 @@
     }
     
     if (![_nPasswordTextField.text isEqualToString:_cPasswordTextField.text]) {
-        [MBProgressHUD showError:@"确认密码输入有误" toView:self.view];
+        [MBProgressHUD showError:@"确认新密码输入有误" toView:self.view];
         [_cPasswordTextField shake];
         return;
     }
     
-    NSDictionary * parameters = @{@"userName":_userName,@"code":_code,@"userPassword":_nPasswordTextField.text};
+    NSDictionary * parameters = @{@"userName":_userName,@"code":_code,@"new_password":_nPasswordTextField.text};
     [MBProgressHUD showMessage:nil];
     @weakify(self)
     [APIHTTP wwPost:kAPIReset parameters:parameters success:^(id responseObject) {
@@ -58,6 +58,24 @@
     RAC(self.resetVM, nPsw) = [self.nPasswordTextField rac_textSignal];
     RAC(self.resetVM, cPsw) = [self.cPasswordTextField rac_textSignal];
     self.sureButton.rac_command = self.resetVM.sureCommand;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (![[UIApplication sharedApplication]textInputMode].primaryLanguage) {
+        return NO;
+    }
+    
+    if (textField == self.nPasswordTextField || textField == self.cPasswordTextField) {
+        if (string.length == 0) return YES;
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength > 16) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
