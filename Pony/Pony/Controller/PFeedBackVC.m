@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
 @property (weak, nonatomic) IBOutlet UILabel *boleLab;
 @property (strong,nonatomic) NSMutableArray * btnArr;
+@property (copy, nonatomic) NSString * starNum;
 
 @end
 
@@ -50,6 +51,7 @@
     
     [self.ratingBar setImageDeselected:@"star01_1" halfSelected:nil fullSelected:@"star01" andDelegate:self];
     [self.ratingBar displayRating:3.0];
+    self.starNum = @"3";
     
     self.btnArr = [[NSMutableArray alloc] init];
     CGFloat w = (self.view.bounds.size.width - 50)/3.0;
@@ -57,7 +59,7 @@
     for (int i = 0; i < self.pEndTalkM.commentStatistics.count; i++) {
         PCommentStatisticsM * cM = self.pEndTalkM.commentStatistics[i];
         UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(15 + (10 + w)*(i%3), 80 + 15 + (15 + h)*(i/3), w, h)];
-        NSString * t = [NSString stringWithFormat:@"%@(%@)",cM.comment_title,cM.comment_count];
+        NSString * t = [NSString stringWithFormat:@"%@",cM.comment_title];
         [btn setTitle:t forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
@@ -99,6 +101,32 @@
 }
 
 - (void)clickSureButton{
+    [MBProgressHUD showMessage:nil];
+    NSString * str = @"";
+    for (int i = 0; i < self.btnArr.count; i++) {
+        UIButton * btn = (UIButton *)self.btnArr[i];
+        if (btn.selected) {
+            PCommentStatisticsM * cM = self.pEndTalkM.commentStatistics[i];
+            str = [str stringByAppendingString:[NSString stringWithFormat:@"$%@",cM.comment_title]];
+        }
+    }
+    if (![str validBlank]) {
+        str = [str stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
+    }
+    @weakify(self)
+    [APIHTTP wwPost:kAPICommentsSave parameters:@{@"commentScore":self.starNum,@"commentTalkId":self.pEndTalkM.talk_id,@"commentTitle":str,@"commentUserTo":self.boleId} success:^(NSDictionary * responseObject) {
+        @strongify(self)
+        [MBProgressHUD showSuccess:@"评价成功" toView:self.view];
+        [self performSelector:@selector(click_backBarButtonItem) withObject:nil afterDelay:3];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+    } error:^(NSError *err) {
+        [MBProgressHUD showError:@"评价失败" toView:self.view];
+//        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+    } failure:^(NSError *err) {
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
+    } completion:^{
+        [MBProgressHUD hideHUD];
+    }];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -112,7 +140,7 @@
 #pragma mark - RatingBarDelegate
 
 - (void)ratingChanged:(float)newRating{
-
+    self.starNum = [NSString stringWithFormat:@"%d",(int)newRating];
 }
 
 

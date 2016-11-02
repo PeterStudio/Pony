@@ -16,10 +16,10 @@
 #import "UIButton+WebCache.h"
 
 #define IMAGE_AUTH_TITLE        @"此应用程序对您的相册没有访问权限"
-#define IMAGE_AUTH_MESSAGE      @"请在iPhone的“设置-隐私-照片”选项中，允许小马过河访问你的手机相册"
+#define IMAGE_AUTH_MESSAGE      @"请在iPhone的“设置-隐私-照片”选项中，允许晓马过河访问你的手机相册"
 #define IMAGE_AUTH_CANCEL       @"好"
 #define CAMERA_AUTH_TITLE       @"此应用程序对您的相机没有访问权限"
-#define CAMERA_AUTH_MESSAGE     @"请在iPhone的“设置-隐私-相机”选项中，允许小马过河访问你的手机相机"
+#define CAMERA_AUTH_MESSAGE     @"请在iPhone的“设置-隐私-相机”选项中，允许晓马过河访问你的手机相机"
 #define CAMERA_AUTH_CANCEL      @"好"
 
 @interface HRAuthTVC ()<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate>{
@@ -89,7 +89,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -140,7 +140,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -241,7 +241,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

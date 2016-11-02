@@ -22,24 +22,24 @@
 }
 
 - (IBAction)sureBtnClicked:(id)sender {
-    if ([self.dealPswTF.text validBlank]) {
-        [MBProgressHUD showError:@"请输入交易密码"];
+    if ([self.dealPswTF.text validLoginPassword]) {
+        [MBProgressHUD showError:@"密码，6-16位字母＋数字，支持_"];
         return;
     }
     
-    if ([self.sureDealPswTF.text validBlank]) {
-        [MBProgressHUD showError:@"请确认交易密码"];
-        return;
-    }
+//    if ([self.sureDealPswTF.text validBlank]) {
+//        [MBProgressHUD showError:@"请确认交易密码"];
+//        return;
+//    }
     
     if (![self.dealPswTF.text isEqualToString:self.sureDealPswTF.text]) {
-        [MBProgressHUD showError:@"密码不一致"];
+        [MBProgressHUD showError:@"两次输入的密码不一致"];
         return;
     }
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wwPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":[self.dealPswTF.text md5Hex]} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPISetBalancePassowrd parameters:@{@"chargepassword":self.dealPswTF.text} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"设置成功！"];
         [USERMANAGER saveUserDealStatus:@"1"];
@@ -47,7 +47,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

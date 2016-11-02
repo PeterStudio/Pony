@@ -24,8 +24,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.nameLab.text = self.bindAlipayM.alipayinfo.alipayName;
-    self.accountLab.text = self.bindAlipayM.alipayinfo.alipayNo;
+    if (self.bindAlipayM.alipayinfo.alipayName) {
+        self.nameLab.text = self.bindAlipayM.alipayinfo.alipayName;
+    }else{
+        self.nameLab.text = self.name;
+    }
+    
+    if (self.bindAlipayM.alipayinfo.alipayNo) {
+        self.accountLab.text = self.bindAlipayM.alipayinfo.alipayNo;
+    }else{
+        self.accountLab.text = self.account;
+    }
+    
     self.uModel = [USERMANAGER userInfoM];
      [self refreshTipLab:@"0" money:@"0"];
     [self.moneyLab addTarget:self action:@selector(textFieldDidChangeValue:) forControlEvents:UIControlEventEditingChanged];
@@ -109,7 +119,7 @@
                                  } error:^(NSError *err) {
                                      [MBProgressHUD showError:err.localizedDescription toView:self.view];
                                  } failure:^(NSError *err) {
-                                     [MBProgressHUD showError:err.localizedDescription toView:self.view];
+                                     [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
                                  } completion:^{
                                      [MBProgressHUD hideHUD];
                                  }];

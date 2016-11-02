@@ -23,6 +23,7 @@
 }
 
 - (IBAction)submitBtnClicked:(id)sender {
+    [self.view endEditing:YES];
     if ([self.nameTF.text validBlank]) {
         [MBProgressHUD showError:@"请输入真是姓名"];
         return;
@@ -35,17 +36,19 @@
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wwPost:kAPIAlipayBind parameters:@{@"alipayName":self.nameTF.text,@"alipayNo":self.zhiFuBaoTF.text,@"userId":self.searchBindAlipayM.alipayinfo.userId} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIAlipayBind parameters:@{@"alipayName":self.nameTF.text,@"alipayNo":self.zhiFuBaoTF.text,@"userId":self.userID?self.userID:@""} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"绑定成功！"];
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
         GetMoneyFormPonyVC * vc = [sb instantiateViewControllerWithIdentifier:@"GetMoneyFormPonyVC"];
         vc.bindAlipayM = self.searchBindAlipayM;
+        vc.name = self.nameTF.text;
+        vc.account = self.zhiFuBaoTF.text;
         [self.navigationController pushViewController:vc animated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

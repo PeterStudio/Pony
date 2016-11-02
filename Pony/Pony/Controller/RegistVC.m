@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *selectedBtn;
 
 @property (strong , nonatomic) RegistVM * registVM;
 @end
@@ -43,12 +44,18 @@
         @strongify(self)
         if (!error) {
             [self countTime];
-            [MBProgressHUD showSuccess:@"获取验证码成功" toView:self.view];
+            [MBProgressHUD showSuccess:@"短信验证码发送成功" toView:self.view];
         } else {
             _codeBtn.enabled = YES;
             [MBProgressHUD showError:@"获取验证码失败，请重新获取" toView:self.view];
         }
     }];
+}
+
+
+- (IBAction)agreedBtnClicked:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    self.sureBtn.enabled = sender.selected;
 }
 
 /**注册*/
@@ -76,11 +83,14 @@
     @weakify(self)
     [APIHTTP wwPost:kAPIRegister parameters:parameters success:^(id responseObject) {
         @strongify(self)
+        [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"CurUserPhone"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [MBProgressHUD showSuccess:@"注册成功，请登录"];
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

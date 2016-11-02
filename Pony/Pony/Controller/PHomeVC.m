@@ -52,30 +52,28 @@
 }
 
 - (IBAction)switchToHR:(id)sender {
-    // 我是伯乐
-    [MBProgressHUD showMessage:nil];
-    @weakify(self)
-    [JMSGUser logout:^(id resultObject, NSError *error) {
-        [MBProgressHUD hideHUD];
-        @strongify(self)
-        if (error == nil) {
-            // 退出极光成功！
-            [self loginJPush];
-        }else{
-            [MBProgressHUD showError:@"切换失败，请稍后再试" toView:self.view];
-        }
-    }];
+    NSString * str = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurUserPhone"];
+    if ([TEST_PHONE_NUMBER isEqualToString:str]) {
+        [USERMANAGER changeToRole:BOLE];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:HR_SB];
+    }else{
+        // 我是伯乐
+        [MBProgressHUD showMessage:nil];
+        @weakify(self)
+        [JMSGUser logout:^(id resultObject, NSError *error) {
+            [MBProgressHUD hideHUD];
+            @strongify(self)
+            if (error == nil) {
+                // 退出极光成功！
+                [self loginJPush];
+            }else{
+                [MBProgressHUD showError:@"切换失败，请稍后再试" toView:self.view];
+            }
+        }];
+    }
 }
 
 - (IBAction)callButonClicked:(id)sender {
-    
-//    UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
-//    PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
-//    vc.pEndTalkM = nil;//[[PEndTalkM alloc] initWithDictionary:data error:nil];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;
-    
-    
     if (self.professionM) {
         @weakify(self)
         [MBProgressHUD showMessage:@"开始呼叫"];
@@ -85,7 +83,7 @@
         } error:^(NSError *err) {
             [MBProgressHUD showError:err.localizedDescription toView:self.view];
         } failure:^(NSError *err) {
-            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+            [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
         } completion:^{
             [MBProgressHUD hideHUD];
         }];

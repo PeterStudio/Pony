@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lbe-ar-020">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lbe-ar-020">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -48,7 +48,7 @@
                                             <constraint firstAttribute="height" constant="35" id="9yp-i0-4iW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="9yp-i0-4iW"/>
@@ -523,7 +523,7 @@
                                     <constraint firstAttribute="height" constant="35" id="Ifl-b5-fbS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="同意《用户协议》">
+                                <state key="normal" title="我已阅读并同意《用户协议》">
                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -570,20 +570,33 @@
                                     <action selector="regist:" destination="X7Q-at-3cs" eventType="touchUpInside" id="VNC-jh-M9H"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXz-bi-j7f">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="gsF-sB-XhT"/>
+                                    <constraint firstAttribute="height" constant="40" id="h7a-3Y-kF5"/>
+                                </constraints>
+                                <state key="normal" image="select_box"/>
+                                <state key="selected" image="select_box_press"/>
+                                <connections>
+                                    <action selector="agreedBtnClicked:" destination="X7Q-at-3cs" eventType="touchUpInside" id="FFZ-hw-fqZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cXz-bi-j7f" firstAttribute="centerY" secondItem="Yui-39-Vb6" secondAttribute="centerY" id="2Gs-id-TF3"/>
                             <constraint firstItem="gel-Yc-ffg" firstAttribute="centerY" secondItem="Yui-39-Vb6" secondAttribute="centerY" id="BQK-JL-vzV"/>
                             <constraint firstAttribute="trailing" secondItem="SIu-Pv-GGZ" secondAttribute="trailing" constant="20" id="EUy-MW-hRk"/>
                             <constraint firstAttribute="trailing" secondItem="FNW-V6-Q1S" secondAttribute="trailing" constant="15" id="Jtc-WE-ASK"/>
                             <constraint firstItem="SIu-Pv-GGZ" firstAttribute="top" secondItem="Yui-39-Vb6" secondAttribute="bottom" constant="8" id="QpG-kC-faV"/>
                             <constraint firstItem="Yui-39-Vb6" firstAttribute="top" secondItem="FNW-V6-Q1S" secondAttribute="bottom" constant="15" id="aK2-xo-1et"/>
-                            <constraint firstItem="Yui-39-Vb6" firstAttribute="leading" secondItem="aYz-X6-6TL" secondAttribute="leading" constant="15" id="aKN-pv-Z9P"/>
+                            <constraint firstItem="Yui-39-Vb6" firstAttribute="leading" secondItem="aYz-X6-6TL" secondAttribute="leading" constant="40" id="aKN-pv-Z9P"/>
                             <constraint firstItem="FNW-V6-Q1S" firstAttribute="leading" secondItem="aYz-X6-6TL" secondAttribute="leading" constant="15" id="azq-sp-ECC"/>
                             <constraint firstItem="SIu-Pv-GGZ" firstAttribute="leading" secondItem="aYz-X6-6TL" secondAttribute="leading" constant="20" id="grY-Uk-ikc"/>
                             <constraint firstItem="FNW-V6-Q1S" firstAttribute="top" secondItem="V4e-mB-Wui" secondAttribute="bottom" constant="25" id="hUp-SU-tC4"/>
                             <constraint firstItem="gel-Yc-ffg" firstAttribute="height" secondItem="Yui-39-Vb6" secondAttribute="height" id="opV-vd-6YR"/>
                             <constraint firstAttribute="trailing" secondItem="gel-Yc-ffg" secondAttribute="trailing" constant="15" id="q0W-Za-UFi"/>
+                            <constraint firstItem="cXz-bi-j7f" firstAttribute="leading" secondItem="aYz-X6-6TL" secondAttribute="leading" constant="5" id="v4m-4H-Ce1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -596,11 +609,11 @@
                                 <exclude reference="Jtc-WE-ASK"/>
                                 <exclude reference="azq-sp-ECC"/>
                                 <exclude reference="hUp-SU-tC4"/>
+                                <exclude reference="aK2-xo-1et"/>
+                                <exclude reference="aKN-pv-Z9P"/>
                                 <exclude reference="EUy-MW-hRk"/>
                                 <exclude reference="QpG-kC-faV"/>
                                 <exclude reference="grY-Uk-ikc"/>
-                                <exclude reference="aK2-xo-1et"/>
-                                <exclude reference="aKN-pv-Z9P"/>
                                 <exclude reference="BQK-JL-vzV"/>
                                 <exclude reference="opV-vd-6YR"/>
                                 <exclude reference="q0W-Za-UFi"/>
@@ -617,11 +630,11 @@
                                 <include reference="Jtc-WE-ASK"/>
                                 <include reference="azq-sp-ECC"/>
                                 <include reference="hUp-SU-tC4"/>
+                                <include reference="aK2-xo-1et"/>
+                                <include reference="aKN-pv-Z9P"/>
                                 <include reference="EUy-MW-hRk"/>
                                 <include reference="QpG-kC-faV"/>
                                 <include reference="grY-Uk-ikc"/>
-                                <include reference="aK2-xo-1et"/>
-                                <include reference="aKN-pv-Z9P"/>
                                 <include reference="BQK-JL-vzV"/>
                                 <include reference="opV-vd-6YR"/>
                                 <include reference="q0W-Za-UFi"/>
@@ -633,13 +646,14 @@
                         <outlet property="codeBtn" destination="BMO-EI-COL" id="TCE-dA-gFB"/>
                         <outlet property="codeTextField" destination="fhS-Se-GN9" id="dm6-uR-cZm"/>
                         <outlet property="passwordTextField" destination="s5A-qx-Vxc" id="lLb-dA-c97"/>
+                        <outlet property="selectedBtn" destination="cXz-bi-j7f" id="2wz-33-qjQ"/>
                         <outlet property="sureBtn" destination="SIu-Pv-GGZ" id="TW0-T1-XIi"/>
                         <outlet property="userNameTextField" destination="ztW-Je-7Ec" id="u18-yS-XmT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEj-UF-xTr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319.5" y="2390.25"/>
+            <point key="canvasLocation" x="-320.80000000000001" y="2389.6551724137935"/>
         </scene>
         <!--找回密码VC-->
         <scene sceneID="Po4-in-OwI">
@@ -1104,6 +1118,8 @@
     <resources>
         <image name="line_grey_foot_40x1" width="20" height="1"/>
         <image name="line_grey_mid_40x1" width="20" height="1"/>
+        <image name="select_box" width="20" height="20"/>
+        <image name="select_box_press" width="20" height="20"/>
         <image name="userLogic_bg01" width="10" height="10"/>
         <image name="userLogic_btn_bg01" width="8" height="5"/>
         <image name="userLogic_btn_bg01_1" width="5" height="5"/>

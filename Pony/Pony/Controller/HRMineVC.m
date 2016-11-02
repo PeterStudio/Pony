@@ -83,7 +83,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -96,12 +96,10 @@
         TodayBoleStaticsM * model = [[TodayBoleStaticsM alloc] initWithDictionary:responseObject error:nil];
         [self refreshGrapLab:model.bole_count];
         [self refreshPayLab:model.bole_consume];
-//        self.todayCallNumLab.text = [NSString stringWithFormat:@"今天抢单：%@单",model.bole_count];
-//        self.todayMoneyLab.text = [NSString stringWithFormat:@"今日流水：%@伯乐币",model.bole_consume];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -147,6 +145,7 @@
                 UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
                 BindZhiFuBaoVC * vc = [sb instantiateViewControllerWithIdentifier:@"BindZhiFuBaoVC"];
                 vc.searchBindAlipayM = searchBindAlipayM;
+                vc.userID = self.uModel.user_id;
                 [self.navigationController pushViewController:vc animated:YES];
             }else if ([@"1" isEqualToString:searchBindAlipayM.alipaystatus]){
                 //  已绑定
@@ -158,7 +157,7 @@
         } error:^(NSError *err) {
             [MBProgressHUD showError:err.localizedDescription toView:self.view];
         } failure:^(NSError *err) {
-            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+            [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
         } completion:^{
             [MBProgressHUD hideHUD];
         }];

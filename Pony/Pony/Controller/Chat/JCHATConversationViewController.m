@@ -49,6 +49,8 @@
 }
 
 @property (strong, nonatomic) UIAlertController *mAlertController;
+@property (strong, nonatomic) dispatch_source_t timer1;
+@property (strong, nonatomic) dispatch_source_t timer2;
 @end
 
 
@@ -73,15 +75,15 @@
         
         __block int timeout = [self.pTalkM.free_time intValue] - 1;
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+        self.timer1 = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(self.timer1,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
         @weakify(self)
-        dispatch_source_set_event_handler(_timer, ^{
+        dispatch_source_set_event_handler(self.timer1, ^{
             @strongify(self)
             if(timeout<=0){
-                dispatch_source_cancel(_timer);
+                dispatch_source_cancel(self.timer1);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self bucklesMoney];
+//                    [self bucklesMoney];
                     [bgV removeFromSuperview];
                 });
             }else{
@@ -92,10 +94,11 @@
                 timeout--;
             }
         });
-        dispatch_resume(_timer);
-    }else{
-        [self bucklesMoney];
+        dispatch_resume(self.timer1);
     }
+//    else{
+        [self bucklesMoney];
+//    }
 }
 
 // 扣费接口
@@ -103,13 +106,13 @@
     //
     __block int timeout = [self.pTalkM.heartbeat intValue] - 1;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+    self.timer2 = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(self.timer2,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
     @weakify(self)
-    dispatch_source_set_event_handler(_timer, ^{
+    dispatch_source_set_event_handler(self.timer2, ^{
         @strongify(self)
         if(timeout<=0){
-            dispatch_source_cancel(_timer);
+            dispatch_source_cancel(self.timer2);
             dispatch_async(dispatch_get_main_queue(), ^{
                 @weakify(self)
                 [self bucklesMoney];
@@ -126,7 +129,7 @@
                         [MBProgressHUD showError:err.localizedDescription toView:self.view];
                     } failure:^(NSError *err) {
                         @strongify(self)
-                        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+                        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
                     } completion:^{
                         [MBProgressHUD hideHUDForView:self.view];
                     }];
@@ -136,13 +139,14 @@
             timeout--;
         }
     });
-    dispatch_resume(_timer);
+    dispatch_resume(self.timer2);
 }
 
 - (void)showMoneyAlert{
-    if ([self.presentedViewController isKindOfClass:[self.mAlertController class]]) {
+    if ([self.presentedViewController isKindOfClass:[UIAlertController class]]) {
         return;
     }
+
     self.mAlertController = [UIAlertController  alertControllerWithTitle:@"充值金额"  message:nil  preferredStyle:UIAlertControllerStyleAlert];
     @weakify(self)
     [self.mAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
@@ -182,7 +186,17 @@
     
     [self.mAlertController addAction:cancel];
     [self.mAlertController addAction:ok];
-    [self presentViewController:self.mAlertController animated:YES completion:nil];
+    
+    UIAlertAction * pay = [UIAlertAction actionWithTitle:@"立即充值" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self presentViewController:self.mAlertController animated:YES completion:nil];
+    }];
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"伯乐币余额不足，点击取消将退出聊天" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:cancel];
+    [alert addAction:pay];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
 }
 
 - (void)textFieldDidChangeValue:(UITextField *)sender{
@@ -217,7 +231,7 @@
 }
 
 - (void)payMoney:(NSString *)_money{
-    NSString * title = @"小马过河充值";
+    NSString * title = @"晓马过河充值";
     NSString * body = [NSString stringWithFormat:@"充值金额:%@元",_money];
     [MBProgressHUD showMessage:nil];
     @weakify(self)
@@ -232,28 +246,28 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
 }
 
-- (void)addTalk{
-    [MBProgressHUD showMessage:nil toView:self.view];
-    @weakify(self)
-    [APIHTTP wwPost:kAPIAddTalk parameters:@{@"bole_userid": self.bole_ID} success:^(NSDictionary * data) {
-        @strongify(self)
-        self.pTalkM = [[PAddTalkM alloc] initWithDictionary:data error:nil];
-        [self countDownTime];
-    } error:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
-    } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
-    } completion:^{
-        @strongify(self)
-        [MBProgressHUD hideHUDForView:self.view];
-    }];
-}
+//- (void)addTalk{
+//    [MBProgressHUD showMessage:nil toView:self.view];
+//    @weakify(self)
+//    [APIHTTP wwPost:kAPIAddTalk parameters:@{@"bole_userid": self.bole_ID} success:^(NSDictionary * data) {
+//        @strongify(self)
+//        self.pTalkM = [[PAddTalkM alloc] initWithDictionary:data error:nil];
+//        [self countDownTime];
+//    } error:^(NSError *err) {
+//        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+//    } failure:^(NSError *err) {
+//        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+//    } completion:^{
+//        @strongify(self)
+//        [MBProgressHUD hideHUDForView:self.view];
+//    }];
+//}
 
 - (void)paySuccess:(NSNotification *)noti{
     // 付款成功继续聊天
@@ -1580,16 +1594,24 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     @weakify(self)
     [APIHTTP wwPost:kAPICloseTalk parameters:@{@"talkid": self.pTalkM.talkid} success:^(NSDictionary * data) {
         @strongify(self)
-//        [self.navigationController popToRootViewControllerAnimated:YES];
         // 评价
+        if (self.timer1) {
+            dispatch_source_cancel(self.timer1);
+        }
+        if (self.timer2) {
+            dispatch_source_cancel(self.timer2);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });
         UIStoryboard * sb = [UIStoryboard storyboardWithName:@"Pony" bundle:[NSBundle mainBundle]];
         PFeedBackVC * vc = [sb instantiateViewControllerWithIdentifier:@"PFeedBackVC"];
+        vc.boleId = self.bole_ID;
         vc.pEndTalkM = [[PEndTalkM alloc] initWithDictionary:data error:nil];
         [self.navigationController pushViewController:vc animated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         @strongify(self)
         [MBProgressHUD hideHUDForView:self.view];

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataList=[[NSMutableArray alloc] init];
+    self.dataList=[[NSMutableArray alloc] initWithArray:@[@{@"company":@"不限",@"id":@"-1"}]];
     [self requestToService];
 }
 
@@ -31,7 +31,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUDForView:self.tableView];
     }];

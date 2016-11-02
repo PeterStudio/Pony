@@ -11,10 +11,11 @@
 
 //接口名称相关
 #ifdef DEBUG
-//Debug状态下的测试API
+//Debug状态下的测试API 
 #define API_BASE_URL_STRING      @"http://api.xiaomahome.com/api/v1/"//@"http://xiaoma.weabuy.cn/api/v1/"
 
 // @"http://192.168.1.105:8080/api/v1/"
+// @"http://api.xiaomahome.com/api/v1/"
 
 #else
 // 正式环境

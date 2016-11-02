@@ -26,13 +26,13 @@
 /**确定*/
 - (IBAction)sure:(id)sender {
     if (![_nPasswordTextField.text validLoginPassword]) {
-        [MBProgressHUD showError:@"新密码输入有误" toView:self.view];
+        [MBProgressHUD showError:@"密码，6-16位字母＋数字，支持_" toView:self.view];
         [_nPasswordTextField shake];
         return;
     }
     
     if (![_nPasswordTextField.text isEqualToString:_cPasswordTextField.text]) {
-        [MBProgressHUD showError:@"确认新密码输入有误" toView:self.view];
+        [MBProgressHUD showError:@"两次输入的密码不一致" toView:self.view];
         [_cPasswordTextField shake];
         return;
     }
@@ -42,11 +42,14 @@
     @weakify(self)
     [APIHTTP wwPost:kAPIReset parameters:parameters success:^(id responseObject) {
         @strongify(self)
+        [[NSUserDefaults standardUserDefaults] setObject:self.userName forKey:@"CurUserPhone"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [MBProgressHUD showSuccess:@"找回密码成功，请登录"];
         [self.navigationController popToRootViewControllerAnimated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

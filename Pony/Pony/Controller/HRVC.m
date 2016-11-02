@@ -104,25 +104,31 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
 //        [MBProgressHUD hideHUD];
     }];
 }
 
 - (IBAction)switchToPony:(id)sender {
-    [MBProgressHUD showMessage:nil];
-    @weakify(self)
-    [JMSGUser logout:^(id resultObject, NSError *error) {
-        [MBProgressHUD hideHUD];
-        @strongify(self)
-        if (error == nil) {
-            // 退出极光成功！
-            [self loginJPush];
-        }else{
-            [MBProgressHUD showError:@"切换失败，请稍后再试" toView:self.view];
-        }
-    }];
+    NSString * str = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurUserPhone"];
+    if ([TEST_PHONE_NUMBER isEqualToString:str]) {
+        [USERMANAGER changeToRole:XIAOMA];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:PONY_SB];
+    }else{
+        [MBProgressHUD showMessage:nil];
+        @weakify(self)
+        [JMSGUser logout:^(id resultObject, NSError *error) {
+            [MBProgressHUD hideHUD];
+            @strongify(self)
+            if (error == nil) {
+                // 退出极光成功！
+                [self loginJPush];
+            }else{
+                [MBProgressHUD showError:@"切换失败，请稍后再试" toView:self.view];
+            }
+        }];
+    }
 }
 
 /**登录小马极光帐号*/
@@ -189,7 +195,7 @@
         } error:^(NSError *err) {
             [MBProgressHUD showError:err.localizedDescription toView:self.view];
         } failure:^(NSError *err) {
-            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+            [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
         } completion:^{
             [MBProgressHUD hideHUD];
         }];
@@ -206,7 +212,7 @@
         } error:^(NSError *err) {
             [MBProgressHUD showError:err.localizedDescription toView:self.view];
         } failure:^(NSError *err) {
-            [MBProgressHUD showError:err.localizedDescription toView:self.view];
+            [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
         } completion:^{
             [MBProgressHUD hideHUD];
         }];
@@ -273,7 +279,7 @@
     @weakify(self)
     [APIHTTP wwPost:kAPITalkGrabTalk parameters:@{@"virtualTalkid":model.virtualTalkid} success:^(NSDictionary * responseObject) {
         @strongify(self)
-        [MBProgressHUD showSuccess:@"抢单成功！"];
+        [MBProgressHUD showSuccess:@"抢单成功！" toView:self.tableView];
         [self.dataSourceArr removeObjectAtIndex:_indx.row];
         [self.tableView beginUpdates];
         NSArray *arrInsertRows = [NSArray arrayWithObject:_indx];
@@ -282,7 +288,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

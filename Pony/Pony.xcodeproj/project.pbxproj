@@ -76,6 +76,8 @@
 		0B01DE2F1D59AEFC006E53C8 /* BoleQDNoticM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B01DE2E1D59AEFC006E53C8 /* BoleQDNoticM.m */; };
 		0B01DE321D59B8A4006E53C8 /* PReceiveBoleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B01DE311D59B8A4006E53C8 /* PReceiveBoleListVC.m */; };
 		0B01DE351D59D59D006E53C8 /* PAddTalkM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B01DE341D59D59D006E53C8 /* PAddTalkM.m */; };
+		0B0FACF21D90286500B20FD3 /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAD46BC1D1E136700B5B27A /* JMessage.framework */; };
+		0B0FACF61D90339300B20FD3 /* BillM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0FACF51D90339300B20FD3 /* BillM.m */; };
 		0B1C1CFC1D27A59C00746192 /* ProfessionLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1CFB1D27A59C00746192 /* ProfessionLM.m */; };
 		0B1C1CFF1D27A64400746192 /* CompanyLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1CFE1D27A64400746192 /* CompanyLM.m */; };
 		0B1C1D021D27A68800746192 /* PositionLM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C1D011D27A68800746192 /* PositionLM.m */; };
@@ -123,6 +125,7 @@
 		0B4F76801D6AE80800EB22AD /* PHeartBeatCheckM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F767F1D6AE80800EB22AD /* PHeartBeatCheckM.m */; };
 		0B62B2A51D740BE000BE90FD /* PublicCustomWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B62B2A41D740BE000BE90FD /* PublicCustomWebVC.m */; };
 		0B6E7FAB1D47595500F34911 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E7FAA1D47595500F34911 /* UIColor+Hex.m */; };
+		0B7145FA1D91220800A2A52F /* HRAboutMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7145F91D91220800A2A52F /* HRAboutMeVC.m */; };
 		0B7606CF1D8FBA5A000B1F11 /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7606CE1D8FBA5A000B1F11 /* RatingBar.m */; };
 		0B83BED31D8FE3CB00DCFE23 /* BillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B83BED21D8FE3CB00DCFE23 /* BillCell.m */; };
 		0B87FC351D055E82008FBB42 /* XXDGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B87FC341D055E82008FBB42 /* XXDGuideView.m */; };
@@ -332,7 +335,6 @@
 		0BA5B4A01D62F82C00A63A73 /* TodayBoleStaticsM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5B49F1D62F82C00A63A73 /* TodayBoleStaticsM.m */; };
 		0BA5B4A31D62F9EB00A63A73 /* HROrderM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5B4A21D62F9EB00A63A73 /* HROrderM.m */; };
 		0BA5B4A61D62FFA900A63A73 /* HRAuthM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5B4A51D62FFA900A63A73 /* HRAuthM.m */; };
-		0BAD46BD1D1E136700B5B27A /* JMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAD46BC1D1E136700B5B27A /* JMessage.framework */; };
 		0BAFAE771D06A74E00B06B6F /* PHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFAE761D06A74E00B06B6F /* PHomeVC.m */; };
 		0BAFAE7A1D06A76B00B06B6F /* PHomeVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAFAE791D06A76B00B06B6F /* PHomeVM.m */; };
 		0BB15CC61D01505C0014C6E7 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB15CAC1D01505C0014C6E7 /* UMSocialLocalizable.strings */; };
@@ -618,6 +620,9 @@
 		0B01DE311D59B8A4006E53C8 /* PReceiveBoleListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PReceiveBoleListVC.m; sourceTree = "<group>"; };
 		0B01DE331D59D59D006E53C8 /* PAddTalkM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAddTalkM.h; sourceTree = "<group>"; };
 		0B01DE341D59D59D006E53C8 /* PAddTalkM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAddTalkM.m; sourceTree = "<group>"; };
+		0B0FACF31D902A4400B20FD3 /* Pony.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pony.entitlements; sourceTree = "<group>"; };
+		0B0FACF41D90339300B20FD3 /* BillM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillM.h; sourceTree = "<group>"; };
+		0B0FACF51D90339300B20FD3 /* BillM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillM.m; sourceTree = "<group>"; };
 		0B1C1CFA1D27A59C00746192 /* ProfessionLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfessionLM.h; sourceTree = "<group>"; };
 		0B1C1CFB1D27A59C00746192 /* ProfessionLM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfessionLM.m; sourceTree = "<group>"; };
 		0B1C1CFD1D27A64400746192 /* CompanyLM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyLM.h; sourceTree = "<group>"; };
@@ -708,6 +713,8 @@
 		0B62B2A41D740BE000BE90FD /* PublicCustomWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicCustomWebVC.m; sourceTree = "<group>"; };
 		0B6E7FA91D47595500F34911 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		0B6E7FAA1D47595500F34911 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		0B7145F81D91220800A2A52F /* HRAboutMeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAboutMeVC.h; sourceTree = "<group>"; };
+		0B7145F91D91220800A2A52F /* HRAboutMeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAboutMeVC.m; sourceTree = "<group>"; };
 		0B7606CD1D8FBA5A000B1F11 /* RatingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBar.h; sourceTree = "<group>"; };
 		0B7606CE1D8FBA5A000B1F11 /* RatingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBar.m; sourceTree = "<group>"; };
 		0B83BED11D8FE3CB00DCFE23 /* BillCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillCell.h; sourceTree = "<group>"; };
@@ -1227,9 +1234,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B0FACF21D90286500B20FD3 /* JMessage.framework in Frameworks */,
 				0B1C1D671D2D1D9D00746192 /* CoreMotion.framework in Frameworks */,
 				0B1C1D651D2D1D8500746192 /* libc++.tbd in Frameworks */,
-				0BAD46BD1D1E136700B5B27A /* JMessage.framework in Frameworks */,
 				0BB15CF91D0151A10014C6E7 /* libiconv.tbd in Frameworks */,
 				0BB15CF21D0150F50014C6E7 /* libSocialQQ.a in Frameworks */,
 				0BFB48D01CE326BC00799730 /* libstdc++.tbd in Frameworks */,
@@ -1532,6 +1539,7 @@
 		09353A431C50AAAE00DC5A1A /* Pony */ = {
 			isa = PBXGroup;
 			children = (
+				0B0FACF31D902A4400B20FD3 /* Pony.entitlements */,
 				09353A471C50AAAE00DC5A1A /* AppDelegate.h */,
 				09353A481C50AAAE00DC5A1A /* AppDelegate.m */,
 				0BA5B31C1D62A13F00A63A73 /* Resources */,
@@ -1834,6 +1842,8 @@
 				095A3ED41CE9968B00BB2BB3 /* ShareVC.m */,
 				0BFE772F1D5326EA007A2005 /* HRInfoVC.h */,
 				0BFE77301D5326EA007A2005 /* HRInfoVC.m */,
+				0B7145F81D91220800A2A52F /* HRAboutMeVC.h */,
+				0B7145F91D91220800A2A52F /* HRAboutMeVC.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -2548,6 +2558,8 @@
 				0B01DE341D59D59D006E53C8 /* PAddTalkM.m */,
 				0BA5B4A11D62F9EB00A63A73 /* HROrderM.h */,
 				0BA5B4A21D62F9EB00A63A73 /* HROrderM.m */,
+				0B0FACF41D90339300B20FD3 /* BillM.h */,
+				0B0FACF51D90339300B20FD3 /* BillM.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2596,6 +2608,7 @@
 					09353A401C50AAAE00DC5A1A = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = FHRN25K2EQ;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3074,6 +3087,7 @@
 				0B4B07561D4F30EF007347F6 /* OrderCell.m in Sources */,
 				0BA5B4A01D62F82C00A63A73 /* TodayBoleStaticsM.m in Sources */,
 				0B272AD11D7FF02C000BF17A /* PayReturnM.m in Sources */,
+				0B7145FA1D91220800A2A52F /* HRAboutMeVC.m in Sources */,
 				0BF553581D229F1F00DE47F3 /* ChatBubbleLayer.m in Sources */,
 				0BF553491D229AB100DE47F3 /* JCHATMessageTableView.m in Sources */,
 				0B1C1D501D2B971100746192 /* MJRefreshConst.m in Sources */,
@@ -3117,6 +3131,7 @@
 				091FD6791C55B7DE00BB461C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				0B9CE3811CD878B40009A160 /* HRVM.m in Sources */,
 				0B4F76801D6AE80800EB22AD /* PHeartBeatCheckM.m in Sources */,
+				0B0FACF61D90339300B20FD3 /* BillM.m in Sources */,
 				0BF5531F1D229AB100DE47F3 /* JCHATConversationListViewController.m in Sources */,
 				0BF553B21D22A3D600DE47F3 /* JCHATStringUtils.m in Sources */,
 				093B20711CE56921001541BF /* OrderVM.m in Sources */,
@@ -3259,8 +3274,10 @@
 			baseConfigurationReference = A596F5E4225526C479994396 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Pony/Pony.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = FHRN25K2EQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3279,10 +3296,12 @@
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Pony/External/JPushSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterstudio.Pony;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7c3e9676-d42a-43c9-a76e-0b06a3a9f89b";
+				PROVISIONING_PROFILE_SPECIFIER = "小马过河Dev";
 			};
 			name = Debug;
 		};
@@ -3291,8 +3310,10 @@
 			baseConfigurationReference = CE3BEDCAE90A94E587BE6925 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Pony/Pony.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = FHRN25K2EQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3311,10 +3332,12 @@
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Pony/External/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Pony/External/JPushSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peterstudio.Pony;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "feae966e-349d-4699-9887-ef11ce435146";
+				PROVISIONING_PROFILE_SPECIFIER = Pony_Pro;
 			};
 			name = Release;
 		};

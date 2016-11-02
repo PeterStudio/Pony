@@ -21,7 +21,7 @@
 }
 
 - (IBAction)zhiFuBaoPay:(id)sender {
-    NSString * title = @"小马过河充值";
+    NSString * title = @"晓马过河充值";
     NSString * body = [NSString stringWithFormat:@"充值金额:%@元",self.sum];
     [MBProgressHUD showMessage:nil];
     @weakify(self)
@@ -36,7 +36,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

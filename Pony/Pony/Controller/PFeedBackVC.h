@@ -11,5 +11,6 @@
 
 
 @interface PFeedBackVC : BaseViewController
+@property (nonatomic, copy) NSString * boleId;
 @property(nonatomic, strong) PEndTalkM * pEndTalkM;
 @end

@@ -48,7 +48,7 @@
 }
 
 - (void)payMoney:(NSString *)_money{
-    NSString * title = @"小马过河充值";
+    NSString * title = @"晓马过河充值";
     NSString * body = [NSString stringWithFormat:@"充值金额:%@元",_money];
     [MBProgressHUD showMessage:nil];
     @weakify(self)
@@ -63,7 +63,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -83,10 +83,12 @@
     self.nameLab.text = self.uModel.user_phone;
     [self refreshMoneyLab:@"0.0"];
     
-    UIBarButtonItem * helpItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStylePlain target:self action:@selector(click_helpBarButtonItem)];
-    helpItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    self.navigationItem.rightBarButtonItem = helpItem;
-    
+    NSString * str = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurUserPhone"];
+    if (![TEST_PHONE_NUMBER isEqualToString:str]) {
+        UIBarButtonItem * helpItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"help"] style:UIBarButtonItemStylePlain target:self action:@selector(click_helpBarButtonItem)];
+        helpItem.imageInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        self.navigationItem.rightBarButtonItem = helpItem;
+    }
     
     self.mAlertController = [UIAlertController  alertControllerWithTitle:@"充值金额"  message:nil  preferredStyle:UIAlertControllerStyleAlert];
     @weakify(self)
@@ -156,13 +158,22 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
 //        [MBProgressHUD hideHUD];
     }];
 }
 
 #pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSString * str = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurUserPhone"];
+    if ([TEST_PHONE_NUMBER isEqualToString:str]) {
+        return 3;
+    }else{
+        return 4;
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 150.0f;
@@ -260,7 +271,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -293,6 +304,7 @@
     }else if ([obj isKindOfClass:[BindZhiFuBaoVC class]]){
         BindZhiFuBaoVC * vc = (BindZhiFuBaoVC *)obj;
         vc.searchBindAlipayM = sender;
+        vc.userID = self.uModel.user_id;
     }else if ([obj isKindOfClass:[GetMoneyFormPonyVC class]]){
         GetMoneyFormPonyVC * vc = (GetMoneyFormPonyVC *)obj;
         vc.bindAlipayM = sender;

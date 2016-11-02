@@ -17,6 +17,7 @@
 @property (nonatomic, copy) RACSignal * usernameValidSignal;
 @property (nonatomic, copy) RACSignal * codeValidSignal;
 @property (nonatomic, copy) RACSignal * passwordValidSignal;
+
 @property (strong, nonatomic) RACCommand * sureCommand;
 
 @end

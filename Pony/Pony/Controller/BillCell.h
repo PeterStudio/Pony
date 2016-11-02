@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BillM.h"
 
 @interface BillCell : UITableViewCell
-
+@property (nonatomic, strong) BillM * entity;
 @end

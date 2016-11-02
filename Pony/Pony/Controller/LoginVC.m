@@ -24,9 +24,21 @@
 
 @implementation LoginVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSString * curUserPhone = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurUserPhone"];
+    self.userNameTextField.text = curUserPhone;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = nil;
+    NSString * curUserPhone = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurUserPhone"];
+    self.userNameTextField.text = curUserPhone;
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:VERSION_NUM_FOR_GUIDE_KEY] integerValue] >= VERSION_NUM_FOR_GUIDE)
+    {
+        [self.userNameTextField becomeFirstResponder];
+    }
 }
 
 - (void)loginJPush{
@@ -96,12 +108,19 @@
         LoginM * m = [[LoginM alloc] initWithDictionary:responseObject error:nil];
         [USERMANAGER saveUserInfo:m];
         self.userInfoM = m.userinfo;
-        // 登录极光
-        [self loginJPush];
+        // 登录极光 
+        [[NSUserDefaults standardUserDefaults] setObject:_userNameTextField.text forKey:@"CurUserPhone"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        if ([TEST_PHONE_NUMBER isEqualToString:_userNameTextField.text]) {
+            [USERMANAGER changeToRole:XIAOMA];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:PONY_SB];
+        }else{
+            [self loginJPush];
+        }
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];
@@ -114,6 +133,7 @@
         @strongify(self)
         if (iResCode == 0) {
             [MBProgressHUD hideHUDForView:DWRootView animated:YES];
+            [MBProgressHUD showSuccess:@"登录成功"];
             [USERMANAGER changeToRole:XIAOMA];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_SWITCH_VC object:PONY_SB];
         }else{

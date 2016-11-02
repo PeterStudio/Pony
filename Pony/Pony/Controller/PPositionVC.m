@@ -21,10 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataList=[[NSMutableArray alloc] init];
-//    for (NSInteger i=0; i<100; i++) {
-//        [self.dataList addObject:[NSString stringWithFormat:@"%ld-FlyElephant",(long)i]];
-//    }
+    self.dataList=[[NSMutableArray alloc] initWithArray:@[@{@"jobPost":@"不限",@"id":@"-1"}]];
     [self requestToService];
 }
 
@@ -36,7 +33,7 @@
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.tableView];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUDForView:self.tableView];
     }];

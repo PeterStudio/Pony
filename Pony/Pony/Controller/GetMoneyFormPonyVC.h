@@ -10,4 +10,6 @@
 #import "SearchBindAlipayM.h"
 @interface GetMoneyFormPonyVC : BaseViewController
 @property (nonatomic, strong) SearchBindAlipayM * bindAlipayM;
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * account;
 @end

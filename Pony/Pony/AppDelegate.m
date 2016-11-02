@@ -21,6 +21,7 @@
 
 /** Vender*/
 #import <JMessage/JMessage.h>
+#import "JCHATFileManager.h"
 #import <SMS_SDK/SMSSDK.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
@@ -35,6 +36,8 @@
 #import "VersionM.h"
 
 #import "PayReturnM.h"
+
+#import <AdSupport/AdSupport.h>
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -77,11 +80,11 @@
     [DDLog addLogger:[DDASLLogger sharedInstance]]; // 将 log 发送给苹果服务器，之后在 Console.app 中可以查看
     [DDLog addLogger:[DDTTYLogger sharedInstance]]; // 将 log 发送给 Xcode 的控制台
     
-    DDLogVerbose(@"Verbose");
-    DDLogDebug(@"Debug");
-    DDLogInfo(@"Info");
-    DDLogWarn(@"Warn");
-    DDLogError(@"Error");
+//    DDLogVerbose(@"Verbose");
+//    DDLogDebug(@"Debug");
+//    DDLogInfo(@"Info");
+//    DDLogWarn(@"Warn");
+//    DDLogError(@"Error");
     
 }
 
@@ -194,7 +197,7 @@
     
     [JMessage setupJMessage:launchOptions
                      appKey:JMSSAGE_APPKEY
-                    channel:@"Apple Store" apsForProduction:NO  //
+                    channel:@"Apple Store" apsForProduction:YES  //
                    category:nil];
     
     [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
@@ -203,6 +206,7 @@
                                           categories:nil];
     
     [self registerJPushStatusNotification];
+    [JCHATFileManager initWithFilePath];
     return YES;
 }
 
@@ -375,7 +379,7 @@
     [application cancelAllLocalNotifications];
     // 判断是否开启通知
     if (![self isAllowedNotification]) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"你现在无法收到新消息通知。请到系统“设置”-“通知”-“小马过河”中开启" delegate:self cancelButtonTitle:@"不在提示" otherButtonTitles:@"确定", nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"你现在无法收到新消息通知。请到系统“设置”-“通知”-“晓马过河”中开启" delegate:self cancelButtonTitle:@"不在提示" otherButtonTitles:@"确定", nil];
         alert.tag = 99;
         [alert show];
     }
@@ -567,6 +571,11 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     if (setting.types != UIUserNotificationTypeNone) {
         return YES;
     }
+    return NO;
+}
+
+- (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
+{
     return NO;
 }
 

@@ -28,26 +28,26 @@
         return;
     }
     
-    if ([self.dealTF2.text validBlank]) {
-        [MBProgressHUD showError:@"请输入交易密码"];
+    if ([self.dealTF2.text validLoginPassword]) {
+        [MBProgressHUD showError:@"密码，6-16位字母＋数字，支持_"];
         return;
     }
     
     if (![self.dealTF2.text isEqualToString:self.dealTF3.text]) {
-        [MBProgressHUD showError:@"请确认交易密码"];
+        [MBProgressHUD showError:@"两次输入的密码不一致"];
         return;
     }
     
     [MBProgressHUD showMessage:nil];
     @weakify(self)
-    [APIHTTP wwPost:kAPIResetBalancePassowrd parameters:@{@"oldpassword":[self.dealTF1.text md5Hex],@"newpassword":[self.dealTF2.text md5Hex]} success:^(NSDictionary * responseObject) {
+    [APIHTTP wwPost:kAPIResetBalancePassowrd parameters:@{@"oldpassword":self.dealTF1.text,@"newpassword":self.dealTF2.text} success:^(NSDictionary * responseObject) {
         @strongify(self)
         [MBProgressHUD showSuccess:@"重置交易密码成功！"];
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *err) {
         [MBProgressHUD showError:err.localizedDescription toView:self.view];
     } failure:^(NSError *err) {
-        [MBProgressHUD showError:err.localizedDescription toView:self.view];
+        [MBProgressHUD showError:@"请求失败，请稍后再试" toView:self.view];
     } completion:^{
         [MBProgressHUD hideHUD];
     }];

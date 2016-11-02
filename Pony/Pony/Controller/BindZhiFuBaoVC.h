@@ -11,4 +11,5 @@
 
 @interface BindZhiFuBaoVC : BaseViewController
 @property (nonatomic, strong) SearchBindAlipayM * searchBindAlipayM;
+@property (nonatomic, copy) NSString * userID;
 @end
